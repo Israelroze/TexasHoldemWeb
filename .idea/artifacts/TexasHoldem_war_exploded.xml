@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="TexasHoldem:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/TexasHoldem_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="TexasHoldem" />
+          <element id="module-output" name="Engine" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="google-gson-2.1" />
+          <element id="library" level="project" name="HandRank" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="TexasHoldem/web/Web" />
+    </root>
+  </artifact>
+</component>

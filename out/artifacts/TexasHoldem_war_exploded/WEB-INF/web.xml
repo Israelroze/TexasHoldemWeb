@@ -5,7 +5,7 @@
          version="3.1">
         <servlet>
             <servlet-name>FileUpload</servlet-name>
-            <servlet-class>Utils.FileLoadServlet</servlet-class>
+            <servlet-class>GamesList.FileLoadServlet</servlet-class>
         </servlet>
         <servlet>
             <servlet-name>UserLogin</servlet-name>
