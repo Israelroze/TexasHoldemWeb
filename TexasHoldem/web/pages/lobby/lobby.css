@@ -1,0 +1,24 @@
+.upper {
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 20px;
+}
+
+.left{
+    float: left;
+    width: 25%
+}
+.right{
+    float: right;
+    width: 25%
+}
+.body{
+    padding-right: 10px ;
+    padding-left: 10px;
+    width: 50%
+}
+.buttom {
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 10px;
+}

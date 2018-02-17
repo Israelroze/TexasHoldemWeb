@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TexasLobby</title>
+    <script type="text/javascript" src="lobby.js"></script>
+    <link rel="stylesheet" href="lobby.css">
+</head>
+<body>
+    <div id="upper" class="upper"></div>
+    <div id="center" class="center">
+        <div id="left" class="left"></div>
+        <div id="body" class="body"></div>
+            <form id="GameFileUpload" action="/fileupload" enctype="multipart/form-data" method="POST">
+                <input type="file" name="gameFile">
+                <input type="submit" value="Choose Game File">
+            </form>
+            <p id="result"></p>
+        <div id="right" class="right"></div>
+    </div>
+    <div id="buttom" class="buttom"></div>
+</body>
+</html>

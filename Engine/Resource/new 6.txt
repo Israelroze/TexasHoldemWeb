@@ -1,0 +1,9 @@
+engine.AddNewPlayer("Bluffer", PlayerType.COMPUTER, 1 );
+engine.AddNewPlayer("Cheater", PlayerType.COMPUTER, 2 );
+engine.AddNewPlayer("Bunker", PlayerType.COMPUTER, 3 );
+engine.AddNewPlayer("Camper", PlayerType.HUMAN, 4 );
+
+The article discusses cultural differences. When a person from a certain culture is exposed to a different culture, at first everything seems familiar and similar to what he had in his native country: taxis, hotels with running water, theaters, neon lights, even tall buildings with elevators. But when delving deeper, it understood that even the existing similarity, to every place, has its own uniqueness. Every place is different from another, and there are many customs that are culture-dependent. In one culture, the interpretation of a particular sign can be positive, whereas, in another culture, the same sign can be interpreted negatively. Each culture has its own unique characteristics, whether it is clothing, language, or a particular way of life.
+
+The article discusses specifically the language and its unique characteristics that vary between different cultures. In addition, there is a learning process taking place when a person comes to a new place. During the learning process, develops an understanding of the language and the characteristics of the new culture, as a result, the perception towards the new culture changes. I certainly agree with the claim that one culture is different from another. The difference creates a gap and makes it difficult to acclimatize in a foreign country, in another culture. Each culture has its own unique characteristics, For example, in Israel, we have a sign that means, wait a minute, on the other hand
+ in Italy,  the same sign means "I'm going to kill you". A naive interpretation versus a negative interpretation.
