@@ -2,7 +2,7 @@ var chatVersion = 0;
 var refreshRate = 2000; //mili seconds
 
 
-Window.onload(LoadGameFile());
+$(LoadGameFile());
 $(PollUserlist());
 
 function PollUserlist()
@@ -64,6 +64,5 @@ function LoadGameFile(){
             }
         })
     })
-
 }
 

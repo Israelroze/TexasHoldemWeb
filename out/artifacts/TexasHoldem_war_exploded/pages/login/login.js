@@ -1,28 +1,27 @@
-$(LoginUser());
-
-
-function LoginUser(){
+$(function(){
     $("#userform").submit(function() {
-
-        var formdata=new FormData();
-
-        formdata.append("userName",this[0].text);
-        formdata.append("isComputer",this[1].radio);
-
         $.ajax({
             method:this.method,
-            data:formdata,
+            data: $("#userform").serialize(),
             url:this.action,
             timeout: 4000,
-            error: function(jqXHR, textStatus, errorThrown){
-                if(jqXHR.responseText !== ''){
-                    alert(textStatus+": "+jqXHR.responseText);
-                }else{
-                    alert(textStatus+": "+errorThrown);
-                }
+            success:function(){
+                console.log("login is ok");
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                window.history.back();
+                alert('An error occurred... Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information!');
+                $('#errormessage').style.color("red").innerHTML = 'your tip has been submitted!';
+                console.log('jqXHR:');
+                console.log(jqXHR);
+                console.log('textStatus:');
+                console.log(textStatus);
+                console.log('errorThrown:');
+                console.log(errorThrown);
             }
-        })
+        });
+    });
+});
 
-    })
-}
+
 

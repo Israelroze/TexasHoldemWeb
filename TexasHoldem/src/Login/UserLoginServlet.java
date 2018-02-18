@@ -26,7 +26,7 @@ public class UserLoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        PrintWriter out = response.getWriter();
         String usernameFromSession=ServletUtils.getSessionUser(request);
         if(usernameFromSession == null) {
             String username = request.getParameter("username");
@@ -42,6 +42,9 @@ public class UserLoginServlet extends HttpServlet {
 
                     if (userlist.isUserExists(username)) {
                         response.sendError(400, "User already exist.");
+                        //response.setStatus(400);
+                        //out.print("User already exist.");
+                        //out.flush();
                     }
                     else {
                         if (type != null) {
@@ -71,12 +74,39 @@ public class UserLoginServlet extends HttpServlet {
             } else {
                 //no username provide, send error
                 response.sendError(400, "Username not provided.");
+                //response.setStatus(400);
+                //out.print("Username not provided.");
+                //out.flush();
             }
         }
         else
         {
-            //user already logged in
-            response.sendRedirect("./pages/lobby/lobby.html");
+            String username = request.getParameter("username");
+            ServletContext context = getServletContext();
+            Object objUserManagment = context.getAttribute("UserManager");
+
+            if (objUserManagment != null) {
+                UserManager userlist = (UserManager) objUserManagment;
+                String type = request.getParameter("iscomputer");
+                if (userlist.isUserExists(username)) {
+                    response.
+                    response.sendError(400, "User already exist.");
+                    //response.setStatus(400);
+                    //out.print("User already exist.");
+                    //out.flush();
+                } else {
+                    if (type != null) {
+                        userlist.addUser(username, "COMPUTER");
+                    } else {
+                        userlist.addUser(username, "HUMAN");
+                    }
+
+                    context.setAttribute("UserManager", userlist);
+                    ServletUtils.setSessionUser(request, username);
+                    //user already logged in
+                    response.sendRedirect("./pages/lobby/lobby.html");
+                }
+            }
         }
     }
 }
