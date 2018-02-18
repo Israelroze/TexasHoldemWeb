@@ -1,5 +1,45 @@
-$(LoadGameFile());
+var chatVersion = 0;
+var refreshRate = 2000; //mili seconds
 
+
+Window.onload(LoadGameFile());
+$(PollUserlist());
+
+function PollUserlist()
+{
+    //prevent IE from caching ajax calls
+    $.ajaxSetup({cache: false});
+
+    //The users list is refreshed automatically every second
+    setInterval(ajaxUserList, refreshRate);
+
+    setTimeout(ajaxChatContent, refreshRate);
+}
+
+function ajaxUserList()
+{
+    $.ajax({
+        url:"/userlist",
+        success: function(users) {
+            refreshUserList(users);
+        }
+    });
+}
+
+function refreshUserList(users){
+    //clear all current users
+    $("#userslist").empty();
+
+    // rebuild the list of users: scan all users and add them to the list of users
+    $.each(users || [], function(username, type) {
+        console.log("Adding user #" + username + ": " + type);
+        $(  '<tr>' +
+            '<td>'+username+'</td>'+
+            '<td>'+type+'</td>'+
+            '</tr>'
+        ).appendTo($("#userslist"));
+    });
+}
 
 function LoadGameFile(){
     $("#GameFileUpload").submit(function() {
@@ -27,7 +67,3 @@ function LoadGameFile(){
 
 }
 
-function newGameNode(r)
-{
-
-}

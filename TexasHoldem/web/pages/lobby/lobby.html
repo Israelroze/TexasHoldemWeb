@@ -1,23 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>TexasLobby</title>
     <script type="text/javascript" src="lobby.js"></script>
     <link rel="stylesheet" href="lobby.css">
 </head>
-<body>
-    <div id="upper" class="upper"></div>
-    <div id="center" class="center">
-        <div id="left" class="left"></div>
-        <div id="body" class="body"></div>
-            <form id="GameFileUpload" action="/fileupload" enctype="multipart/form-data" method="POST">
-                <input type="file" name="gameFile">
-                <input type="submit" value="Choose Game File">
-            </form>
-            <p id="result"></p>
-        <div id="right" class="right"></div>
+<body background="lobby-background.png">
+
+    <div class="header">
+        <h2>Lobby</h2>
     </div>
-    <div id="buttom" class="buttom"></div>
+
+
+    <div class="row">
+        <div class="leftcolumn">
+            <div class="card">
+                <h2 class="title">User List</h2>
+                <table id="userlist" cellpadding="0" cellspacing="30" border="0" class="usertable">
+                    <tr>
+                        <th>Username</th>
+                        <th>Player Type</th>
+                    </tr>
+                    <tr>
+                        <td>israel</td>
+                        <td>Human</td>
+                    </tr>
+                    <tr>
+                        <td>Avishay</td>
+                        <td>Comuputer</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <div class="rightcolumn">
+            <div class="mainwin">
+                <div class="addfilebar">
+                    <form id="GameFileUpload" action="/fileupload" enctype="multipart/form-data" method="POST">
+                        <input type="file" name="gameFile" class="filebrowser">
+                        <input type="submit" value="Upload Game File" class="uploadbutton">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

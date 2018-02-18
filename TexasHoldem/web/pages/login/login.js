@@ -14,19 +14,15 @@ function LoginUser(){
             data:formdata,
             url:this.action,
             timeout: 4000,
-            error: function(e) {
-                console.error("Failed to submit");
-                $("#result").text(e);
-            },
-            success: function(r) {
-                $("#result").text(r);
+            error: function(jqXHR, textStatus, errorThrown){
+                if(jqXHR.responseText !== ''){
+                    alert(textStatus+": "+jqXHR.responseText);
+                }else{
+                    alert(textStatus+": "+errorThrown);
+                }
             }
         })
+
     })
-
 }
 
-function newGameNode(r)
-{
-
-}

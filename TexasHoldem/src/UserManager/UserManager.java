@@ -1,30 +1,28 @@
 package UserManager;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class UserManager {
 
-    private final Set<String> usersSet;
+
+
+    private final Map<String,String> usersMap;
 
     public UserManager() {
-        usersSet = new HashSet<>();
+        usersMap = new HashMap<>();
     }
 
-    public void addUser(String username) {
-        usersSet.add(username);
+    public void addUser(String username,String type) {
+        usersMap.put(username,type);
     }
 
     public void removeUser(String username) {
-        usersSet.remove(username);
+        usersMap.remove(username);
     }
 
-    public Set<String> getUsers() {
-        return Collections.unmodifiableSet(usersSet);
+    public Map<String,String> getUsers() {
+        return usersMap;
     }
 
-    public boolean isUserExists(String username) {
-        return usersSet.contains(username);
-    }
+    public boolean isUserExists(String username) { return usersMap.containsKey(username); }
 }

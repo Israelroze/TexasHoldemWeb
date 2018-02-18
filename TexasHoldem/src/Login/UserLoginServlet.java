@@ -1,5 +1,8 @@
 package Login;
 
+import UserManager.UserManager;
+import Utils.ServletUtils;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,15 +26,57 @@ public class UserLoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Map<String,String[]> collection=request.getParameterMap();
 
-        for(Map.Entry<String,String[]> entry : collection.entrySet())
-        {
-            System.out.println(entry.getKey());
-            for(String str:entry.getValue())
-            {
-                System.out.println(entry.getKey());
+        String usernameFromSession=ServletUtils.getSessionUser(request);
+        if(usernameFromSession == null) {
+            String username = request.getParameter("username");
+            String type = request.getParameter("iscomputer");
+
+            if (username != null) {
+                //check if user name already exist
+                ServletContext context = getServletContext();
+                Object objUserManagment = context.getAttribute("UserManager");
+
+                if (objUserManagment != null) {
+                    UserManager userlist = (UserManager) objUserManagment;
+
+                    if (userlist.isUserExists(username)) {
+                        response.sendError(400, "User already exist.");
+                    }
+                    else {
+                        if (type != null) {
+                            userlist.addUser(username, "COMPUTER");
+                        } else {
+                            userlist.addUser(username, "HUMAN");
+                        }
+
+                        context.setAttribute("UserManager", userlist);
+                        ServletUtils.setSessionUser(request, username);
+                        response.sendRedirect("./pages/lobby/lobby.html");
+                    }
+                } else {
+                    //first time, init user list
+                    UserManager userlist = new UserManager();
+                    if (type != null) {
+                        userlist.addUser(username, "COMPUTER");
+                    } else {
+                        userlist.addUser(username, "HUMAN");
+                    }
+
+                    context.setAttribute("UserManager", userlist);
+                    ServletUtils.setSessionUser(request, username);
+                    response.sendRedirect("./pages/lobby/lobby.html");
+                }
+
+            } else {
+                //no username provide, send error
+                response.sendError(400, "Username not provided.");
             }
+        }
+        else
+        {
+            //user already logged in
+            response.sendRedirect("./pages/lobby/lobby.html");
         }
     }
 }

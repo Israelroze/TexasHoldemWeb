@@ -1,24 +1,127 @@
-.upper {
-    background-color: #F1F1F1;
-    text-align: center;
-    padding: 20px;
+* {
+    box-sizing: border-box;
 }
 
-.left{
-    float: left;
-    width: 25%
+body {
+    font-family: Arial;
+    padding: 20px;
+    position: relative;
+    background-repeat:no-repeat;
+    background-size:100% 100vh;
 }
-.right{
-    float: right;
-    width: 25%
-}
-.body{
-    padding-right: 10px ;
-    padding-left: 10px;
-    width: 50%
-}
-.buttom {
-    background-color: #F1F1F1;
+
+/* Header/Blog Title */
+.header {
+    background: lightcyan;
+    border-radius: 25px;
+    padding: 5px;
+    font-size: 25px;
     text-align: center;
-    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+/* Left column */
+.leftcolumn {
+    float: left;
+    max-width: 25%;
+}
+
+/* Right column */
+.rightcolumn {
+    float: right;
+    max-width: 75%;
+
+    padding-left: 20px;
+}
+
+/*File upload bar*/
+.addfilebar{
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.filebrowser{
+    float:left;
+    padding:10px;
+}
+.uploadbutton{
+    float: right;
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+/*user list */
+.usertable{
+    margin:0 auto;
+    text-align: center;
+}
+.title{
+    text-align: center;
+}
+/* Add a card effect for articles */
+.card {
+    border-radius: 25px;
+    background: lightcyan;
+    padding: 20px;
+    margin-top: 20px;
+    width:25vw;
+    min-height: 10vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Add a card effect for articles */
+.mainwin {
+    border-radius: 25px;
+    background: lightcyan;
+    padding: 20px;
+    margin-top: 20px;
+    right:25px;
+    width: 69vw;
+    min-height: 10vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other*/
+@media (max-width: 800px) {
+    .leftcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other*/
+@media (max-width: 800px) {
+    .mainwin {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+}
+
