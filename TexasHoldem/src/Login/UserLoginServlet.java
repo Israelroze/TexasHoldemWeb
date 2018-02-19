@@ -2,6 +2,7 @@ package Login;
 
 import UserManager.UserManager;
 import Utils.ServletUtils;
+import com.sun.deploy.net.HttpResponse;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -28,85 +29,72 @@ public class UserLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         String usernameFromSession=ServletUtils.getSessionUser(request);
+        String username = request.getParameter("username");
+        String type = request.getParameter("iscomputer");
+
         if(usernameFromSession == null) {
-            String username = request.getParameter("username");
-            String type = request.getParameter("iscomputer");
-
-            if (username != null) {
+            if (username != null && !(username.equals(""))) {
                 //check if user name already exist
-                ServletContext context = getServletContext();
-                Object objUserManagment = context.getAttribute("UserManager");
-
-                if (objUserManagment != null) {
-                    UserManager userlist = (UserManager) objUserManagment;
-
-                    if (userlist.isUserExists(username)) {
-                        response.sendError(400, "User already exist.");
-                        //response.setStatus(400);
-                        //out.print("User already exist.");
-                        //out.flush();
-                    }
-                    else {
-                        if (type != null) {
-                            userlist.addUser(username, "COMPUTER");
-                        } else {
-                            userlist.addUser(username, "HUMAN");
-                        }
-
-                        context.setAttribute("UserManager", userlist);
-                        ServletUtils.setSessionUser(request, username);
-                        response.sendRedirect("./pages/lobby/lobby.html");
-                    }
-                } else {
-                    //first time, init user list
-                    UserManager userlist = new UserManager();
-                    if (type != null) {
-                        userlist.addUser(username, "COMPUTER");
-                    } else {
-                        userlist.addUser(username, "HUMAN");
-                    }
-
-                    context.setAttribute("UserManager", userlist);
-                    ServletUtils.setSessionUser(request, username);
-                    response.sendRedirect("./pages/lobby/lobby.html");
+                if(CheckAndUpdateUser(username,type))
+                {
+                    //user already exist
+                    ServletUtils.SendErrorMessage("User Already Exist.",response);
                 }
-
-            } else {
-                //no username provide, send error
-                response.sendError(400, "Username not provided.");
-                //response.setStatus(400);
-                //out.print("Username not provided.");
-                //out.flush();
+                else
+                {
+                    //ok, add user and login
+                    ServletUtils.setSessionUser(request, username);
+                    ServletUtils.SendRedirectURL("./pages/lobby/lobby.html",response);
+                }
+            }
+            else
+            {
+                // user not provided
+                ServletUtils.SendErrorMessage("Username not provided",response);
             }
         }
         else
         {
-            String username = request.getParameter("username");
-            ServletContext context = getServletContext();
-            Object objUserManagment = context.getAttribute("UserManager");
+            //session already created, check if username already login
+            ServletUtils.SendRedirectURL("./pages/lobby/lobby.html",response);
+        }
+    }
 
-            if (objUserManagment != null) {
-                UserManager userlist = (UserManager) objUserManagment;
-                String type = request.getParameter("iscomputer");
-                if (userlist.isUserExists(username)) {
-                    response.
-                    response.sendError(400, "User already exist.");
-                    //response.setStatus(400);
-                    //out.print("User already exist.");
-                    //out.flush();
-                } else {
-                    if (type != null) {
-                        userlist.addUser(username, "COMPUTER");
-                    } else {
-                        userlist.addUser(username, "HUMAN");
-                    }
 
-                    context.setAttribute("UserManager", userlist);
-                    ServletUtils.setSessionUser(request, username);
-                    //user already logged in
-                    response.sendRedirect("./pages/lobby/lobby.html");
+    private boolean CheckAndUpdateUser(String username,String type) {
+        ServletContext context = getServletContext();
+        Object objUserManagment = context.getAttribute("UserManager");
+
+        if (objUserManagment != null) {
+            UserManager userlist = (UserManager) objUserManagment;
+
+            if (userlist.isUserExists(username)) {return true; }
+            else
+            {
+                if (type != null)
+                {
+                    userlist.addUser(username, "COMPUTER");
+                }
+                else
+                {
+                    userlist.addUser(username, "HUMAN");
                 }
             }
         }
+        else
+        {
+            //first time, init user list
+            UserManager userlist = new UserManager();
+            if (type != null) {
+                userlist.addUser(username, "COMPUTER");
+            } else {
+                userlist.addUser(username, "HUMAN");
+            }
+
+            context.setAttribute("UserManager", userlist);
+        }
+        return false;
     }
+
 }
+

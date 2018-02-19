@@ -1,23 +1,19 @@
 $(function(){
-    $("#userform").submit(function() {
+    $("#userform").submit(function(event) {
+        event.preventDefault();
         $.ajax({
             method:this.method,
             data: $("#userform").serialize(),
             url:this.action,
             timeout: 4000,
-            success:function(){
-                console.log("login is ok");
+            success: function(r){
+                console.log(r);
+                console.log("redirecting to "+r);
+                window.location.href=r;
             },
-            error: function(jqXHR, textStatus, errorThrown) {
-                window.history.back();
-                alert('An error occurred... Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information!');
-                $('#errormessage').style.color("red").innerHTML = 'your tip has been submitted!';
-                console.log('jqXHR:');
-                console.log(jqXHR);
-                console.log('textStatus:');
-                console.log(textStatus);
-                console.log('errorThrown:');
-                console.log(errorThrown);
+            error: function(r) {
+                console.log("ERROR"+r.responseText);
+                $("#errormessage").text(r.responseText).css({'color': 'red'});
             }
         });
     });

@@ -7,23 +7,31 @@ $(PollUserlist());
 
 function PollUserlist()
 {
+    console.log("poll on userlist activated");
+
     //prevent IE from caching ajax calls
     $.ajaxSetup({cache: false});
 
     //The users list is refreshed automatically every second
     setInterval(ajaxUserList, refreshRate);
 
-    setTimeout(ajaxChatContent, refreshRate);
+    setTimeout(ajaxUserList, refreshRate);
 }
 
 function ajaxUserList()
 {
+    console.log("sending poll userlist request");
     $.ajax({
         url:"/userlist",
         success: function(users) {
-            refreshUserList(users);
+            console.log(users);
+            tabletest(users);
         }
     });
+}
+
+function tabletest(){
+    $("#userlist tr").remove();
 }
 
 function refreshUserList(users){
@@ -33,12 +41,18 @@ function refreshUserList(users){
     // rebuild the list of users: scan all users and add them to the list of users
     $.each(users || [], function(username, type) {
         console.log("Adding user #" + username + ": " + type);
-        $(  '<tr>' +
-            '<td>'+username+'</td>'+
-            '<td>'+type+'</td>'+
-            '</tr>'
-        ).appendTo($("#userslist"));
+        console.log($("#userlist"));
+        console.log($("#userlist").find('tbody'));
+        $('#userslist').find('tbody').append('<tr><td>username</td><td>type</td></tr>');
+        //$(  '<tr>' +
+        //    '<td>'+username+'</td>'+
+        //   '<td>'+type+'</td>'+
+        //   '</tr>'
+        //).appendTo($("#userslist"));
     });
+
+    console.log($("#userlist").find('tbody').innerText);
+
 }
 
 function LoadGameFile(){
