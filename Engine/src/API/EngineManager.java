@@ -15,6 +15,8 @@ public interface EngineManager {
     public void DeleteGame(String id);
 
     //users
+    public void AddNewUser(String username);
+ 
     //?
 
 }
