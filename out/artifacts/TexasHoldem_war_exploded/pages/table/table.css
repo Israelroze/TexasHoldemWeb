@@ -1,0 +1,311 @@
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+            'center center center'
+            'center center center'
+    /* grid-column-gap: 10px; - if you want gap between the columns */
+}
+
+
+
+.center {
+    grid-area: center;
+
+}
+
+
+
+
+
+.table_class {
+    position : relative;
+    background-image: url('images/table.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: 411px;
+    width: 809px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -205px;
+    margin-left: -405px;
+
+
+}
+.pos {
+    width:240px;
+    height:76px;
+    position: absolute;
+}
+
+#button {
+    /* background-image: url('/images/dealerbutton.png'); */
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width:24px;
+    height:19px;
+    position: absolute;
+}
+
+.player_details {
+    font-family: Arial;
+    width:240px;
+    height:76px;
+    background-color: rgba(253, 255, 238, 0.5);
+    font-size: 12px;
+    color: rgba(2, 165, 211, 0.5);
+    text-align: center;
+    font-weight: 900;
+    position:relative;
+    border-radius: 10px;
+    text-shadow:
+            1px 1px 0 #fff;
+
+}
+
+body {
+    background-image: url("https://images3.alphacoders.com/812/812062.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100% ;
+}
+
+
+.player_name {
+    color: wheat;
+    font: bold 52px Helvetica, Arial, Sans-Serif;
+    text-shadow: 1px 1px #1721fe,
+    2px 2px #1721fe,
+    3px 3px #1721fe;
+}
+.player_name:hover {
+    position: relative;
+    top: -3px;
+    left: -3px;
+    text-shadow: 1px 1px #fe4902,
+    2px 2px #fe4902,
+    3px 3px #fe4902,
+    4px 4px #fe4902,
+    5px 5px #fe4902,
+    6px 6px #fe4902;
+}
+.chips {
+}
+
+.card {
+    width:50px;
+    height:73px;
+    background-image: url('images/back.png');
+    background-size: 100%;
+}
+
+.cardplace {
+    width:102px;
+    height:73px;
+    float:left;
+    position:relative;
+    left: 10px;
+    top:2px;
+}
+
+.holecard1 {
+    position:absolute;
+    left:0;
+    top:0;
+}
+
+.holecard2 {
+    position:absolute;
+    left:50px;
+    top:0;
+}
+
+.player_name {
+    font-size: 14px;
+
+
+}
+
+
+.bet {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+    position: absolute;
+    left:0;
+    top:0;
+    background: rgba(16, 34, 21, 0.3);
+
+
+}
+
+.role {
+
+
+}
+
+#role1 {
+
+}
+#role2 {
+
+}
+#role3 {
+;
+}
+#role4 {
+
+}
+#role5 {
+
+}
+#role6 {
+
+}
+
+
+#pos1 .bet {
+    left:40%;
+    top:135%;
+}
+#pos2 .bet {
+    left:40%;
+    top:-45%;
+}
+#pos3 .bet {
+    left:40%;
+    top:-45%;
+}
+#pos4 .bet {
+    left:40%;
+    top:-45%;
+}
+#pos5 .bet {
+    left:40%;
+    top:135%;
+}
+#pos6 .bet {
+    left:40%;
+    top:135%;
+}
+#pos1 {
+    left:74%;
+    top:-1.0%;
+    transform: rotate(30deg)
+}
+#pos2 {
+    left:74%;
+    top:81%;
+    transform: rotate(-30deg)
+}
+
+#pos3 {
+    left:35%;
+    top:98%;
+    transform: rotate(0deg)
+}
+
+#pos4 {
+    left:-5%;
+    top:81%;
+    transform: rotate(30deg)
+}
+
+
+#pos5 {
+    left:-5%;
+    top:-1%;
+    transform: rotate(-30deg)
+}
+
+#pos6 {
+    left:35%;
+    top:-18%;
+    transform: rotate(0deg)
+}
+
+
+
+
+#board {
+    position:absolute;
+    left:275px;
+    top:160px;
+
+}
+
+#pot {
+    position: absolute;
+    left: 40% ;
+    top: 60%;
+    font-size: 16px;
+    font-weight: bolder;
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.boardcard {
+    width:50px;
+    height:75px;
+    position: absolute;
+    left:0;
+    top:0;
+}
+
+#flop1 {
+}
+
+#flop2 {
+    left:52px;
+}
+
+#flop3 {
+    left:104px;
+}
+
+#turn {
+    left:156px;
+}
+
+#river {
+    left:208px;
+}
+
+
+
+
+
+/* nemu bars*/
+
+
+#top_menu{
+    top: 0;
+}
+
+#bottom_menu{
+    bottom: 0;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    width: 100%;
+}
+
+.navbar .bar_button{
+    font-family: Arial, Helvetica, sans-serif;
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar  .bar_button:hover {
+    background: #ddd;
+    color: black;
+}
