@@ -1,13 +1,12 @@
 package GamesList;
 
-import API.InterfaceAPI;
+import API.Engine;
 import com.google.gson.Gson;
-import Game.Game;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.http.HTTPException;
 import java.io.IOException;
 
 public class GameListServlet extends HttpServlet {
@@ -23,7 +22,7 @@ public class GameListServlet extends HttpServlet {
         int big;
         int small;
 
-        public GameData(InterfaceAPI game)
+        public GameData(Engine game)
         {
             this.num_of_hands=game.GetNumberOfHands();
 

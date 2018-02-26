@@ -1,8 +1,8 @@
 package GamesList;
 
-//import API.InterfaceAPI;
+//import API.Engine;
 //import Exceptions.*;
-import API.InterfaceAPI;
+import API.Engine;
 import Exceptions.*;
 import Game.Game;
 
@@ -17,7 +17,6 @@ import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -38,7 +37,7 @@ public class FileLoadServlet extends HttpServlet {
         // check fo xml extension
         String fname=filepart.getName();
 
-        InterfaceAPI engine=new Game();
+        Engine engine=new Game();
 
         response.setContentType("text");
         PrintWriter out = response.getWriter();
@@ -47,10 +46,10 @@ public class FileLoadServlet extends HttpServlet {
             engine.LoadFromXML(fstream);
             ServletContext context=getServletContext();
             Object objGames=context.getAttribute("games");
-            List<InterfaceAPI> games;
+            List<Engine> games;
 
             if(objGames != null) {
-                games=(List<InterfaceAPI>) objGames;
+                games=(List<Engine>) objGames;
                 games.add(engine);
                 context.setAttribute("games",games);
             }

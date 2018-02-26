@@ -18,7 +18,7 @@ import java.util.*;
 
 import Move.*;
 
-public class Game implements InterfaceAPI {
+public class Game implements Engine {
 
     final static Boolean ENABLE_LOG = false;
     //members
@@ -901,5 +901,10 @@ public class Game implements InterfaceAPI {
     @Override
     public void AddPlayer(String name,String type) throws PlayerAlreadyBetException, PlayerdIDmismatchException {
         this.players.AddPlayer(name,type);
+    }
+
+    @Override
+    public String GetGameID() {
+        return this.configuration.getDynamicPlayers().getGameTitle();
     }
 }

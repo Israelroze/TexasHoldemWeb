@@ -13,7 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
 
-public interface  InterfaceAPI {
+public interface Engine {
 
     //option 1
     public void LoadFromXML(String filename) throws GameStartedException, UnexpectedObjectException, FileNotFoundException, BigSmallMismatchException, PlayerDataMissingException, HandsCountDevideException, WrongFileNameException, HandsCountSmallerException, JAXBException, FileNotXMLException, MinusZeroValueException, BigBiggerThanBuyException, MaxBigMoreThanHalfBuyException, PlayerdIDmismatchException;
@@ -108,4 +108,5 @@ public interface  InterfaceAPI {
     public int GetTotalNumOfPlayers();
     public int GetRegisteredNumOfPlayers();
     public void AddPlayer(String Name,String Type) throws PlayerAlreadyBetException, PlayerdIDmismatchException;
+    public String GetGameID();
 }
