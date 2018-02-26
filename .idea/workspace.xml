@@ -6,32 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df13f83f-132c-4582-8fbb-38942e50a019" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TexasHoldem/src/GameTable/GameTableServlet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TexasHoldem/web/common/context-path-helper.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TexasHoldem/web/pages/table/gameTable.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TexasHoldem/web/pages/table/table.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TexasHoldem/web/pages/table/table.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TexasHoldem_war_exploded/cummon/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TexasHoldem_war_exploded/cummon/images/LoginBackGround.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TexasHoldem_war_exploded/cummon/images/LoginBackGround2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TexasHoldem_war_exploded/cummon/images/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/TexasHoldem_war_exploded/cummon/jquery-2.0.3.min.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/TexasHoldem/web/cummon/desktop.ini" afterPath="$PROJECT_DIR$/TexasHoldem/web/common/desktop.ini" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/TexasHoldem/web/cummon/images/LoginBackGround.jpg" afterPath="$PROJECT_DIR$/TexasHoldem/web/common/images/LoginBackGround.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/TexasHoldem/web/cummon/images/LoginBackGround2.jpg" afterPath="$PROJECT_DIR$/TexasHoldem/web/common/images/LoginBackGround2.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/TexasHoldem/web/cummon/images/desktop.ini" afterPath="$PROJECT_DIR$/TexasHoldem/web/common/images/desktop.ini" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/TexasHoldem/web/cummon/jquery-2.0.3.min.js" afterPath="$PROJECT_DIR$/TexasHoldem/web/common/jquery-2.0.3.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TexasHoldem/TexasHoldem.iml" afterPath="$PROJECT_DIR$/TexasHoldem/TexasHoldem.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TexasHoldem/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/TexasHoldem/web/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TexasHoldem/web/index.html" afterPath="$PROJECT_DIR$/TexasHoldem/web/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TexasHoldem/web/pages/lobby/lobby.html" afterPath="$PROJECT_DIR$/TexasHoldem/web/pages/lobby/lobby.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/TexasHoldem_war_exploded/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/out/artifacts/TexasHoldem_war_exploded/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/TexasHoldem_war_exploded/index.html" afterPath="$PROJECT_DIR$/out/artifacts/TexasHoldem_war_exploded/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/TexasHoldem_war_exploded/pages/lobby/lobby.html" afterPath="$PROJECT_DIR$/out/artifacts/TexasHoldem_war_exploded/pages/lobby/lobby.html" />
-    </list>
+    <list default="true" id="df13f83f-132c-4582-8fbb-38942e50a019" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,14 +14,18 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" flattened_view="false" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/login/login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="26" lean-forward="false" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-              <folding />
+            <state relative-caret-position="136">
+              <caret line="8" column="26" lean-forward="false" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+              <folding>
+                <marker date="1519675130789" expanded="true" signature="12:612" ph="{...}" />
+                <marker date="1519675130789" expanded="true" signature="574:600" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameTableServlet.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameTableServlet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TexasHoldem/src/GameTable/GameTableServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1921">
-              <caret line="128" column="59" lean-forward="false" selection-start-line="128" selection-start-column="59" selection-end-line="128" selection-end-column="59" />
+            <state relative-caret-position="541">
+              <caret line="97" column="31" lean-forward="true" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -104,17 +83,17 @@
       <file leaf-file-name="gameTable.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/gameTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="221">
               <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="table.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="table.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/table.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
+            <state relative-caret-position="249">
               <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
               <folding />
             </state>
@@ -124,7 +103,7 @@
       <file leaf-file-name="table.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/table.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-577">
+            <state relative-caret-position="578">
               <caret line="48" column="29" lean-forward="false" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -181,6 +160,31 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="IsraelBranch" />
+      </map>
+    </option>
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -194,7 +198,6 @@
         <option value="$PROJECT_DIR$/TexasHoldem/web/pages/lobby/lobby.css" />
         <option value="$PROJECT_DIR$/TexasHoldem/src/UserManager/UserListServlet.java" />
         <option value="$PROJECT_DIR$/TexasHoldem/src/Utils/ServletUtils.java" />
-        <option value="$PROJECT_DIR$/TexasHoldem/web/pages/login/login.js" />
         <option value="$PROJECT_DIR$/TexasHoldem/src/Login/UserLoginServlet.java" />
         <option value="$PROJECT_DIR$/TexasHoldem/web/pages/lobby/lobby.js" />
         <option value="$PROJECT_DIR$/TexasHoldem/src/GameTable/GameTable.java" />
@@ -205,6 +208,7 @@
         <option value="$PROJECT_DIR$/TexasHoldem/web/pages/table/gameTable.js" />
         <option value="$PROJECT_DIR$/TexasHoldem/web/pages/table/table.html" />
         <option value="$PROJECT_DIR$/TexasHoldem/web/pages/table/table.css" />
+        <option value="$PROJECT_DIR$/TexasHoldem/web/pages/login/login.js" />
       </list>
     </option>
   </component>
@@ -256,7 +260,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -267,100 +273,33 @@
             <path>
               <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
+              <item name="Engine" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
+              <item name="Engine" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
+              <item name="Engine" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GamesList" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GameTable" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="UserManager" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="lobby" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
+              <item name="API" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Online Chat V2/Online Chat V2" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -392,7 +331,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.TexasHoldem">
-    <configuration name="TexasHoldem" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.28" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8">
+    <configuration name="TexasHoldem" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Examples Tomcat" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="1.8">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/index.html" />
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -572,11 +511,12 @@
       <workItem from="1519564326699" duration="387000" />
       <workItem from="1519573095592" duration="11256000" />
       <workItem from="1519646758957" duration="6451000" />
+      <workItem from="1519675692526" duration="1198000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89978000" />
+    <option name="totallyTimeSpent" value="91176000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -589,6 +529,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288889" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -600,20 +541,20 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32777777" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23222223" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288889" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.71580064" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32767764" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288889" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25053304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25052083" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64425534" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -658,25 +599,37 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/TexasHoldem/src/Utils/ServletUtils.java</url>
-          <line>16</line>
-          <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/TexasHoldem/src/Utils/ServletUtils.java</url>
-          <line>43</line>
-          <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="13" />
     </breakpoint-manager>
     <watches-manager>
@@ -714,7 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="23" lean-forward="false" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -737,7 +689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -745,7 +696,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-          <folding />
+          <folding>
+            <marker date="1519675130789" expanded="true" signature="12:612" ph="{...}" />
+            <marker date="1519675130789" expanded="true" signature="574:600" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -813,7 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -859,7 +812,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-          <folding />
+          <folding>
+            <marker date="1519675130789" expanded="true" signature="12:612" ph="{...}" />
+            <marker date="1519675130789" expanded="true" signature="574:600" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -968,7 +924,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
           <caret line="37" column="18" lean-forward="false" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1021,17 +976,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/login/login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="26" lean-forward="false" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/GameTable/GameTableServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1921">
-          <caret line="128" column="59" lean-forward="false" selection-start-line="128" selection-start-column="59" selection-end-line="128" selection-end-column="59" />
-          <folding />
+        <state relative-caret-position="136">
+          <caret line="8" column="26" lean-forward="false" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <folding>
+            <marker date="1519675130789" expanded="true" signature="12:612" ph="{...}" />
+            <marker date="1519675130789" expanded="true" signature="574:600" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1045,7 +995,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/gameTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="221">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
@@ -1053,7 +1003,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/table.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-577">
+        <state relative-caret-position="578">
           <caret line="48" column="29" lean-forward="false" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
           <folding>
             <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -1063,8 +1013,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/table.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
+        <state relative-caret-position="249">
           <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/GameTable/GameTableServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="97" column="31" lean-forward="true" selection-start-line="97" selection-start-column="31" selection-end-line="97" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1134,12 +1092,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Engine</last-edited>
+          <last-edited>TexasHoldem</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
