@@ -42,15 +42,18 @@ public class APlayer{
         this.state=PlayerState.NONE;
     }
 
-
-    public void SetWinChance(String chance)
+    //Ctors
+    public APlayer(String name, PlayerType type)
     {
-        this.win_chance=chance;
-    }
-
-    public String GetWinChance()
-    {
-        return this.win_chance;
+        this.type=type;
+        this.name=name;
+        this.id=0;
+        this.ClearBidStats();
+        this.num_of_buys=0;
+        this.num_of_wins=0;
+        this.money=0;
+        this.win_chance="0%";
+        this.state=PlayerState.NONE;
     }
 
     public APlayer(Player player) throws PlayerDataMissingException {
@@ -77,6 +80,17 @@ public class APlayer{
         this.num_of_wins=0;
         this.ClearBidStats();
         this.state=PlayerState.NONE;
+    }
+
+
+    public void SetWinChance(String chance)
+    {
+        this.win_chance=chance;
+    }
+
+    public String GetWinChance()
+    {
+        return this.win_chance;
     }
 
     //Getters Setters

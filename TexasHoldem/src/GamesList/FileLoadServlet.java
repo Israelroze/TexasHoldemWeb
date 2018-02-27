@@ -3,8 +3,10 @@ package GamesList;
 //import API.Engine;
 //import Exceptions.*;
 import API.Engine;
+import API.EngineManager;
 import Exceptions.*;
 import Game.Game;
+import GameManager.GameManager;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -37,29 +39,12 @@ public class FileLoadServlet extends HttpServlet {
         // check fo xml extension
         String fname=filepart.getName();
 
-        Engine engine=new Game();
-
         response.setContentType("text");
         PrintWriter out = response.getWriter();
 
         try{
-            engine.LoadFromXML(fstream);
-            ServletContext context=getServletContext();
-            Object objGames=context.getAttribute("games");
-            List<Engine> games;
+           getManager().AddGame(fstream);
 
-            if(objGames != null) {
-                games=(List<Engine>) objGames;
-                games.add(engine);
-                context.setAttribute("games",games);
-            }
-            else
-            {
-                //first time
-                games=new LinkedList<>();
-                games.add(engine);
-                context.setAttribute("games",games);
-            }
         } catch (PlayerdIDmismatchException e) {
             out.println("");
         } catch (BigSmallMismatchException e) {
@@ -80,18 +65,19 @@ public class FileLoadServlet extends HttpServlet {
             out.println(" Game already started");
         } catch (BigBiggerThanBuyException e) {
             out.println(" Big value bigger that the Buy value.");
+        } catch (GameTitleAllreadyExistException e) {
+            out.println(" Game with the same title allready exist.");
         }
-
-        /*
-        StringBuilder fileContent = new StringBuilder();
-        out.println(fileContent.toString());
-        fileContent.append(readFromInputStream(fstream));
-        out.println(fileContent.toString());
-        */
-
-
     }
+
     private String readFromInputStream(InputStream inputStream) {
         return new Scanner(inputStream).useDelimiter("\\Z").next();
+    }
+
+    private EngineManager getManager()
+    {
+        EngineManager manager=new GameManager();
+        ServletContext context=getServletContext();
+        return (EngineManager) context.getAttribute("EngineManager");
     }
 }

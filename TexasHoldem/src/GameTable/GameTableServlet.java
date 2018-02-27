@@ -1,6 +1,9 @@
 package GameTable;
 
 import Card.Card;
+import Containers.GameData;
+import Containers.HandData;
+import Containers.UserData;
 import UserManager.UserManager;
 import Utils.ServletUtils;
 import com.google.gson.Gson;
@@ -48,60 +51,6 @@ public class GameTableServlet extends HttpServlet {
 
         }
     }
-
-
-
-    class GameData{
-
-        final private int dataVerion;
-        final private List<UserData> userData;
-        final private int  num_of_games;
-        final private int current_game_number;
-        final private int number_of_players;
-
-
-        public GameData(int dataVerion, List<UserData> userData, int num_of_games, int current_game_number, int number_of_players) {
-            this.dataVerion = dataVerion;
-            this.userData = userData;
-            this.num_of_games = num_of_games;
-            this.current_game_number = current_game_number;
-            this.number_of_players = number_of_players;
-
-        }
-    }
-
-    class HandData
-    {
-        final private  int pot;
-        final private List<String> communityCards;
-
-        public HandData(int pot, List<String> communityCards) {
-            this.pot = pot;
-            this.communityCards = communityCards;
-        }
-    }
-
-    class UserData
-    {
-        private String name;
-        private int bid;
-        private int num_of_wins;
-        private int money;
-        private String type;
-        final private List<String> cards;
-
-
-        public UserData(String name, int bid, int num_of_wins, int money, String type,List<String> cards) {
-            this.name = name;
-            this.bid = bid;
-            this.num_of_wins = num_of_wins;
-            this.money = money;
-            this.type = type;
-            this.cards = cards;
-        }
-    }
-
-
 
     public GameData TestGameData()
     {

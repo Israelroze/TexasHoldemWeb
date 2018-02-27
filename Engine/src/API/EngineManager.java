@@ -4,19 +4,24 @@ import Exceptions.*;
 
 import javax.xml.bind.JAXBException;
 import java.io.InputStream;
+import java.util.List;
 
 public interface EngineManager {
-
-
-    //Game
+    ////////////////////////////////////////////
+    /////Games
+    ////////////////////////////////////////////
     public void AddGame(InputStream fstream) throws MinusZeroValueException, UnexpectedObjectException, BigSmallMismatchException, HandsCountDevideException, GameStartedException, BigBiggerThanBuyException, MaxBigMoreThanHalfBuyException, HandsCountSmallerException, JAXBException, PlayerdIDmismatchException, GameTitleAllreadyExistException;
     public Engine GetGame(String id);
     public boolean IsGameExist(String id);
     public void DeleteGame(String id);
+    public List<Engine> GetGamesList();
 
-    //users
-    public void AddNewUser(String username);
- 
-    //?
-
+    /////////////////////////////////////////////
+    /////users
+    /////////////////////////////////////////////
+    public void AddNewUser(String username,String Type) throws PlayerAlreadyExistException;
+    public String GetUserType(String username);
+    public int GetUserMoney(String username);
+    public int GetUserNumOfBuys(String username);
+    public int GetUserNumOfWins(String username);
 }

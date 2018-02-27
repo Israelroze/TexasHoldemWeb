@@ -309,6 +309,11 @@ public class Game implements Engine {
     }
 
     @Override
+    public void AddNewPlayer(APlayer player) {
+        this.players.GetPlayers().add(player);
+    }
+
+    @Override
     public int GetTotalNumberOfPlayers(){
         return this.players.GetSize();
     }
