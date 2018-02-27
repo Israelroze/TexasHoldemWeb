@@ -14,22 +14,24 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+
 public class GameManager implements EngineManager {
 
     private Map<String,Engine> gameHash;
     private Map<String, APlayer> usersHash;
 
     public GameManager(){
+        this.usersHash=new HashMap<>();
         this.gameHash=new HashMap<>();
     }
 
     @Override
-    public void AddGame(InputStream fstream) throws MinusZeroValueException, UnexpectedObjectException, BigSmallMismatchException, HandsCountDevideException, GameStartedException, BigBiggerThanBuyException, MaxBigMoreThanHalfBuyException, HandsCountSmallerException, JAXBException, PlayerdIDmismatchException, GameTitleAllreadyExistException {
+    public void AddGame(InputStream fstream,String uploader) throws MinusZeroValueException, UnexpectedObjectException, BigSmallMismatchException, HandsCountDevideException, GameStartedException, BigBiggerThanBuyException, MaxBigMoreThanHalfBuyException, HandsCountSmallerException, JAXBException, PlayerdIDmismatchException, GameTitleAllreadyExistException {
         Engine new_game=new Game();
         new_game.LoadFromXML(fstream);
 
         String id=new_game.GetGameID();
-
+        new_game.RegisterUploader(uploader);
         if(this.IsGameExist(id))
         {
             throw new GameTitleAllreadyExistException();
@@ -68,6 +70,23 @@ public class GameManager implements EngineManager {
     }
 
     @Override
+    public List<String> GetUserList() {
+        List<String> res=new LinkedList<>();
+
+        for (Map.Entry<String, APlayer> entry : this.usersHash.entrySet()) {
+            String key = entry.getKey();
+            res.add(key);
+        }
+
+        return res;
+    }
+
+    @Override
+    public boolean IsUserListEmpty() {
+        return this.usersHash.isEmpty();
+    }
+
+    @Override
     public void AddNewUser(String username, String Type) throws PlayerAlreadyExistException {
         if(this.usersHash.containsKey(username)){
             throw new PlayerAlreadyExistException();
@@ -83,7 +102,13 @@ public class GameManager implements EngineManager {
 
     @Override
     public String GetUserType(String username) {
-        return this.usersHash.get(username).GetName();
+        PlayerType type=this.usersHash.get(username).GetType();
+
+        if(type==PlayerType.HUMAN)
+        {
+            return "Human";
+        }
+        return "Computer";
     }
 
     @Override

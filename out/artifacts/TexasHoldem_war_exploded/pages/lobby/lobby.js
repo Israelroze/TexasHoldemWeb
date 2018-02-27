@@ -1,5 +1,6 @@
 var chatVersion = 0;
 var refreshRate = 2000; //mili seconds
+var timeout=1000;
 
 
 $(LoadGameFile());
@@ -30,8 +31,16 @@ function ajaxUserList()
     });
 }
 
-function tabletest(){
+function tabletest(users){
     $("#userlist tr").remove();
+    var header = '<tr><th>' + "Username" + '</th>'
+        + '<th>' + "Type" + '</th></tr>';
+    $('#userlist').append(header);
+    $.each(users,function(username, type) {
+        var row = '<tr><td>' + username + '</td>'
+            + '<td>' + type + '</td></tr>';
+        $('#userlist').append(row);
+    });
 }
 
 function refreshUserList(users){

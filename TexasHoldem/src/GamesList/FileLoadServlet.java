@@ -7,6 +7,7 @@ import API.EngineManager;
 import Exceptions.*;
 import Game.Game;
 import GameManager.GameManager;
+import Utils.ServletUtils;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -43,7 +44,7 @@ public class FileLoadServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try{
-           getManager().AddGame(fstream);
+           getManager().AddGame(fstream, ServletUtils.getSessionUser(request));
 
         } catch (PlayerdIDmismatchException e) {
             out.println("");
@@ -76,8 +77,18 @@ public class FileLoadServlet extends HttpServlet {
 
     private EngineManager getManager()
     {
-        EngineManager manager=new GameManager();
         ServletContext context=getServletContext();
-        return (EngineManager) context.getAttribute("EngineManager");
+        Object objManager=context.getAttribute("EngineManager");
+
+        if(objManager!= null)
+        {
+            return (EngineManager) context.getAttribute("EngineManager");
+        }
+        else
+        {
+            EngineManager manager=new GameManager();
+            context.setAttribute("EngineManager",manager);
+            return (EngineManager) context.getAttribute("EngineManager");
+        }
     }
 }

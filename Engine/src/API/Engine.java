@@ -45,6 +45,9 @@ public interface Engine {
     public int GetRegisteredNumOfPlayers();
     public int GetNumberOfHands();
     public String GetGameID();
+    public void RegisterUploader(String username);
+    public String GetUploaderName();
+    public int GetBuy();
 
     ////////////////////////////////////////////////
     ///// Hand

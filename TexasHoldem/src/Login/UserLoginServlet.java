@@ -1,5 +1,8 @@
 package Login;
 
+import API.EngineManager;
+import Exceptions.PlayerAlreadyExistException;
+import GameManager.GameManager;
 import UserManager.UserManager;
 import Utils.ServletUtils;
 import com.sun.deploy.net.HttpResponse;
@@ -62,6 +65,20 @@ public class UserLoginServlet extends HttpServlet {
 
 
     private boolean CheckAndUpdateUser(String username,String type) {
+        try{
+            if (type != null)
+            {
+                getManager().AddNewUser(username, "COMPUTER");
+            }
+            else
+            {
+                getManager().AddNewUser(username, "HUMAN");
+            }
+        } catch (PlayerAlreadyExistException e) {
+            return false;
+        }
+
+
         ServletContext context = getServletContext();
         Object objUserManagment = context.getAttribute("UserManager");
 
@@ -96,5 +113,23 @@ public class UserLoginServlet extends HttpServlet {
         return false;
     }
 
+
+
+    private EngineManager getManager()
+    {
+        ServletContext context=getServletContext();
+        Object objManager=context.getAttribute("EngineManager");
+
+        if(objManager!= null)
+        {
+            return (EngineManager) context.getAttribute("EngineManager");
+        }
+        else
+        {
+            EngineManager manager=new GameManager();
+            context.setAttribute("EngineManager",manager);
+            return (EngineManager) context.getAttribute("EngineManager");
+        }
+    }
 }
 

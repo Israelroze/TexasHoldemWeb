@@ -10,7 +10,7 @@ public interface EngineManager {
     ////////////////////////////////////////////
     /////Games
     ////////////////////////////////////////////
-    public void AddGame(InputStream fstream) throws MinusZeroValueException, UnexpectedObjectException, BigSmallMismatchException, HandsCountDevideException, GameStartedException, BigBiggerThanBuyException, MaxBigMoreThanHalfBuyException, HandsCountSmallerException, JAXBException, PlayerdIDmismatchException, GameTitleAllreadyExistException;
+    public void AddGame(InputStream fstream,String uploader) throws MinusZeroValueException, UnexpectedObjectException, BigSmallMismatchException, HandsCountDevideException, GameStartedException, BigBiggerThanBuyException, MaxBigMoreThanHalfBuyException, HandsCountSmallerException, JAXBException, PlayerdIDmismatchException, GameTitleAllreadyExistException;
     public Engine GetGame(String id);
     public boolean IsGameExist(String id);
     public void DeleteGame(String id);
@@ -19,6 +19,8 @@ public interface EngineManager {
     /////////////////////////////////////////////
     /////users
     /////////////////////////////////////////////
+    public List<String> GetUserList();
+    public boolean IsUserListEmpty();
     public void AddNewUser(String username,String Type) throws PlayerAlreadyExistException;
     public String GetUserType(String username);
     public int GetUserMoney(String username);

@@ -18,6 +18,7 @@ import java.util.*;
 
 import Move.*;
 
+
 public class Game implements Engine {
 
     final static Boolean ENABLE_LOG = false;
@@ -35,6 +36,7 @@ public class Game implements Engine {
     private boolean is_first_hand=false;
     private APlayer first_dealer;
     private int num_of_rounds=0;
+    private String uploader=null;
 
     //Private Methods
     private void LoadPlayers() throws PlayerDataMissingException {this.players=new APlayers(configuration.getPlayers());}
@@ -429,8 +431,6 @@ public class Game implements Engine {
         return this.players.GetPlayer(id).GetIsFoldedFlag();
     }
 
-    //Hand Methods
-
     @Override
     public void StartNewHand(){
         //init new hand
@@ -496,7 +496,6 @@ public class Game implements Engine {
         this.current_hand.CheckHandStatus();
     }
 
-    //////////////////////TBD////////////////////////
     @Override
     public void PlayerPerformQuitFromGame(int id) {
         this.players.DeletePlayerById(id);
@@ -557,8 +556,6 @@ public class Game implements Engine {
         }
         return comCards;
     }
-
-    //Bid Cycle Methods
 
     @Override
     public void StartNewBidCycle() throws NoSufficientMoneyException {
@@ -740,6 +737,7 @@ public class Game implements Engine {
         }
         return false;
     }
+
     @Override
     public boolean IsAnyPlayerOutOfMoney() {
         List<APlayer> players = this.players.GetPlayers();
@@ -751,7 +749,6 @@ public class Game implements Engine {
         return false;
     }
 
-    ///////////////////////////////////////////////////////////////
     @Override
     public List<PlayerStats>  GetPlayersInfo() {
         List<PlayerStats> stats=new LinkedList<>();
@@ -797,18 +794,16 @@ public class Game implements Engine {
 
 }
 
-    ////////////////////////////////////////////////////////////////
     public void StartReplay(){
         this.Is_replay=true;
 
     }
 
-    ////////////////////////////////////////////////////////////////
     @Override
     public void ReverseHandToStart(){
         this.current_hand.RevertToStart();
     }
-    ///////////// Replay////////////////////////////////////////////
+
     @Override
     public String GetPreviousEvent(){
         return this.current_hand.RevertEvent();
@@ -864,8 +859,6 @@ public class Game implements Engine {
         this.current_hand.CheckNoActiveHumanPlayers();
     }
 
-    ////////////////////////////////////////////////////////////////
-    /////////////////////////TARGIL 3///////////////////////////
     @Override
     public String LoadFromXML(InputStream fstream) throws JAXBException, UnexpectedObjectException, MaxBigMoreThanHalfBuyException, BigSmallMismatchException, BigBiggerThanBuyException, HandsCountSmallerException, PlayerdIDmismatchException, HandsCountDevideException, MinusZeroValueException, GameStartedException {
         if(!this.is_game_started) {
@@ -911,5 +904,20 @@ public class Game implements Engine {
     @Override
     public String GetGameID() {
         return this.configuration.getDynamicPlayers().getGameTitle();
+    }
+
+    @Override
+    public void RegisterUploader(String username) {
+        this.uploader=username;
+    }
+
+    @Override
+    public String GetUploaderName() {
+        return this.uploader;
+    }
+
+    @Override
+    public int GetBuy(){
+        return this.configuration.getStructure().getBuy();
     }
 }
