@@ -3,11 +3,12 @@ var refreshRate = 2000; //mili seconds
 var timeout=1000;
 
 
-$(LoadGameFile());
-$(PollUserlist());
+$(LoadGameFile);
+$(PollUserlist);
+$(PollGamelist);
 
-function PollUserlist()
-{
+/////////USER LIST FUNCTIONS
+function PollUserlist() {
     console.log("poll on userlist activated");
 
     //prevent IE from caching ajax calls
@@ -15,23 +16,21 @@ function PollUserlist()
 
     //The users list is refreshed automatically every second
     setInterval(ajaxUserList, refreshRate);
-
     setTimeout(ajaxUserList, refreshRate);
 }
 
-function ajaxUserList()
-{
+function ajaxUserList() {
     console.log("sending poll userlist request");
     $.ajax({
         url:"/userlist",
         success: function(users) {
             console.log(users);
-            tabletest(users);
+            refreshUserlist(users);
         }
     });
 }
 
-function tabletest(users){
+function refreshUserlist(users){
     $("#userlist tr").remove();
     var header = '<tr><th>' + "Username" + '</th>'
         + '<th>' + "Type" + '</th></tr>';
@@ -43,33 +42,89 @@ function tabletest(users){
     });
 }
 
-function refreshUserList(users){
-    //clear all current users
-    $("#userslist").empty();
+////////GAME LIST Functions
 
-    // rebuild the list of users: scan all users and add them to the list of users
-    $.each(users || [], function(username, type) {
-        console.log("Adding user #" + username + ": " + type);
-        console.log($("#userlist"));
-        console.log($("#userlist").find('tbody'));
-        $('#userslist').find('tbody').append('<tr><td>username</td><td>type</td></tr>');
-        //$(  '<tr>' +
-        //    '<td>'+username+'</td>'+
-        //   '<td>'+type+'</td>'+
-        //   '</tr>'
-        //).appendTo($("#userslist"));
+function PollGamelist(){
+    console.log("poll on gamelist activated");
+
+    //prevent IE from caching ajax calls
+    $.ajaxSetup({cache: false});
+
+    //The users list is refreshed automatically every second
+    setInterval(ajaxGameList, refreshRate);
+    setTimeout(ajaxGameList, refreshRate);
+}
+
+function ajaxGameList() {
+    console.log("sending poll userlist request");
+    $.ajax({
+        url:"/gamelist",
+        success: function(games) {
+            refreshGamelist(games);
+        }
     });
+}
 
-    console.log($("#userlist").find('tbody').innerText);
+function refreshGamelist(games){
+    $("#gamelist").empty();
+    $.each(games || [], function(index,game){
+        var GameNode=buildGameBox(game);
+        $("#gamelist").append(GameNode);
+        console.log(GameNode);
+    });
+}
 
+function joinGame(event) {
+    event.preventDefault();
+    var game_id=event.data.game_id;
+
+    $.ajax({
+        method: "POST",
+        url:"/joingame",
+        data: {
+                "GameId" : game_id
+        },
+        success: function(games) {
+
+        },
+        error: function(e){
+
+        }
+
+    });
+}
+
+function buildGameBox(game) {
+    var GameBox=
+            '<li class="Gamelist_li">'+
+             '<div  id="GameNode" class="GameBox">'+
+             '<table id=game.game_name cellpadding="0" cellspacing="30" border="0" class=GamesTable">' +
+                '<tr>' +
+                    '<td class="GameCol">' + "Title:" + game.game_name +'</td>' +
+                    '<td class="GameCol">' + "Buy:" +   game.buy + '</td>' +
+                    '<td class="GameCol">' + "Hands:" + game.num_of_hands +'</td>' +
+                    '<td class="GameCol">' + "Players:" + game.registered_players + '/' +game.total_players +'</td>' +
+                '</tr>'+
+                '<tr>' +
+                    '<td class="GameCol">' + "Uploader:" + game.uploader +'</td>' +
+                    '<td class="GameCol">' + "Big/Small:" + game.big + '/'+game.small +'</td>' +
+                    '<td class="GameCol">' + "    "  +'</td>'+
+                    '<td class="GameCol">' + '<input type="button" id='+game.game_name+"_joinToGame" +' value="Join" class="uploadbutton" />' + '</td>'+
+                '</tr>'+
+             '</table>'+
+            '</div>'+
+            '</li>';
+
+
+        return GameBox;
 }
 
 function LoadGameFile(){
-    $("#GameFileUpload").submit(function() {
+    $("#GameFileUpload").submit(function(event) {
+        event.preventDefault();
 
         var formdata=new FormData();
-
-        formdata.append("gamefile",this[0].files[0]);
+        formdata.append("gameFile",this[0].files[0]);
 
         $.ajax({
             method:this.method,
@@ -85,7 +140,7 @@ function LoadGameFile(){
             success: function(r) {
                 $("#result").text(r);
             }
-        })
-    })
+        });
+    });
 }
 

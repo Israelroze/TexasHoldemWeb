@@ -16,6 +16,7 @@ public interface EngineManager {
     public void DeleteGame(String id);
     public List<Engine> GetGamesList();
 
+    public void AddPlayerToGame(String game_id,String username) throws UserNameNotProvidedException, GameIDNotProvidedException;
     /////////////////////////////////////////////
     /////users
     /////////////////////////////////////////////

@@ -70,6 +70,26 @@ public class GameManager implements EngineManager {
     }
 
     @Override
+    public void AddPlayerToGame(String game_id, String username) throws UserNameNotProvidedException, GameIDNotProvidedException {
+        try {
+            APlayer player = this.usersHash.get(username);
+
+            try{
+                Engine game=this.gameHash.get(game_id);
+                game.AddNewPlayer(player);
+            }
+            catch(NullPointerException e)
+            {
+                throw new GameIDNotProvidedException();
+            }
+        }
+        catch (NullPointerException e)
+        {
+            throw new UserNameNotProvidedException();
+        }
+    }
+
+    @Override
     public List<String> GetUserList() {
         List<String> res=new LinkedList<>();
 

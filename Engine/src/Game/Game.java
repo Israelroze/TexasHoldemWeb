@@ -893,7 +893,14 @@ public class Game implements Engine {
     @Override
     public int GetRegisteredNumOfPlayers()
     {
-        return this.players.GetSize();
+        try {
+            Integer res = this.players.GetSize();
+            return res.intValue();
+        }
+        catch (NullPointerException e)
+        {
+            return 0;
+        }
     }
 
     @Override

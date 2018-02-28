@@ -45,29 +45,40 @@ public class FileLoadServlet extends HttpServlet {
 
         try{
            getManager().AddGame(fstream, ServletUtils.getSessionUser(request));
-
+            out.println("ok");
+            out.flush();
         } catch (PlayerdIDmismatchException e) {
-            out.println("");
+            ServletUtils.SendErrorMessage("Wrong player id",response);
         } catch (BigSmallMismatchException e) {
-            out.println(" Big Small Mismatch ");
+            ServletUtils.SendErrorMessage("Big Small Mismatch",response);
+            //out.println(" Big Small Mismatch ");
         } catch (HandsCountDevideException e) {
-            out.println(" Num of hands not divided by num of players ");
+            ServletUtils.SendErrorMessage("Num of hands not divided by num of players ",response);
+            //out.println(" Num of hands not divided by num of players ");
         } catch (MaxBigMoreThanHalfBuyException e) {
-            out.println(" Maximum Big more that the half of the buy limit");
+            ServletUtils.SendErrorMessage("Maximum Big more that the half of the buy limit",response);
+            //out.println(" Maximum Big more that the half of the buy limit");
         } catch (HandsCountSmallerException e) {
-            out.println(" Hands Count smaller that the number of players ");
+            ServletUtils.SendErrorMessage("Hands Count smaller that the number of players ",response);
+            //out.println(" Hands Count smaller that the number of players ");
         } catch (MinusZeroValueException e) {
-            out.println(" One of the value is zero or negative. ");
+            ServletUtils.SendErrorMessage("One of the value is zero or negative. ",response);
+            //out.println(" One of the value is zero or negative. ");
         } catch (UnexpectedObjectException e) {
-            out.println("Unexpected error");
+            ServletUtils.SendErrorMessage("Unexpected error",response);
+            //out.println("Unexpected error");
         } catch (JAXBException e) {
-            out.println(" JAXB Error "+e.getMessage());
+            ServletUtils.SendErrorMessage(" JAXB Error "+e.getMessage(),response);
+            //out.println(" JAXB Error "+e.getMessage());
         } catch (GameStartedException e) {
-            out.println(" Game already started");
+            ServletUtils.SendErrorMessage(" Game already started",response);
+            //out.println(" Game already started");
         } catch (BigBiggerThanBuyException e) {
-            out.println(" Big value bigger that the Buy value.");
+            ServletUtils.SendErrorMessage(" Big value bigger that the Buy value.",response);
+            //out.println(" Big value bigger that the Buy value.");
         } catch (GameTitleAllreadyExistException e) {
-            out.println(" Game with the same title allready exist.");
+            ServletUtils.SendErrorMessage(" Game with the same title allready exist.",response);
+            //out.println(" Game with the same title allready exist.");
         }
     }
 
