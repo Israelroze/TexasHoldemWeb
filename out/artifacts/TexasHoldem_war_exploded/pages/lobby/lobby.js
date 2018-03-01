@@ -2,7 +2,6 @@ var chatVersion = 0;
 var refreshRate = 2000; //mili seconds
 var timeout=1000;
 
-
 $(LoadGameFile);
 $(PollUserlist);
 $(PollGamelist);
@@ -65,26 +64,44 @@ function ajaxGameList() {
     });
 }
 
-function refreshGamelist(games){
-    $("#gamelist").empty();
-    $.each(games || [], function(index,game){
-        //$("#gamelist").on("click","button",{ game_id: game.game_name},joinGame);
 
-        var GameNode=buildGameBox(game);
-        $("#gamelist").append(GameNode);
-        console.log(GameNode);
-    });
+
+
+function refreshGamelist(games){
+    $("#gamelist li").remove();
+    console.log(games);
+    $("#gamelist").append(...games.map(x => $('<li class="Gamelist_li"></li>').append(createGameBox(x))));
 }
 
-function joinGame(event) {
+
+function createGameBox(game)
+{
+    return $('<div></div>').append($('<table class="GamesTable"></table>')).append(
+        $('<tr></tr>').append(
+            $('<td></td>').text("Title:" + game.game_name),
+            $('<td></td>').text("Buy:" +   game.buy ),
+            $('<td></td>').text("Hands:" + game.num_of_hands),
+            $('<td></td>').text("Players:" + game.registered_players + '/' +game.total_players)
+        ),
+        $('<tr></tr>').append(
+            $('<td></td>').text("Uploader:" + game.uploader),
+            $('<td></td>').text("Big/Small:" + game.big + '/'+game.small),
+            $('<td></td>').text("       "),
+            $('<td></td>').append($('<button></button>').text("Join").bind('click',function(){ joinGame(game.game_name)}))
+        )
+    );
+
+}
+
+
+function joinGame(id) {
     event.preventDefault();
-    var game_id=event.data.game_id;
 
     $.ajax({
         method: "POST",
         url:"/joingame",
         data: {
-                "GameId" : game_id
+                "GameId" : id
         },
         success: function(games) {
 
@@ -96,6 +113,7 @@ function joinGame(event) {
     });
 }
 
+/*
 function buildGameBox(game) {
     var GameBox=
             '<li class="Gamelist_li">'+
@@ -117,10 +135,9 @@ function buildGameBox(game) {
             '</div>'+
             '</li>';
 
-
-        return GameBox;
+    return GameBox;
 }
-
+*/
 function LoadGameFile(){
     $("#GameFileUpload").submit(function(event) {
         event.preventDefault();
@@ -137,10 +154,10 @@ function LoadGameFile(){
             timeout: 4000,
             error: function(e) {
                 console.error("Failed to submit");
-                $("#result").text(e);
+                $("#errormessage").text(e);
             },
             success: function(r) {
-                $("#result").text(r);
+                $("#errormessage").text("");
             }
         });
     });
