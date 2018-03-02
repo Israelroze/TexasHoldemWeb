@@ -31,7 +31,7 @@ public class Game implements Engine {
     private int max_of_buys;
     private int num_of_hands=0;
     private int global_num_of_buys = 0;
-    private Hand current_hand;
+    private Hand current_hand=null;
     private boolean Is_replay=false;
     private boolean is_first_hand=false;
     private APlayer first_dealer;
@@ -300,7 +300,11 @@ public class Game implements Engine {
 
     @Override
     public int GetPot(){
-        return this.current_hand.GetPot();
+        if(this.current_hand!=null)
+        {
+            return this.current_hand.GetPot();
+        }
+        return 0;
     }
 
     //player apis
@@ -317,6 +321,7 @@ public class Game implements Engine {
         {
             throw new PlayerAlreadyInGameException();
         }
+        player.setID(this.GetRegisteredNumOfPlayers());
         this.players.GetPlayers().add(player);
     }
 
@@ -416,18 +421,13 @@ public class Game implements Engine {
     public List<Card> GetPlayersCards(int id){
         List<Card> cards=new LinkedList<Card>();
         Card[] arr=this.players.GetPlayer(id).GetCards();
-    /*    for (APlayer player : players.GetPlayers())
-        {
-            if (player.getId() == id ) {
-                cards.add(player.GetCards()[0]);
-                cards.add(player.GetCards()[1]);
-            }
 
+        if(arr!=null)
+        {
+            cards.add(arr[0]);
+            cards.add(arr[1]);
         }
 
-*/
-        cards.add(arr[0]);
-        cards.add(arr[1]);
         return cards;
     }
 
@@ -553,12 +553,17 @@ public class Game implements Engine {
     @Override
     public List<Card> GetCommunityCards(){
         List <Card> comCards = new LinkedList<Card>();
-        Card[] community=this.current_hand.GetCommunity();
-        if (community != null) {
-            for (int i = 0; i < 5; i++) {
-                if (community[i] != null) comCards.add(community[i]);
+
+        if(this.current_hand!=null)
+        {
+            Card[] community=this.current_hand.GetCommunity();
+            if (community != null) {
+                for (int i = 0; i < 5; i++) {
+                    if (community[i] != null) comCards.add(community[i]);
+                }
             }
         }
+
         return comCards;
     }
 

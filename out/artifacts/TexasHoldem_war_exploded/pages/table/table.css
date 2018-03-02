@@ -1,5 +1,5 @@
 
-.grid-container {
+.grid-tainer {
     display: grid;
     grid-template-areas:
             'chat center center'

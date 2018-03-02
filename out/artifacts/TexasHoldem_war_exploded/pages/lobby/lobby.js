@@ -133,10 +133,6 @@ function ajaxReadyGame(){
         success: function(r) {
             console.log(r);
             if(!r.includes("false")){
-                //ajax to set gameid on session
-
-
-
                 //redirect
                 console.log("redirecting to "+r);
                 window.location.href=r;

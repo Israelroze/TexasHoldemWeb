@@ -1,6 +1,12 @@
 package GameTable;
 
+import API.Engine;
+import API.EngineManager;
 import Card.Card;
+import Containers.GameData;
+import Containers.HandData;
+import Containers.UserData;
+import GameManager.GameManager;
 import UserManager.UserManager;
 import Utils.ServletUtils;
 import com.google.gson.Gson;
@@ -30,86 +36,63 @@ public class GameTableServlet extends HttpServlet {
        // processRequest(request,response);
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         response.setContentType("application/json");
-        logServerMessage("I am here");
+        String game_id=ServletUtils.getSessionParam(request,"gameID");
 
-        String game_id=request.getParameter("gameID");
-        ServletUtils.setSessionParam(request,"gameID",game_id);
-
-
-
-        try (PrintWriter out = response.getWriter()) {
-
-            GameData testGameData ;
-            testGameData= TestGameData();
-            Gson gson = new Gson();
-            String jsonResponse = gson.toJson(testGameData);
-            logServerMessage(jsonResponse);
-            out.print(jsonResponse);
-            out.flush();
-
-
+        if(game_id==null)
+        {
+            ServletUtils.SendErrorMessage("Error getting game id from session",response);
         }
+        else
+        {
+            Engine game=getManager().GetGame(game_id);
+
+            try (PrintWriter out = response.getWriter()) {
+                String res=BuildTableData(game);
+                System.out.println(res); //DEBUG
+                out.println(res);
+                out.flush();
+            }
+        }
+
     }
 
-
-
-    class GameData{
-
-        final private int dataVerion;
-        final private List<UserData> userData;
-        final private int  num_of_games;
-        final private int current_game_number;
-        final private int number_of_players;
-
-
-        public GameData(int dataVerion, List<UserData> userData, int num_of_games, int current_game_number, int number_of_players) {
-            this.dataVerion = dataVerion;
-            this.userData = userData;
-            this.num_of_games = num_of_games;
-            this.current_game_number = current_game_number;
-            this.number_of_players = number_of_players;
-
-        }
-    }
-
-    class HandData
+    private String BuildTableData(Engine game)
     {
-        final private  int pot;
-        final private List<String> communityCards;
+        Gson json=new Gson();
 
-        public HandData(int pot, List<String> communityCards) {
-            this.pot = pot;
-            this.communityCards = communityCards;
+        List<UserData> users=new LinkedList<>();
+
+        for(int i=0;i<game.GetTotalNumOfPlayers();i++)
+        {
+            List<String> p_cards= new LinkedList<>();
+
+            for(Card card:game.GetPlayersCards(i) )
+            {
+                p_cards.add(card.toString());
+            }
+
+            users.add(new UserData(game.GetPlayerName(i),game.GetPlayerNumOfWins(i),game.GetPlayerPot(i),getManager().GetUserType(game.GetPlayerName(i)),p_cards));
         }
+
+        List<String> comm_cards=new LinkedList<>();
+        for(Card card: game.GetCommunityCards())
+        {
+            comm_cards.add(card.toString());
+        }
+
+        HandData table_data=new HandData(game.GetPot(),comm_cards);
+
+        GameData game_data=new GameData(0,users,table_data,game.GetNumberOfHands(),game.GetCurrentHandNumber(),game.GetTotalNumOfPlayers());
+
+        return json.toJson(game_data);
+
     }
 
-    class UserData
-    {
-        final private String name;
-        final private int bid;
-        final private int num_of_wins;
-        final private int money;
-        final private String type; //computer or human
-        final private List<String> cards;
-        final private String role; //small, big or dealer
 
-
-        public UserData(String name, int bid, int num_of_wins, int money, String type,List<String> cards, String role) {
-            this.name = name;
-            this.bid = bid;
-            this.num_of_wins = num_of_wins;
-            this.money = money;
-            this.type = type;
-            this.cards = cards;
-            this.role= role;
-        }
-    }
-
-
-
+    /*
     public GameData TestGameData()
     {
 
@@ -137,9 +120,26 @@ public class GameTableServlet extends HttpServlet {
 
         return gameTest;
     }
-
+    */
     private void logServerMessage(String message){
         System.out.println(message);
+    }
+
+    private EngineManager getManager()
+    {
+        ServletContext context=getServletContext();
+        Object objManager=context.getAttribute("EngineManager");
+
+        if(objManager!= null)
+        {
+            return (EngineManager) context.getAttribute("EngineManager");
+        }
+        else
+        {
+            EngineManager manager=new GameManager();
+            context.setAttribute("EngineManager",manager);
+            return (EngineManager) context.getAttribute("EngineManager");
+        }
     }
 
 }

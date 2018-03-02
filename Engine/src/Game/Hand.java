@@ -24,7 +24,7 @@ public class Hand {
     private APlayer current_player;
 
     //cards
-    private Card[] community;
+    private Card[] community=null;
     private Deck deck;
 
     //flags

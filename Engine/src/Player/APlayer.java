@@ -98,11 +98,15 @@ public class APlayer{
     {
         this.num_of_wins++;
     }
+
     public void DecWinner()
     {
         this.num_of_wins--;
     }
+
     public int getId() { return id; }
+
+    public void setID(int id){this.id=id;}
 
     public boolean isPlacedBet() {return is_placed_bet; }
 
@@ -177,9 +181,7 @@ public class APlayer{
         this.state=state;
     }
 
-    //Methods
-    public void ClearBidStats()
-    {
+    public void ClearBidStats() {
         this.stake=0;
         this.is_placed_bet=false;
         this.is_folded=false;
