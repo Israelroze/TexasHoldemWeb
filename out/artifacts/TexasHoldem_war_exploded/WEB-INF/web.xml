@@ -27,6 +27,10 @@
             <servlet-name>GameList</servlet-name>
             <servlet-class>GamesList.GameListServlet</servlet-class>
         </servlet>
+        <servlet>
+            <servlet-name>GameReady</servlet-name>
+            <servlet-class>GamesList.StartGameServlet</servlet-class>
+        </servlet>
         <servlet-mapping>
             <servlet-name>FileUpload</servlet-name>
             <url-pattern>/fileupload</url-pattern>
@@ -50,5 +54,9 @@
         <servlet-mapping>
             <servlet-name>JoinGame</servlet-name>
             <url-pattern>/joingame</url-pattern>
+        </servlet-mapping>
+        <servlet-mapping>
+            <servlet-name>GameReady</servlet-name>
+            <url-pattern>/gameready</url-pattern>
         </servlet-mapping>
 </web-app>

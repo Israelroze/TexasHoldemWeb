@@ -4,6 +4,7 @@ import API.Engine;
 import API.EngineManager;
 import Containers.GameNodeData;
 import Exceptions.GameIDNotProvidedException;
+import Exceptions.PlayerAlreadyInGameException;
 import Exceptions.UserNameNotProvidedException;
 import GameManager.GameManager;
 import Utils.ServletUtils;
@@ -16,8 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class JoinGameServlet extends HttpServlet {
 
@@ -33,15 +36,24 @@ public class JoinGameServlet extends HttpServlet {
             if(objGameID!=null)
             {
                 try {
-                    getManager().AddPlayerToGame(username,(String)objGameID);
-                    try (PrintWriter out = response.getWriter()) {
-                        out.println("ok");
-                        out.flush();
+                    getManager().AddPlayerToGame((String)objGameID,username);
+                    if(getManager().GetGame((String)objGameID).IfEnoughPlayers())
+                    {
+                        ServletUtils.SendRedirectURL("./pages/table/table.html",response);
+                    }
+                    else
+                    {
+                        try (PrintWriter out = response.getWriter()) {
+                            out.println("false");
+                            out.flush();
+                        }
                     }
                 } catch (UserNameNotProvidedException e) {
-                    ServletUtils.SendErrorMessage("User not provided", response);
+                    ServletUtils.SendErrorMessage("User not provided.", response);
                 } catch (GameIDNotProvidedException e) {
-                    ServletUtils.SendErrorMessage("Gaem ID not provided", response);
+                    ServletUtils.SendErrorMessage("Game ID not provided.", response);
+                } catch (PlayerAlreadyInGameException e) {
+                    ServletUtils.SendErrorMessage("You Already joined the game.", response);
                 }
             }
         }

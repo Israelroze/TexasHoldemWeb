@@ -70,7 +70,7 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public void AddPlayerToGame(String game_id, String username) throws UserNameNotProvidedException, GameIDNotProvidedException {
+    public void AddPlayerToGame(String game_id, String username) throws UserNameNotProvidedException, GameIDNotProvidedException, PlayerAlreadyInGameException {
         try {
             APlayer player = this.usersHash.get(username);
 
@@ -144,5 +144,24 @@ public class GameManager implements EngineManager {
     @Override
     public int GetUserNumOfWins(String username) {
         return this.usersHash.get(username).GetNumOfWins();
+    }
+
+    @Override
+    public boolean IsPlayerInReadyGame(String username) {
+
+        APlayer player=this.usersHash.get(username);
+
+        for (Map.Entry<String, Engine> entry : this.gameHash.entrySet()) {
+            if(entry.getValue().IfPlayerExist(player))//if the player registered in the game
+            {
+                if(entry.getValue().IfEnoughPlayers())
+                {
+                    if(!entry.getValue().IsGameStarted()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

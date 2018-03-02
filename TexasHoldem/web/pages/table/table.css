@@ -2,8 +2,8 @@
 .grid-container {
     display: grid;
     grid-template-areas:
-            'center center center'
-            'center center center'
+            'chat center center'
+            'chat center center'
     /* grid-column-gap: 10px; - if you want gap between the columns */
 }
 
@@ -16,6 +16,17 @@
 
 
 
+.chat-sidebar
+{
+    width: 200px;
+    position: fixed;
+    height: 100%;
+    right: 0px;
+    top: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid rgba(29, 49, 91, .3);
+}
 
 
 .table_class {
@@ -30,21 +41,10 @@
     left: 50%;
     margin-top: -205px;
     margin-left: -405px;
-
-
 }
 .pos {
     width:240px;
     height:76px;
-    position: absolute;
-}
-
-#button {
-    /* background-image: url('/images/dealerbutton.png'); */
-    background-repeat: no-repeat;
-    background-size: 100%;
-    width:24px;
-    height:19px;
     position: absolute;
 }
 
@@ -64,8 +64,11 @@
 
 }
 
-body {
-    background-image: url("https://images3.alphacoders.com/812/812062.png");
+html,body
+{
+    min-width: 700px;
+    width: 100%;
+    background-image: url('images/table_rick_and_morty_background.png');
     background-repeat: no-repeat;
     background-size: 100% 100% ;
 }
@@ -96,7 +99,7 @@ body {
     width:50px;
     height:73px;
     background-image: url('images/back.png');
-    background-size: 100%;
+    background-size: 100% 100%;
 }
 
 .cardplace {
@@ -140,8 +143,13 @@ body {
 }
 
 .role {
-
-
+    height :45px;
+    width: 45px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    right: -13px;
+    top: -13px;
 }
 
 #role1 {
@@ -151,7 +159,7 @@ body {
 
 }
 #role3 {
-;
+
 }
 #role4 {
 
@@ -163,75 +171,12 @@ body {
 
 }
 
-
-#pos1 .bet {
-    left:40%;
-    top:135%;
-}
-#pos2 .bet {
-    left:40%;
-    top:-45%;
-}
-#pos3 .bet {
-    left:40%;
-    top:-45%;
-}
-#pos4 .bet {
-    left:40%;
-    top:-45%;
-}
-#pos5 .bet {
-    left:40%;
-    top:135%;
-}
-#pos6 .bet {
-    left:40%;
-    top:135%;
-}
-#pos1 {
-    left:74%;
-    top:-1.0%;
-    transform: rotate(30deg)
-}
-#pos2 {
-    left:74%;
-    top:81%;
-    transform: rotate(-30deg)
-}
-
-#pos3 {
-    left:35%;
-    top:98%;
-    transform: rotate(0deg)
-}
-
-#pos4 {
-    left:-5%;
-    top:81%;
-    transform: rotate(30deg)
-}
-
-
-#pos5 {
-    left:-5%;
-    top:-1%;
-    transform: rotate(-30deg)
-}
-
-#pos6 {
-    left:35%;
-    top:-18%;
-    transform: rotate(0deg)
-}
-
-
-
-
 #board {
-    position:absolute;
-    left:275px;
-    top:160px;
-
+    /* position:absolute; */
+    height: 100%;
+    width: 100%;
+    /* left:275px; */
+    /* top:160px; */
 }
 
 #pot {
@@ -245,32 +190,8 @@ body {
     text-align: center;
 }
 
-.boardcard {
-    width:50px;
-    height:75px;
-    position: absolute;
-    left:0;
-    top:0;
-}
 
-#flop1 {
-}
 
-#flop2 {
-    left:52px;
-}
-
-#flop3 {
-    left:104px;
-}
-
-#turn {
-    left:156px;
-}
-
-#river {
-    left:208px;
-}
 
 
 
@@ -298,6 +219,9 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     float: left;
     display: block;
+    background-color: #333;
+    text-decoration: none;
+    border:none;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
@@ -308,4 +232,158 @@ body {
 .navbar  .bar_button:hover {
     background: #ddd;
     color: black;
+}
+
+#on_board_item {
+
+    height: 100%;
+}
+
+
+
+
+/*Stack child items vertically*/
+.vbox {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    /*Align children vetically*/
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+}
+/*Stack child items horizontally*/
+.hbox {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    /*Align children horizontally*/
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+}
+/*Stretch item along parent's main-axis*/
+.flex {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+/*Stretch item along parent's cross-axis*/
+.stretch {
+    align-self: stretch;
+}
+
+/*Stack child items to the main-axis start*/
+.main-start {
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: flex-start;
+    justify-content: flex-start;
+}
+/*Stack child items to the cross-axis start*/
+.cross-start {
+    -webkit-align-items: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+}
+/*Stack child items to the main-axis center*/
+.main-center {
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+/*Stack child items to the cross-axis center*/
+.cross-center {
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+}
+/*Stack child items to the main-axis end.*/
+.main-end {
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+/*Stack child items to the cross-axis end.*/
+.cross-end {
+    -webkit-align-items: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+
+    -webkit-align-content: flex-end;
+    -ms-flex-line-pack: end;
+    align-content: flex-end;
+}
+/*Stretch child items along the cross-axis*/
+.cross-stretch {
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+}
+
+/*Wrap items to next line on main-axis*/
+.wrap {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+
+
+
+.slidecontainer {
+    width: 80%;
+}
+
+
+
+.slider {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
 }

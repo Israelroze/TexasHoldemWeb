@@ -32,6 +32,24 @@ public class ServletUtils {
         }
         return null;
     }
+    public static void setSessionParam(HttpServletRequest request,String param,String value)
+    {
+        HttpSession session=request.getSession(false);
+        if(session!=null) {
+            session.setAttribute(param, value);
+        }
+    }
+    public static String getSessionParam(HttpServletRequest request,String param)
+    {
+        HttpSession session=request.getSession(false);
+        if(session!=null) {
+            Object objParam = session.getAttribute(param);
+            if (objParam != null) {
+                return (String)objParam;
+            }
+        }
+        return null;
+    }
 
     public static void SendErrorMessage(String error_message, HttpServletResponse response) throws IOException {
         //response.setContentType("text/plain");

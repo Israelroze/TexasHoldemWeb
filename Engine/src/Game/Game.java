@@ -311,7 +311,12 @@ public class Game implements Engine {
     }
 
     @Override
-    public void AddNewPlayer(APlayer player) {
+    public void AddNewPlayer(APlayer player) throws PlayerAlreadyInGameException {
+
+        if(this.IfPlayerExist(player))
+        {
+            throw new PlayerAlreadyInGameException();
+        }
         this.players.GetPlayers().add(player);
     }
 
@@ -845,6 +850,11 @@ public class Game implements Engine {
     }
 
     @Override
+    public boolean IsGameStarted() {
+        return this.is_game_started;
+    }
+
+    @Override
     public void SetGameOver(boolean is_game_over) {
         this.is_game_over = is_game_over;
     }
@@ -852,6 +862,24 @@ public class Game implements Engine {
     @Override
     public int GetAllowdedHandNumber(){
         return this.configuration.getStructure().getHandsCount();
+    }
+
+    @Override
+    public boolean IfEnoughPlayers() {
+        if(this.players.GetSize()==this.GetTotalNumOfPlayers())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean IfPlayerExist(APlayer player) {
+        for(APlayer ep:this.players.GetPlayers())
+        {
+            if(ep.GetName().equals(player.GetName())) return true;
+        }
+        return false;
     }
 
     @Override
@@ -870,7 +898,7 @@ public class Game implements Engine {
                 //this.ValidateXML(generator.getContainer());
                 this.ValidateXML(generator.getContainer());
                 this.configuration=generator.getContainer();
-
+                this.players=new APlayers();
                 return this.configuration.getDynamicPlayers().getGameTitle();
             }
             catch (NullObjectException e){

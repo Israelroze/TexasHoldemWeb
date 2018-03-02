@@ -33,13 +33,14 @@ public interface Engine {
     public String LoadFromXML(InputStream fstream) throws JAXBException, UnexpectedObjectException, MaxBigMoreThanHalfBuyException, BigSmallMismatchException, BigBiggerThanBuyException, HandsCountSmallerException, PlayerdIDmismatchException, HandsCountDevideException, MinusZeroValueException, GameStartedException;
     public void StartGame();
     public boolean IsGameOver();
+    public boolean IsGameStarted();
     public int GetCurrentHandNumber();
     public int GetSmall();
     public int GetBig();
     public int GetMaxBuys();
     public int GetTotalNumberOfPlayers(); ///OLD one don't use it
     public void AddNewPlayer(String name, PlayerType type, int ID);
-    public void AddNewPlayer(APlayer player);
+    public void AddNewPlayer(APlayer player) throws PlayerAlreadyInGameException;
     public int GetMoneyInGame();
     public int GetTotalNumOfPlayers();
     public int GetRegisteredNumOfPlayers();
@@ -119,4 +120,7 @@ public interface Engine {
     public boolean IsFirstHand();
     public void SetGameOver(boolean is_game_over);
     public int GetAllowdedHandNumber();
+    public boolean IfEnoughPlayers();
+    public boolean IfPlayerExist(APlayer player);
+
 }

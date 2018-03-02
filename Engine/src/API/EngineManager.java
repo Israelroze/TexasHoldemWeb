@@ -15,8 +15,8 @@ public interface EngineManager {
     public boolean IsGameExist(String id);
     public void DeleteGame(String id);
     public List<Engine> GetGamesList();
+    public void AddPlayerToGame(String game_id,String username) throws UserNameNotProvidedException, GameIDNotProvidedException, PlayerAlreadyInGameException;
 
-    public void AddPlayerToGame(String game_id,String username) throws UserNameNotProvidedException, GameIDNotProvidedException;
     /////////////////////////////////////////////
     /////users
     /////////////////////////////////////////////
@@ -27,4 +27,5 @@ public interface EngineManager {
     public int GetUserMoney(String username);
     public int GetUserNumOfBuys(String username);
     public int GetUserNumOfWins(String username);
+    public boolean IsPlayerInReadyGame(String username);
 }

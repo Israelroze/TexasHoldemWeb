@@ -8,8 +8,6 @@ $(PollGamelist);
 
 /////////USER LIST FUNCTIONS
 function PollUserlist() {
-    console.log("poll on userlist activated");
-
     //prevent IE from caching ajax calls
     $.ajaxSetup({cache: false});
 
@@ -19,11 +17,9 @@ function PollUserlist() {
 }
 
 function ajaxUserList() {
-    console.log("sending poll userlist request");
     $.ajax({
         url:"/userlist",
         success: function(users) {
-            console.log(users);
             refreshUserlist(users);
         }
     });
@@ -44,18 +40,18 @@ function refreshUserlist(users){
 ////////GAME LIST Functions
 
 function PollGamelist(){
-    console.log("poll on gamelist activated");
-
     //prevent IE from caching ajax calls
     $.ajaxSetup({cache: false});
 
     //The users list is refreshed automatically every second
     setInterval(ajaxGameList, refreshRate);
-    setTimeout(ajaxGameList, refreshRate);
+    setTimeout(ajaxGameList, timeout);
+    setInterval(ajaxReadyGame, refreshRate);
+    setTimeout(ajaxReadyGame, timeout);
+
 }
 
 function ajaxGameList() {
-    console.log("sending poll userlist request");
     $.ajax({
         url:"/gamelist",
         success: function(games) {
@@ -64,19 +60,13 @@ function ajaxGameList() {
     });
 }
 
-
-
-
 function refreshGamelist(games){
     $("#gamelist li").remove();
-    console.log(games);
     $("#gamelist").append(...games.map(x => $('<li class="Gamelist_li"></li>').append(createGameBox(x))));
 }
 
-
-function createGameBox(game)
-{
-    return $('<div></div>').append($('<table class="GamesTable"></table>')).append(
+function createGameBox(game) {
+    return $('<div class="GameBox"></div>').append($('<table class="GamesTable"></table>')).append(
         $('<tr></tr>').append(
             $('<td></td>').text("Title:" + game.game_name),
             $('<td></td>').text("Buy:" +   game.buy ),
@@ -87,12 +77,11 @@ function createGameBox(game)
             $('<td></td>').text("Uploader:" + game.uploader),
             $('<td></td>').text("Big/Small:" + game.big + '/'+game.small),
             $('<td></td>').text("       "),
-            $('<td></td>').append($('<button></button>').text("Join").bind('click',function(){ joinGame(game.game_name)}))
+            $('<td></td>').append($('<button class="joinbutton"></button>').text("Join").bind('click',function(){ joinGame(game.game_name)}))
         )
     );
 
 }
-
 
 function joinGame(id) {
     event.preventDefault();
@@ -103,13 +92,59 @@ function joinGame(id) {
         data: {
                 "GameId" : id
         },
-        success: function(games) {
-
+        success: function(r) {
+            $("#errormessage").text("");
         },
         error: function(e){
-
+            $("#errormessage").text(e.responseText).css({'color': 'red'});
         }
 
+    });
+}
+
+function LoadGameFile(){
+    $("#GameFileUpload").submit(function(event) {
+        event.preventDefault();
+
+        var formdata=new FormData();
+        formdata.append("gameFile",this[0].files[0]);
+
+        $.ajax({
+            method:this.method,
+            data:formdata,
+            url:this.action,
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            timeout: 4000,
+            error: function(e) {
+                console.error("Failed to submit");
+                $("#errormessage").text(e.responseText).css({'color': 'red'});
+            },
+            success: function(r) {
+                $("#errormessage").text("");
+            }
+        });
+    });
+}
+
+function ajaxReadyGame(){
+    $.ajax({
+        url:"/gameready",
+        success: function(r) {
+            console.log(r);
+            if(!r.includes("false")){
+                //ajax to set gameid on session
+
+
+
+                //redirect
+                console.log("redirecting to "+r);
+                window.location.href=r;
+            }
+        },
+        error: function(e) {
+            $("#errormessage").text(e.responseText).css({'color': 'red'});
+        }
     });
 }
 
@@ -138,28 +173,4 @@ function buildGameBox(game) {
     return GameBox;
 }
 */
-function LoadGameFile(){
-    $("#GameFileUpload").submit(function(event) {
-        event.preventDefault();
-
-        var formdata=new FormData();
-        formdata.append("gameFile",this[0].files[0]);
-
-        $.ajax({
-            method:this.method,
-            data:formdata,
-            url:this.action,
-            processData: false, // Don't process the files
-            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-            timeout: 4000,
-            error: function(e) {
-                console.error("Failed to submit");
-                $("#errormessage").text(e);
-            },
-            success: function(r) {
-                $("#errormessage").text("");
-            }
-        });
-    });
-}
 
