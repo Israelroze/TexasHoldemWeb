@@ -171,8 +171,8 @@ function update_games_values(data) {
         }
         if(data.userData[i - 1].cards.length ==2)
         {
-        $("#pos" + i.toString() + " .player_details .cardplace .holecard1").css("background-image", createUrlForImage(data.userData[i - 1].cards[0]));
-        $("#pos" + i.toString() + " .player_details .cardplace .holecard2").css("background-image", createUrlForImage(data.userData[i - 1].cards[1]));
+            $("#pos" + i.toString() + " .player_details .cardplace .holecard1").css("background-image", createUrlForImage(data.userData[i - 1].cards[0]));
+            $("#pos" + i.toString() + " .player_details .cardplace .holecard2").css("background-image", createUrlForImage(data.userData[i - 1].cards[1]));
         }
         else{
             $("#pos" + i.toString() + " .player_details .cardplace .holecard1").css({"filter":"blur(0px)", "-webkit-filter": "blur(10px)"});
