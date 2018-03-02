@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StartGameServlet extends HttpServlet{
 
@@ -29,12 +31,7 @@ public class StartGameServlet extends HttpServlet{
         else {
             String game_id=getManager().IsPlayerInReadyGame(username);
             if(game_id!=null){
-                Gson json=new Gson();
-                Map<String,String> 
-                //"localhost:8080/pages/lobby/lobby.html";
-                //"./pages/table/table.html";
-
-                //"/page/lobby/page/table/table.html";
+                ServletUtils.setSessionParam(request,"gameID",game_id);
                 ServletUtils.SendRedirectURL("/pages/table/table.html",response);
             }
             else
