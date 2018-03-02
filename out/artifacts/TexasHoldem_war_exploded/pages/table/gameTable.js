@@ -283,11 +283,22 @@ $(document).ready(function(){
 });
 
 
+
 function  raise_and_bet_scroller() {
 
 
-    $("#bet_raise_range").hide();
-    $("#bet, #raise").click(function () {
-        $("#bet_raise_range").animate({width: 'toggle'}, 600)});
-    
+    $("#bet_raise_range ").hide();
+    $("#accept_bet").hide();
+    $("#accept_raise").hide();
+
+    $("#bet").click(function () {
+        $("#bet_raise_range").animate({width: 'toggle'}, 600);
+        $("#accept_bet").animate({width: 'toggle'}, 600);
+
+    });
+    $("#raise").click(function () {
+        $("#bet_raise_range").animate({width: 'toggle'}, 600);
+        $("#accept_raise").animate({width: 'toggle'}, 600);
+    });
+
 }

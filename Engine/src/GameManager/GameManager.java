@@ -147,7 +147,7 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public boolean IsPlayerInReadyGame(String username) {
+    public String IsPlayerInReadyGame(String username) {
 
         APlayer player=this.usersHash.get(username);
 
@@ -157,11 +157,11 @@ public class GameManager implements EngineManager {
                 if(entry.getValue().IfEnoughPlayers())
                 {
                     if(!entry.getValue().IsGameStarted()) {
-                        return true;
+                      return entry.getValue().GetGameID();
                     }
                 }
             }
         }
-        return false;
+        return null;
     }
 }

@@ -6,6 +6,7 @@ import Exceptions.PlayerAlreadyInGameException;
 import Exceptions.UserNameNotProvidedException;
 import GameManager.GameManager;
 import Utils.ServletUtils;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -26,7 +27,10 @@ public class StartGameServlet extends HttpServlet{
             ServletUtils.SendErrorMessage("User don't registered", response);
         }
         else {
-            if(getManager().IsPlayerInReadyGame(username)) {
+            String game_id=getManager().IsPlayerInReadyGame(username);
+            if(game_id!=null){
+                Gson json=new Gson();
+                Map<String,String> 
                 //"localhost:8080/pages/lobby/lobby.html";
                 //"./pages/table/table.html";
 

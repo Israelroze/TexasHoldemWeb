@@ -27,5 +27,5 @@ public interface EngineManager {
     public int GetUserMoney(String username);
     public int GetUserNumOfBuys(String username);
     public int GetUserNumOfWins(String username);
-    public boolean IsPlayerInReadyGame(String username);
+    public String IsPlayerInReadyGame(String username);
 }
