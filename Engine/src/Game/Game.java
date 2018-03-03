@@ -21,7 +21,7 @@ import Move.*;
 
 public class Game implements Engine {
 
-    final static Boolean ENABLE_LOG = false;
+    final static Boolean ENABLE_LOG = true;
     //members
     private GameDescriptor configuration;
     private CurrentHandState state;
@@ -276,6 +276,10 @@ public class Game implements Engine {
     public void StartGame() {
         this.is_game_started=true;
         this.global_num_of_buys=this.players.GetSize();
+        for(APlayer player: this.players.GetPlayers())
+        {
+            player.BuyMoney(this.configuration.getStructure().getBuy());
+        }
         //TBD - insert function pass result
     }
 
@@ -615,7 +619,14 @@ public class Game implements Engine {
 
     @Override
     public void CheckBidStatus(){
-        this.current_hand.SetIsBetCycleFinished();
+        if(this.current_hand!=null) {
+            this.current_hand.SetIsBetCycleFinished();
+        }
+    }
+
+    @Override
+    public int GetCurrentBidCycleNum() {
+        return this.current_hand.GetBetCycleNumber();
     }
 
     @Override
@@ -749,7 +760,10 @@ public class Game implements Engine {
 
     @Override
     public List<String> GetWinner(){
-        return  this.current_hand.GetWinnerNames();
+        if(this.current_hand!=null) {
+            return this.current_hand.GetWinnerNames();
+        }
+        return new LinkedList<>();
     }
 
     @Override

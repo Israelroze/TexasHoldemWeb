@@ -143,7 +143,8 @@ public class APlayers {
     {
         if(this.dealer==null)
         {
-            this.RandomDealer();
+            //this.RandomDealer();
+            this.dealer=this.aplayers.get(0);
         }
         else {
             this.dealer.SetPlayerState(PlayerState.NONE);

@@ -2,23 +2,21 @@ var tableVersion = 0;
 var isfisrtSetup = false;
 var GAME_TABLE_URL = buildUrlWithContextPath("gametable");
 var num_of_players = 0 ;
+var is_Bet_Option_displayed = false;
 var game_data =undefined;
 var print_log = true;
 var refreshRate = 3000; //mili seconds
 var timeout=1000;
 
 $(document).ready(function(){
-    ajaxTableContent();
-    firstSetup(num_of_players);
-    PollGameTable();
-    countdown_to_start_hand();
+    init_countdown();
 });
 
 ///////////////////////////////////////////////////////////////////
 ////////////// Trigger Hand and Game
 ///////////////////////////////////////////////////////////////////
 
-function countdown_to_start_hand() {
+function init_countdown() {
     var fiveSeconds = new Date().getTime() + 5000;
     $('#messages').countdown(fiveSeconds, function(event){
         var $this = $(this);
@@ -30,6 +28,7 @@ function countdown_to_start_hand() {
         $("#clk_title").remove();
         ajaxStartGame();
         ajaxStartHand();
+        PollGameTable();
     });
 }
 
@@ -87,6 +86,12 @@ function ajaxTableContent() {
         async : false,
         success: function (data) {
             logPrint("OK ajaxTableContent ");
+            if(!isfisrtSetup)
+            {
+                firstSetup(data.number_of_players);
+
+                isfisrtSetup = true;
+            }
             checkGameStatus(data);
             update_games_values(data);
         },
@@ -104,9 +109,18 @@ function ajaxTableContent() {
 //to open bet option for the right player and close for others
 function checkGameStatus(data)
 {
+
     let is_your_turn=data.game_status.is_your_turn;
-    if(is_your_turn) ajaxBetOptionContent();
-    else $("#bottom_menu").empty();
+    if(is_your_turn) {
+        if (!is_Bet_Option_displayed) {
+            is_Bet_Option_displayed = true;
+            ajaxBetOptionContent();
+        }
+    }
+    else {
+        is_Bet_Option_displayed = false;
+        $("#bottom_menu").empty();
+    }
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -198,12 +212,12 @@ function ajaxBetOptionContent() {
 }
              */
             update_bet_option(data);
-
+            logPrint("inside ajaxGetMoves Function: got info");
         },
         error: function (error) {
             // logPrint(error);
             // logPrint("Faild to Print data bet Option");
-
+            logPrint("inside ajaxGetMoves Function: got error");
         }
     });
 }
@@ -302,20 +316,25 @@ function slider_update_value() {
 }
 
 function SetMove(move,value){
+    logPrint("inside SetMove Function");
     $.ajax({
         method:"POST",
         url:"/setmove",
         data: {
-            move : move,
-            value: value
+            "move"  : move,
+            "value" : value
         },
         success: function(r){
+            logPrint("inside SetMove Function: got response:"+r);
 
         },
         error: function(e){
-
+            logPrint("inside SetMove Function: got error:"+e.responseText);
         }
+
     })
+    is_Bet_Option_displayed = false;
+    $("#bottom_menu").empty();
 }
 
 function  open_raise_and_bet_scroller() {
@@ -397,6 +416,7 @@ function update_games_values(data) {
             $("#pos" + i.toString() + " .player_details .cardplace .holecard2").css({"filter":"blur(4px)", "-webkit-filter": "blur(4px)"});
         }
     }
+    $("#board").empty();
     $("#board").append(...data.table_data.communityCards.map(x => $('<div class="card boardcard"></div>').css("background-image", createUrlForImage(x))));
 
     $("#pot").text("Pot: " + data.table_data.pot.toString() + "$");

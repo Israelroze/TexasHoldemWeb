@@ -28,4 +28,12 @@ public interface EngineManager {
     public int GetUserNumOfBuys(String username);
     public int GetUserNumOfWins(String username);
     public String IsPlayerInReadyGame(String username);
+
+    /////////////////////////////////////////////
+    /////Main loop
+    /////////////////////////////////////////////
+    public void CheckCurrentPlayerStatus(Engine game);
+    public boolean IsYourTurn(Engine game,String username);
+    public void MenageCycle(Engine game) throws NoSufficientMoneyException;
+    public void SetNewMove(Engine game,String username,String move,String Value) throws NoSufficientMoneyException, MoveNotAllowdedException, PlayerAlreadyBetException, PlayerFoldedException, ChipLessThanPotException, StakeNotInRangeException;
 }

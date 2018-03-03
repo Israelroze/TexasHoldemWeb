@@ -7,6 +7,7 @@ import Containers.GameData;
 import Containers.GameStatusData;
 import Containers.HandData;
 import Containers.UserData;
+import Exceptions.NoSufficientMoneyException;
 import GameManager.GameManager;
 import UserManager.UserManager;
 import Utils.ServletUtils;
@@ -53,6 +54,13 @@ public class GameTableServlet extends HttpServlet {
             } else {
                 Engine game = getManager().GetGame(game_id);
 
+                try {
+                    getManager().MenageCycle(game);
+                    getManager().CheckCurrentPlayerStatus(game);
+                } catch (NoSufficientMoneyException e) {
+                    ServletUtils.SendErrorMessage("No sufficient money to start new bid cycle.", response);
+                }
+
                 try (PrintWriter out = response.getWriter()) {
                     String res = BuildTableData(game,username);
                     System.out.println(res); //DEBUG
@@ -61,7 +69,6 @@ public class GameTableServlet extends HttpServlet {
                 }
             }
         }
-
     }
 
     private String BuildTableData(Engine game,String username)
@@ -100,22 +107,10 @@ public class GameTableServlet extends HttpServlet {
 
         HandData table_data=new HandData(game.GetPot(),comm_cards);
 
-        // get turn status
-        boolean is_your_turn=false;
-        if(game.IsCurrentHandStarted())
-        {
-            String current_player_name=game.GetPlayerName(game.GetCurrentPlayerID());
 
-            if(current_player_name.equals(username)) {
-                is_your_turn=true;
-            }
-            else{
-                is_your_turn=false;
-            }
-        }
-
-        GameStatusData game_status=new GameStatusData(game.IsGameStarted(),game.IsGameOver(),game.IsCurrentHandOver(),game.IsCurrentHandStarted(),game.IsCurrentBidCycleFinished(),is_your_turn);
-        GameData game_data=new GameData(0,users,table_data,game_status,game.GetNumberOfHands(),game.GetCurrentHandNumber(),game.GetTotalNumOfPlayers());
+        //game status
+        GameStatusData game_status=new GameStatusData(game.IsGameStarted(),game.IsGameOver(),game.IsCurrentHandStarted(),game.IsCurrentHandOver(),game.IsCurrentBidCycleFinished(),getManager().IsYourTurn(game,username));
+        GameData game_data=new GameData(0,users,game.GetWinner(),table_data,game_status,game.GetNumberOfHands(),game.GetCurrentHandNumber(),game.GetTotalNumOfPlayers());
 
         return json.toJson(game_data);
     }

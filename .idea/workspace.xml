@@ -15,109 +15,44 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="false" />
-  <component name="DockManager">
-    <window id="3">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="web.xml" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/TexasHoldem/web/WEB-INF/web.xml">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="713">
-                    <caret line="79" column="37" lean-forward="false" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="37" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="gameTable.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/gameTable.js">
+      <file leaf-file-name="GameData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Containers/GameData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-777">
-              <caret line="108" column="35" lean-forward="true" selection-start-line="108" selection-start-column="3" selection-end-line="108" selection-end-column="35" />
-              <folding>
-                <element signature="e#266#377#0" expanded="false" />
-                <element signature="n#!!block;n#countdown_to_start_hand#0" expanded="false" />
-                <element signature="e#700#1007#0" expanded="false" />
-                <element signature="e#1043#1162#0" expanded="false" />
-                <element signature="n#!!block;n#ajaxStartGame#0" expanded="false" />
-                <element signature="e#1206#1504#0" expanded="false" />
-                <element signature="e#1264#1343#0" expanded="false" />
-                <element signature="e#1371#1497#0" expanded="false" />
-                <element signature="n#!!block;n#ajaxStartHand#0" expanded="false" />
-                <element signature="e#1548#1848#0" expanded="false" />
-                <element signature="e#1606#1687#0" expanded="false" />
-                <element signature="e#1620#1634#0" expanded="false" />
-                <element signature="e#1715#1841#0" expanded="false" />
-                <element signature="n#!!block;n#PollGameTable#0" expanded="false" />
-                <element signature="e#2600#2781#0" expanded="false" />
-                <element signature="e#2715#2771#0" expanded="false" />
-                <element signature="e#3366#4787#0" expanded="false" />
-                <element signature="e#4869#4972#0" expanded="false" />
-                <element signature="e#4883#4902#0" expanded="false" />
-                <element signature="e#5637#5793#0" expanded="false" />
-                <element signature="e#5823#5985#0" expanded="false" />
-                <element signature="e#6737#8256#0" expanded="false" />
-                <element signature="n#!!block;n#toggle_slider#0" expanded="false" />
-                <element signature="n#!!block;n#slider_update_value#0" expanded="false" />
-                <element signature="e#8706#8752#0" expanded="false" />
-                <element signature="n#!!block;n#SetMove#0" expanded="false" />
-                <element signature="e#8797#9009#0" expanded="false" />
-                <element signature="e#8860#8921#0" expanded="false" />
-                <element signature="e#8951#8963#0" expanded="false" />
-                <element signature="e#8991#9003#0" expanded="false" />
-                <element signature="n#!!block;n#open_raise_and_bet_scroller#0" expanded="false" />
-                <element signature="e#9176#9355#0" expanded="false" />
-                <element signature="e#9392#9570#0" expanded="false" />
-                <element signature="n#!!block;n#ShowSlider#0" expanded="false" />
-                <element signature="n#!!block;n#update_games_values#0" expanded="false" />
-                <element signature="e#10560#10617#0" expanded="false" />
-                <element signature="e#10664#12458#0" expanded="false" />
-                <element signature="e#11198#11301#0" expanded="false" />
-                <element signature="e#11355#11515#0" expanded="false" />
-                <element signature="e#11571#11673#0" expanded="false" />
-                <element signature="e#11687#11766#0" expanded="false" />
-                <element signature="e#11827#12148#0" expanded="false" />
-                <element signature="e#12161#12452#0" expanded="false" />
-                <element signature="n#!!block;n#get_board_location#0" expanded="false" />
-                <element signature="e#12730#13880#0" expanded="false" />
-                <element signature="e#12752#13645#0" expanded="false" />
-                <element signature="e#12777#12900#0" expanded="false" />
-                <element signature="e#12928#13048#0" expanded="false" />
-                <element signature="e#13078#13196#0" expanded="false" />
-                <element signature="e#13224#13343#0" expanded="false" />
-                <element signature="e#13369#13489#0" expanded="false" />
-                <element signature="e#13516#13635#0" expanded="false" />
-                <element signature="e#13671#13874#0" expanded="false" />
-                <element signature="e#13692#13766#0" expanded="false" />
-                <element signature="e#13790#13864#0" expanded="false" />
-                <element signature="n#!!block;n#firstSetup#0" expanded="false" />
-                <element signature="e#14185#14828#0" expanded="false" />
-                <element signature="e#14860#15424#0" expanded="false" />
-                <element signature="e#15456#15944#0" expanded="false" />
-                <element signature="e#15976#16386#0" expanded="false" />
-                <element signature="n#!!block;n#createUrlForImage#0" expanded="false" />
-                <element signature="n#!!block;n#logPrint#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="408">
+              <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AllowdedMovesServlet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Gameloop/AllowdedMovesServlet.java">
+      <file leaf-file-name="GameNodeData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Containers/GameNodeData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="374">
+              <caret line="22" column="42" lean-forward="false" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BetOptionData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Containers/BetOptionData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameStatusData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Containers/GameStatusData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -125,153 +60,8 @@
       <file leaf-file-name="GameManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Engine/src/GameManager/GameManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="139" column="13" lean-forward="false" selection-start-line="139" selection-start-column="13" selection-end-line="139" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JoinGameServlet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TexasHoldem/src/GamesList/JoinGameServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="38" column="77" lean-forward="true" selection-start-line="38" selection-start-column="77" selection-end-line="38" selection-end-column="77" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Engine/src/Game/Game.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="527" column="0" lean-forward="false" selection-start-line="527" selection-start-column="0" selection-end-line="527" selection-end-column="0" />
-              <folding>
-                <element signature="method#LoadPlayers#0;class#Game#0" expanded="false" />
-                <element signature="method#SetPlayersChips#0;class#Game#0" expanded="false" />
-                <element signature="method#GetPlayers#0;class#Game#0" expanded="false" />
-                <element signature="method#ValidateXML#0;class#Game#0" expanded="false" />
-                <element signature="method#Init4Players#0;class#Game#0" expanded="false" />
-                <element signature="method#GetConsoleMove#0;class#Game#0" expanded="false" />
-                <element signature="method#PringCurrentAvailable#0;class#Game#0" expanded="false" />
-                <element signature="method#NewHumanMove#0;class#Game#0" expanded="false" />
-                <element signature="method#InitPlayersWinChance#0;class#Game#0" expanded="false" />
-                <element signature="method#LoadFromXML#0;class#Game#0" expanded="false" />
-                <element signature="e#8775#8805#0" expanded="false" />
-                <element signature="method#StartGame#0;class#Game#0" expanded="false" />
-                <element signature="method#GetMoneyInGame#0;class#Game#0" expanded="false" />
-                <element signature="method#GetPot#0;class#Game#0" expanded="false" />
-                <element signature="method#AddNewPlayer#0;class#Game#0" expanded="false" />
-                <element signature="method#AddNewPlayer#1;class#Game#0" expanded="false" />
-                <element signature="e#11009#11010#0" expanded="true" />
-                <element signature="e#11063#11064#0" expanded="true" />
-                <element signature="method#GetNextPlayerID#0;class#Game#0" expanded="false" />
-                <element signature="method#GetPlayerPot#0;class#Game#0" expanded="false" />
-                <element signature="method#GetPlayerNumOfWins#0;class#Game#0" expanded="false" />
-                <element signature="method#GetPlayerIsDealer#0;class#Game#0" expanded="false" />
-                <element signature="method#GetPlayerIsBig#0;class#Game#0" expanded="false" />
-                <element signature="method#GetPlayerIsSmall#0;class#Game#0" expanded="false" />
-                <element signature="method#GetPlayerIsHuman#0;class#Game#0" expanded="false" />
-                <element signature="method#GetPlayerName#0;class#Game#0" expanded="false" />
-                <element signature="method#GetPlayersCards#0;class#Game#0" expanded="false" />
-                <element signature="method#StartNewHand#0;class#Game#0" expanded="false" />
-                <element signature="method#PlayerPerformBuy#0;class#Game#0" expanded="false" />
-                <element signature="method#GetCommunityCards#0;class#Game#0" expanded="false" />
-                <element signature="method#StartNewBidCycle#0;class#Game#0" expanded="false" />
-                <element signature="method#IsCurrentPlayerHuman#0;class#Game#0" expanded="false" />
-                <element signature="method#IsCurrentPlayerFolded#0;class#Game#0" expanded="false" />
-                <element signature="method#IsCurrentPlayerNoMoney#0;class#Game#0" expanded="false" />
-                <element signature="method#GetAllowdedMoves#0;class#Game#0" expanded="false" />
-                <element signature="method#SetNewMove#0;class#Game#0" expanded="false" />
-                <element signature="method#GetCurrentPlayerInfo#0;class#Game#0" expanded="false" />
-                <element signature="method#GetAutoMove#0;class#Game#0" expanded="false" />
-                <element signature="method#IsCurrentPlayerComputer#0;class#Game#0" expanded="false" />
-                <element signature="method#Buy#0;class#Game#0" expanded="false" />
-                <element signature="method#IsHumanPlayerFolded#0;class#Game#0" expanded="false" />
-                <element signature="method#IsAnyPlayerOutOfMoney#0;class#Game#0" expanded="false" />
-                <element signature="method#GetPlayersInfo#0;class#Game#0" expanded="false" />
-                <element signature="method#GetCurrentHandState#0;class#Game#0" expanded="false" />
-                <element signature="method#StartReplay#0;class#Game#0" expanded="false" />
-                <element signature="method#IfEnoughPlayers#0;class#Game#0" expanded="false" />
-                <element signature="method#IfPlayerExist#0;class#Game#0" expanded="false" />
-                <element signature="method#LoadFromXML#1;class#Game#0" expanded="false" />
-                <element signature="e#29430#29460#0" expanded="false" />
-                <element signature="method#GetRegisteredNumOfPlayers#0;class#Game#0" expanded="false" />
-                <element signature="method#AddPlayer#0;class#Game#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Hand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Engine/src/Game/Hand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="74" column="21" lean-forward="true" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
-              <folding>
-                <element signature="method#SetBlinds#0;class#Hand#0" expanded="false" />
-                <element signature="method#DealCards#0;class#Hand#0" expanded="false" />
-                <element signature="method#InitNotFinishedPlayers#0;class#Hand#0" expanded="false" />
-                <element signature="method#IsAllStakesEqual#0;class#Hand#0" expanded="false" />
-                <element signature="method#IsAllPlayersPlacedBet#0;class#Hand#0" expanded="false" />
-                <element signature="method#IsAllFolded#0;class#Hand#0" expanded="false" />
-                <element signature="method#InitPlayerFlags#0;class#Hand#0" expanded="false" />
-                <element signature="method#InitPlayersBetFlag#0;class#Hand#0" expanded="false" />
-                <element signature="method#GetPoorestChipsValue#0;class#Hand#0" expanded="false" />
-                <element signature="method#GetIsHandOver#0;class#Hand#0" expanded="false" />
-                <element signature="method#GetAllowdedStakeRange#0;class#Hand#0" expanded="false" />
-                <element signature="method#GetAllowdedMoves#0;class#Hand#0" expanded="false" />
-                <element signature="e#7310#7354#0" expanded="false" />
-                <element signature="method#GetBoardForCalculation#0;class#Hand#0" expanded="false" />
-                <element signature="method#GetPlayerHand#0;class#Hand#0" expanded="false" />
-                <element signature="method#GetWinnerNames#0;class#Hand#0" expanded="false" />
-                <element signature="method#SetWinner#0;class#Hand#0" expanded="false" />
-                <element signature="method#SetTechincalWinner#0;class#Hand#0" expanded="false" />
-                <element signature="method#SetWinnersCounter#0;class#Hand#0" expanded="false" />
-                <element signature="method#ImplementMove#0;class#Hand#0" expanded="false" />
-                <element signature="method#Flop#0;class#Hand#0" expanded="false" />
-                <element signature="method#River#0;class#Hand#0" expanded="false" />
-                <element signature="method#Turn#0;class#Hand#0" expanded="false" />
-                <element signature="method#PassPot#0;class#Hand#0" expanded="false" />
-                <element signature="method#CalculateWinChance#0;class#Hand#0" expanded="false" />
-                <element signature="method#IsOneOfPlayersOutOfMoney#0;class#Hand#0" expanded="false" />
-                <element signature="method#IsMoveAllowded#0;class#Hand#0" expanded="false" />
-                <element signature="method#IsStakeInRange#0;class#Hand#0" expanded="false" />
-                <element signature="method#IsOnlyOnePlayerActive#0;class#Hand#0" expanded="false" />
-                <element signature="method#IsNoPlayerActive#0;class#Hand#0" expanded="false" />
-                <element signature="method#CheckHandStatus#0;class#Hand#0" expanded="false" />
-                <element signature="method#CheckNoActiveHumanPlayers#0;class#Hand#0" expanded="false" />
-                <element signature="method#LogHandEvent#0;class#Hand#0" expanded="false" />
-                <element signature="method#LogHandEvent#1;class#Hand#0" expanded="false" />
-                <element signature="method#LogHandWinnerEvent#0;class#Hand#0" expanded="false" />
-                <element signature="method#RevertToStart#0;class#Hand#0" expanded="false" />
-                <element signature="method#RevertEvent#0;class#Hand#0" expanded="false" />
-                <element signature="e#29816#29884#0" expanded="false" />
-                <element signature="e#30156#30224#0" expanded="false" />
-                <element signature="method#PerformEvent#0;class#Hand#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StartNewHandServlet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Gameloop/StartNewHandServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StartGameServlet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Gameloop/StartGameServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+            <state relative-caret-position="-585">
+              <caret line="174" column="0" lean-forward="true" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -282,17 +72,115 @@
       <file leaf-file-name="GameTableServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TexasHoldem/src/GameTable/GameTableServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="958">
-              <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+            <state relative-caret-position="449">
+              <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="back.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/images/back.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
+      <file leaf-file-name="EngineManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Engine/src/API/EngineManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="34" column="52" lean-forward="false" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gameTable.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/gameTable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="336" column="30" lean-forward="false" selection-start-line="336" selection-start-column="30" selection-end-line="336" selection-end-column="30" />
+              <folding>
+                <element signature="e#332#399#0" expanded="false" />
+                <element signature="n#!!block;n#ajaxStartGame#0" expanded="false" />
+                <element signature="e#1173#1471#0" expanded="false" />
+                <element signature="e#1231#1310#0" expanded="false" />
+                <element signature="e#1338#1464#0" expanded="false" />
+                <element signature="n#!!block;n#ajaxStartHand#0" expanded="false" />
+                <element signature="e#1515#1815#0" expanded="false" />
+                <element signature="e#1573#1654#0" expanded="false" />
+                <element signature="e#1587#1601#0" expanded="false" />
+                <element signature="e#1682#1808#0" expanded="false" />
+                <element signature="e#1821#1888#0" expanded="false" />
+                <element signature="e#2715#2896#0" expanded="false" />
+                <element signature="e#2830#2886#0" expanded="false" />
+                <element signature="n#!!block;n#checkGameStatus#0" expanded="false" />
+                <element signature="e#3079#3216#0" expanded="false" />
+                <element signature="e#3119#3210#0" expanded="false" />
+                <element signature="e#3226#3309#0" expanded="false" />
+                <element signature="e#3313#3380#0" expanded="false" />
+                <element signature="n#!!block;n#ajaxBetOptionContent#0" expanded="false" />
+                <element signature="e#3526#5392#0" expanded="false" />
+                <element signature="e#3639#5185#0" expanded="false" />
+                <element signature="e#3653#5074#0" expanded="false" />
+                <element signature="e#5219#5386#0" expanded="false" />
+                <element signature="e#5233#5252#0" expanded="false" />
+                <element signature="e#6051#6207#0" expanded="false" />
+                <element signature="e#6237#6399#0" expanded="false" />
+                <element signature="e#7151#8670#0" expanded="false" />
+                <element signature="n#!!block;n#toggle_slider#0" expanded="false" />
+                <element signature="n#!!block;n#slider_update_value#0" expanded="false" />
+                <element signature="e#9120#9166#0" expanded="false" />
+                <element signature="e#9315#9382#0" expanded="false" />
+                <element signature="n#!!block;n#open_raise_and_bet_scroller#0" expanded="false" />
+                <element signature="e#9847#10026#0" expanded="false" />
+                <element signature="e#10063#10241#0" expanded="false" />
+                <element signature="n#!!block;n#ShowSlider#0" expanded="false" />
+                <element signature="e#11001#11068#0" expanded="false" />
+                <element signature="e#11231#11288#0" expanded="false" />
+                <element signature="e#11869#11972#0" expanded="false" />
+                <element signature="e#12026#12186#0" expanded="false" />
+                <element signature="e#12242#12344#0" expanded="false" />
+                <element signature="e#12358#12437#0" expanded="false" />
+                <element signature="e#12498#12819#0" expanded="false" />
+                <element signature="e#12832#13123#0" expanded="false" />
+                <element signature="n#!!block;n#get_board_location#0" expanded="false" />
+                <element signature="e#13426#14576#0" expanded="false" />
+                <element signature="e#13448#14341#0" expanded="false" />
+                <element signature="e#13473#13596#0" expanded="false" />
+                <element signature="e#13624#13744#0" expanded="false" />
+                <element signature="e#13774#13892#0" expanded="false" />
+                <element signature="e#13920#14039#0" expanded="false" />
+                <element signature="e#14065#14185#0" expanded="false" />
+                <element signature="e#14212#14331#0" expanded="false" />
+                <element signature="e#14367#14570#0" expanded="false" />
+                <element signature="e#14388#14462#0" expanded="false" />
+                <element signature="e#14486#14560#0" expanded="false" />
+                <element signature="e#14580#14647#0" expanded="false" />
+                <element signature="e#14881#15524#0" expanded="false" />
+                <element signature="e#15556#16120#0" expanded="false" />
+                <element signature="e#16152#16640#0" expanded="false" />
+                <element signature="e#16672#17082#0" expanded="false" />
+                <element signature="n#!!block;n#createUrlForImage#0" expanded="false" />
+                <element signature="n#!!block;n#logPrint#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SetMoveServlet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Gameloop/SetMoveServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="503">
+              <caret line="47" column="14" lean-forward="false" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Engine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Engine/src/API/Engine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="84" column="31" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -332,6 +220,8 @@
       <find>butoo</find>
       <find>console.log</find>
       <find>logPrint</find>
+      <find>bet_num</find>
+      <find>setmove</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -393,29 +283,29 @@
         <option value="$PROJECT_DIR$/Engine/src/Exceptions/PlayerAlreadyInGameException.java" />
         <option value="$PROJECT_DIR$/TexasHoldem/web/pages/lobby/lobby.html" />
         <option value="$PROJECT_DIR$/TexasHoldem/src/Utils/ServletUtils.java" />
-        <option value="$PROJECT_DIR$/Engine/src/API/EngineManager.java" />
         <option value="$PROJECT_DIR$/Engine/src/Player/APlayer.java" />
         <option value="$PROJECT_DIR$/TexasHoldem/src/Containers/BetOptionData.java" />
         <option value="$PROJECT_DIR$/TexasHoldem/src/Containers/UserData.java" />
         <option value="$PROJECT_DIR$/TexasHoldem/src/GamesList/JoinGameServlet.java" />
-        <option value="$PROJECT_DIR$/Engine/src/Player/APlayers.java" />
         <option value="$PROJECT_DIR$/Engine/src/Exceptions/HandAlreadyStartedException.java" />
-        <option value="$PROJECT_DIR$/Engine/src/API/Engine.java" />
-        <option value="$PROJECT_DIR$/TexasHoldem/src/Containers/GameData.java" />
         <option value="$PROJECT_DIR$/TexasHoldem/src/Containers/GameStatusData.java" />
         <option value="$PROJECT_DIR$/TexasHoldem/src/Gameloop/AllowdedMovesServlet.java" />
         <option value="$PROJECT_DIR$/TexasHoldem/web/pages/lobby/lobby.js" />
-        <option value="$PROJECT_DIR$/TexasHoldem/src/Gameloop/SetMoveServlet.java" />
-        <option value="$PROJECT_DIR$/TexasHoldem/web/pages/table/table.css" />
         <option value="$PROJECT_DIR$/TexasHoldem/web/pages/table/table.html" />
-        <option value="$PROJECT_DIR$/Engine/src/Game/Game.java" />
         <option value="$PROJECT_DIR$/TexasHoldem/src/GamesList/StartGameServlet.java" />
         <option value="$PROJECT_DIR$/TexasHoldem/src/Gameloop/StartGameServlet.java" />
-        <option value="$PROJECT_DIR$/TexasHoldem/web/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/Engine/src/GameManager/GameManager.java" />
-        <option value="$PROJECT_DIR$/TexasHoldem/src/GameTable/GameTableServlet.java" />
         <option value="$PROJECT_DIR$/Engine/src/Game/Hand.java" />
         <option value="$PROJECT_DIR$/TexasHoldem/src/Gameloop/StartNewHandServlet.java" />
+        <option value="$PROJECT_DIR$/Engine/src/Player/APlayers.java" />
+        <option value="$PROJECT_DIR$/TexasHoldem/web/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/Engine/src/API/Engine.java" />
+        <option value="$PROJECT_DIR$/Engine/src/Game/Game.java" />
+        <option value="$PROJECT_DIR$/TexasHoldem/src/Containers/GameData.java" />
+        <option value="$PROJECT_DIR$/TexasHoldem/web/pages/table/table.css" />
+        <option value="$PROJECT_DIR$/Engine/src/API/EngineManager.java" />
+        <option value="$PROJECT_DIR$/Engine/src/GameManager/GameManager.java" />
+        <option value="$PROJECT_DIR$/TexasHoldem/src/GameTable/GameTableServlet.java" />
+        <option value="$PROJECT_DIR$/TexasHoldem/src/Gameloop/SetMoveServlet.java" />
         <option value="$PROJECT_DIR$/TexasHoldem/web/pages/table/gameTable.js" />
       </list>
     </option>
@@ -485,6 +375,45 @@
             <path>
               <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="Engine" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="Engine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="Engine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="API" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="Engine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="Engine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GameManager" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="Engine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Move" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
               <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -492,6 +421,13 @@
               <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
               <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Containers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -504,7 +440,51 @@
               <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
               <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GamesList" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GameTable" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="cummon" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="lobby" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TexasHoldemWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="TexasHoldem" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="table" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TexasHoldemWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -535,15 +515,15 @@
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Avishay\Documents\GitHub\TexasHoldemWeb\TexasHoldem\web\cummon" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Avishay\Documents\GitHub\TexasHoldemWeb\TexasHoldem\web\pages" />
       <recent name="C:\StudyLocal\Java\TexasHoldemWeb\TexasHoldemWeb\TexasHoldem\web\cummon" />
       <recent name="C:\StudyLocal\Java\TexasHoldemWeb\TexasHoldemWeb\TexasHoldem\web" />
       <recent name="C:\StudyLocal\Java\TexasHoldemWeb\TexasHoldemWeb\TexasHoldem" />
       <recent name="C:\Users\irozenblit\Documents\Private\Java\TexasHoldemWeb\TexasHoldem\web\pages\lobby" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Avishay\Documents\GitHub\TexasHoldemWeb\TexasHoldem\web\cummon" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -746,12 +726,12 @@
       <workItem from="1519989075932" duration="103000" />
       <workItem from="1519989255742" duration="19000" />
       <workItem from="1519989332328" duration="1710000" />
-      <workItem from="1519995294787" duration="35654000" />
+      <workItem from="1519995294787" duration="48888000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152125000" />
+    <option name="totallyTimeSpent" value="165359000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -777,7 +757,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3011665" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3223754" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288889" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32661718" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -785,7 +765,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288889" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32767764" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22269353" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1845175" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3288889" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16822916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
@@ -842,7 +822,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/Engine/src/GameManager/GameManager.java</url>
-          <line>110</line>
+          <line>112</line>
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
@@ -854,15 +834,21 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/Engine/src/Game/Game.java</url>
-          <line>903</line>
+          <line>917</line>
           <properties />
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/TexasHoldem/web/pages/table/gameTable.js</url>
+          <line>481</line>
+          <properties />
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="46" />
+      <option name="time" value="51" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
@@ -872,14 +858,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/web/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TexasHoldem/out/production/TexasHoldem/GameTable/GameTableServlet.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -891,13 +869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="62" lean-forward="false" selection-start-line="2" selection-start-column="62" selection-end-line="2" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Containers/GameNodeData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="42" lean-forward="false" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -1015,39 +986,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/GameTable/HandDataServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/src/Player/APlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="124" column="18" lean-forward="false" selection-start-line="124" selection-start-column="18" selection-end-line="124" selection-end-column="18" />
-          <folding>
-            <element signature="method#APlayer#0;class#APlayer#0" expanded="false" />
-            <element signature="method#APlayer#1;class#APlayer#0" expanded="false" />
-            <element signature="method#APlayer#2;class#APlayer#0" expanded="false" />
-            <element signature="method#getId#0;class#APlayer#0" expanded="false" />
-            <element signature="method#isPlacedBet#0;class#APlayer#0" expanded="false" />
-            <element signature="method#setBetPlaceFlag#0;class#APlayer#0" expanded="false" />
-            <element signature="method#setStake#0;class#APlayer#0" expanded="false" />
-            <element signature="method#getStake#0;class#APlayer#0" expanded="false" />
-            <element signature="method#setFoldedFlag#0;class#APlayer#0" expanded="false" />
-            <element signature="e#2847#2848#0" expanded="false" />
-            <element signature="e#2875#2876#0" expanded="false" />
-            <element signature="method#GetMoney#0;class#APlayer#0" expanded="false" />
-            <element signature="method#GetNumOfBuys#0;class#APlayer#0" expanded="false" />
-            <element signature="method#BuyMoney#0;class#APlayer#0" expanded="false" />
-            <element signature="method#DecMoney#0;class#APlayer#0" expanded="false" />
-            <element signature="method#ClearBidStats#0;class#APlayer#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Gameloop/ActivePlayerServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1072,34 +1010,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Containers/BetOptionData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Containers/HandData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/src/Move/MoveType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Containers/GameData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="45" lean-forward="false" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -1112,79 +1026,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/lobby/lobby.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#PollUserlist#0" expanded="false" />
-            <element signature="n#!!block;n#ajaxUserList#0" expanded="false" />
-            <element signature="e#449#562#0" expanded="false" />
-            <element signature="e#509#556#0" expanded="false" />
-            <element signature="n#!!block;n#refreshUserlist#0" expanded="false" />
-            <element signature="e#803#940#0" expanded="false" />
-            <element signature="n#!!block;n#PollGamelist#0" expanded="false" />
-            <element signature="n#!!block;n#ajaxGameList#0" expanded="false" />
-            <element signature="e#1345#1458#0" expanded="false" />
-            <element signature="e#1405#1452#0" expanded="false" />
-            <element signature="n#!!block;n#refreshGamelist#0" expanded="false" />
-            <element signature="n#!!block;n#createGameBox#0" expanded="false" />
-            <element signature="e#2590#2631#0" expanded="false" />
-            <element signature="e#2662#2714#0" expanded="false" />
-            <element signature="e#2742#2828#0" expanded="false" />
-            <element signature="n#!!block;n#LoadGameFile#0" expanded="false" />
-            <element signature="e#2914#3640#0" expanded="false" />
-            <element signature="e#3056#3632#0" expanded="false" />
-            <element signature="e#3382#3527#0" expanded="false" />
-            <element signature="e#3562#3622#0" expanded="false" />
-            <element signature="e#4075#5276#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/table.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="243" column="19" lean-forward="true" selection-start-line="243" selection-start-column="4" selection-end-line="243" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="113" column="14" lean-forward="true" selection-start-line="113" selection-start-column="14" selection-end-line="113" selection-end-column="14" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#tr#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#tr#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Containers/GameStatusData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/GamesList/GameListServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="44" column="38" lean-forward="true" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/src/API/EngineManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="29" column="18" lean-forward="false" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Gameloop/GameStatusServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1193,49 +1034,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Gameloop/SetMoveServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="40" column="9" lean-forward="false" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TexasHoldem/src/GamesList/GameReadyServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="24" column="62" lean-forward="true" selection-start-line="24" selection-start-column="62" selection-end-line="24" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/src/API/Engine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="99" column="24" lean-forward="false" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/src/Player/APlayers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="153" column="22" lean-forward="true" selection-start-line="153" selection-start-column="22" selection-end-line="153" selection-end-column="22" />
-          <folding>
-            <element signature="e#2441#2442#0" expanded="false" />
-            <element signature="e#2492#2493#0" expanded="false" />
-            <element signature="e#3795#3796#0" expanded="false" />
-            <element signature="e#3828#3829#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/src/GameManager/GameManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="139" column="13" lean-forward="false" selection-start-line="139" selection-start-column="13" selection-end-line="139" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1263,14 +1065,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/GameTable/GameTableServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="958">
-          <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Gameloop/AllowdedMovesServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -1281,94 +1075,95 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TexasHoldem/web/WEB-INF/web.xml">
+    <entry file="file://$PROJECT_DIR$/Engine/src/Player/APlayers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="79" column="37" lean-forward="false" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="37" />
+        <state relative-caret-position="434">
+          <caret line="144" column="9" lean-forward="true" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="9" />
+          <folding>
+            <element signature="method#APlayers#0;class#APlayers#0" expanded="false" />
+            <element signature="method#APlayers#1;class#APlayers#0" expanded="false" />
+            <element signature="method#RandomPlayerSeats#0;class#APlayers#0" expanded="false" />
+            <element signature="method#PrintPlayers#0;class#APlayers#0" expanded="false" />
+            <element signature="method#GetNextPlayer#0;class#APlayers#0" expanded="false" />
+            <element signature="method#DeletePlayerById#0;class#APlayers#0" expanded="false" />
+            <element signature="method#IsPlayerExist#0;class#APlayers#0" expanded="false" />
+            <element signature="method#GetPlayer#0;class#APlayers#0" expanded="false" />
+            <element signature="method#GetNextPlayer#1;class#APlayers#0" expanded="false" />
+            <element signature="method#RandomDealer#0;class#APlayers#0" expanded="false" />
+            <element signature="method#SetBig#0;class#APlayers#0" expanded="false" />
+            <element signature="method#InitPlayersNewHand#0;class#APlayers#0" expanded="false" />
+            <element signature="method#AddPlayer#0;class#APlayers#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/src/Player/APlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="144" column="16" lean-forward="false" selection-start-line="144" selection-start-column="16" selection-end-line="144" selection-end-column="16" />
+          <folding>
+            <element signature="method#APlayer#0;class#APlayer#0" expanded="false" />
+            <element signature="method#APlayer#1;class#APlayer#0" expanded="false" />
+            <element signature="method#APlayer#2;class#APlayer#0" expanded="false" />
+            <element signature="method#getId#0;class#APlayer#0" expanded="false" />
+            <element signature="method#isPlacedBet#0;class#APlayer#0" expanded="false" />
+            <element signature="method#setBetPlaceFlag#0;class#APlayer#0" expanded="false" />
+            <element signature="method#setStake#0;class#APlayer#0" expanded="false" />
+            <element signature="method#getStake#0;class#APlayer#0" expanded="false" />
+            <element signature="method#setFoldedFlag#0;class#APlayer#0" expanded="false" />
+            <element signature="method#GetMoney#0;class#APlayer#0" expanded="false" />
+            <element signature="method#GetNumOfBuys#0;class#APlayer#0" expanded="false" />
+            <element signature="method#DecMoney#0;class#APlayer#0" expanded="false" />
+            <element signature="method#ClearBidStats#0;class#APlayer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/src/Move/MoveType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/src/Move/Move.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Gameloop/StartNewHandServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="204">
+          <caret line="48" column="19" lean-forward="true" selection-start-line="48" selection-start-column="19" selection-end-line="51" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/src/Game/Game.java">
+    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/GamesList/GameListServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="527" column="0" lean-forward="false" selection-start-line="527" selection-start-column="0" selection-end-line="527" selection-end-column="0" />
-          <folding>
-            <element signature="method#LoadPlayers#0;class#Game#0" expanded="false" />
-            <element signature="method#SetPlayersChips#0;class#Game#0" expanded="false" />
-            <element signature="method#GetPlayers#0;class#Game#0" expanded="false" />
-            <element signature="method#ValidateXML#0;class#Game#0" expanded="false" />
-            <element signature="method#Init4Players#0;class#Game#0" expanded="false" />
-            <element signature="method#GetConsoleMove#0;class#Game#0" expanded="false" />
-            <element signature="method#PringCurrentAvailable#0;class#Game#0" expanded="false" />
-            <element signature="method#NewHumanMove#0;class#Game#0" expanded="false" />
-            <element signature="method#InitPlayersWinChance#0;class#Game#0" expanded="false" />
-            <element signature="method#LoadFromXML#0;class#Game#0" expanded="false" />
-            <element signature="e#8775#8805#0" expanded="false" />
-            <element signature="method#StartGame#0;class#Game#0" expanded="false" />
-            <element signature="method#GetMoneyInGame#0;class#Game#0" expanded="false" />
-            <element signature="method#GetPot#0;class#Game#0" expanded="false" />
-            <element signature="method#AddNewPlayer#0;class#Game#0" expanded="false" />
-            <element signature="method#AddNewPlayer#1;class#Game#0" expanded="false" />
-            <element signature="e#11009#11010#0" expanded="true" />
-            <element signature="e#11063#11064#0" expanded="true" />
-            <element signature="method#GetNextPlayerID#0;class#Game#0" expanded="false" />
-            <element signature="method#GetPlayerPot#0;class#Game#0" expanded="false" />
-            <element signature="method#GetPlayerNumOfWins#0;class#Game#0" expanded="false" />
-            <element signature="method#GetPlayerIsDealer#0;class#Game#0" expanded="false" />
-            <element signature="method#GetPlayerIsBig#0;class#Game#0" expanded="false" />
-            <element signature="method#GetPlayerIsSmall#0;class#Game#0" expanded="false" />
-            <element signature="method#GetPlayerIsHuman#0;class#Game#0" expanded="false" />
-            <element signature="method#GetPlayerName#0;class#Game#0" expanded="false" />
-            <element signature="method#GetPlayersCards#0;class#Game#0" expanded="false" />
-            <element signature="method#StartNewHand#0;class#Game#0" expanded="false" />
-            <element signature="method#PlayerPerformBuy#0;class#Game#0" expanded="false" />
-            <element signature="method#GetCommunityCards#0;class#Game#0" expanded="false" />
-            <element signature="method#StartNewBidCycle#0;class#Game#0" expanded="false" />
-            <element signature="method#IsCurrentPlayerHuman#0;class#Game#0" expanded="false" />
-            <element signature="method#IsCurrentPlayerFolded#0;class#Game#0" expanded="false" />
-            <element signature="method#IsCurrentPlayerNoMoney#0;class#Game#0" expanded="false" />
-            <element signature="method#GetAllowdedMoves#0;class#Game#0" expanded="false" />
-            <element signature="method#SetNewMove#0;class#Game#0" expanded="false" />
-            <element signature="method#GetCurrentPlayerInfo#0;class#Game#0" expanded="false" />
-            <element signature="method#GetAutoMove#0;class#Game#0" expanded="false" />
-            <element signature="method#IsCurrentPlayerComputer#0;class#Game#0" expanded="false" />
-            <element signature="method#Buy#0;class#Game#0" expanded="false" />
-            <element signature="method#IsHumanPlayerFolded#0;class#Game#0" expanded="false" />
-            <element signature="method#IsAnyPlayerOutOfMoney#0;class#Game#0" expanded="false" />
-            <element signature="method#GetPlayersInfo#0;class#Game#0" expanded="false" />
-            <element signature="method#GetCurrentHandState#0;class#Game#0" expanded="false" />
-            <element signature="method#StartReplay#0;class#Game#0" expanded="false" />
-            <element signature="method#IfEnoughPlayers#0;class#Game#0" expanded="false" />
-            <element signature="method#IfPlayerExist#0;class#Game#0" expanded="false" />
-            <element signature="method#LoadFromXML#1;class#Game#0" expanded="false" />
-            <element signature="e#29430#29460#0" expanded="false" />
-            <element signature="method#GetRegisteredNumOfPlayers#0;class#Game#0" expanded="false" />
-            <element signature="method#AddPlayer#0;class#Game#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="442">
+          <caret line="44" column="38" lean-forward="true" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Engine/src/Game/Hand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="74" column="21" lean-forward="true" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
+        <state relative-caret-position="248">
+          <caret line="356" column="24" lean-forward="false" selection-start-line="356" selection-start-column="24" selection-end-line="356" selection-end-column="24" />
           <folding>
+            <element signature="method#Hand#0;class#Hand#0" expanded="false" />
+            <element signature="method#GetFirstPlayer#0;class#Hand#0" expanded="false" />
             <element signature="method#SetBlinds#0;class#Hand#0" expanded="false" />
             <element signature="method#DealCards#0;class#Hand#0" expanded="false" />
             <element signature="method#InitNotFinishedPlayers#0;class#Hand#0" expanded="false" />
             <element signature="method#IsAllStakesEqual#0;class#Hand#0" expanded="false" />
-            <element signature="method#IsAllPlayersPlacedBet#0;class#Hand#0" expanded="false" />
             <element signature="method#IsAllFolded#0;class#Hand#0" expanded="false" />
             <element signature="method#InitPlayerFlags#0;class#Hand#0" expanded="false" />
             <element signature="method#InitPlayersBetFlag#0;class#Hand#0" expanded="false" />
@@ -1379,11 +1174,9 @@
             <element signature="e#7310#7354#0" expanded="false" />
             <element signature="method#GetBoardForCalculation#0;class#Hand#0" expanded="false" />
             <element signature="method#GetPlayerHand#0;class#Hand#0" expanded="false" />
-            <element signature="method#GetWinnerNames#0;class#Hand#0" expanded="false" />
-            <element signature="method#SetWinner#0;class#Hand#0" expanded="false" />
+            <element signature="method#StartNewBidCycle#0;class#Hand#0" expanded="false" />
             <element signature="method#SetTechincalWinner#0;class#Hand#0" expanded="false" />
             <element signature="method#SetWinnersCounter#0;class#Hand#0" expanded="false" />
-            <element signature="method#ImplementMove#0;class#Hand#0" expanded="false" />
             <element signature="method#Flop#0;class#Hand#0" expanded="false" />
             <element signature="method#River#0;class#Hand#0" expanded="false" />
             <element signature="method#Turn#0;class#Hand#0" expanded="false" />
@@ -1408,71 +1201,226 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/src/Game/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="765" column="34" lean-forward="false" selection-start-line="765" selection-start-column="34" selection-end-line="765" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/lobby/lobby.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!block;n#PollUserlist#0" expanded="false" />
+            <element signature="n#!!block;n#ajaxUserList#0" expanded="false" />
+            <element signature="e#449#562#0" expanded="false" />
+            <element signature="e#509#556#0" expanded="false" />
+            <element signature="n#!!block;n#refreshUserlist#0" expanded="false" />
+            <element signature="e#803#940#0" expanded="false" />
+            <element signature="n#!!block;n#PollGamelist#0" expanded="false" />
+            <element signature="n#!!block;n#ajaxGameList#0" expanded="false" />
+            <element signature="e#1345#1458#0" expanded="false" />
+            <element signature="e#1405#1452#0" expanded="false" />
+            <element signature="n#!!block;n#refreshGamelist#0" expanded="false" />
+            <element signature="n#!!block;n#createGameBox#0" expanded="false" />
+            <element signature="n#!!block;n#joinGame#0" expanded="false" />
+            <element signature="e#2525#2835#0" expanded="false" />
+            <element signature="e#2590#2631#0" expanded="false" />
+            <element signature="e#2662#2714#0" expanded="false" />
+            <element signature="e#2742#2828#0" expanded="false" />
+            <element signature="n#!!block;n#LoadGameFile#0" expanded="false" />
+            <element signature="e#2914#3640#0" expanded="false" />
+            <element signature="e#3056#3632#0" expanded="false" />
+            <element signature="e#3382#3527#0" expanded="false" />
+            <element signature="e#3562#3622#0" expanded="false" />
+            <element signature="n#!!block;n#ajaxReadyGame#0" expanded="false" />
+            <element signature="e#3683#4069#0" expanded="false" />
+            <element signature="e#3740#3948#0" expanded="false" />
+            <element signature="e#3806#3938#0" expanded="false" />
+            <element signature="e#3977#4063#0" expanded="false" />
+            <element signature="e#4075#5276#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TexasHoldem/web/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="73" column="25" lean-forward="true" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/table.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="687">
+          <caret line="415" column="1" lean-forward="false" selection-start-line="415" selection-start-column="1" selection-end-line="415" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="30" />
+          <folding>
+            <element signature="n#div#1;n#div#0;n#tr#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/src/API/Engine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="84" column="31" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/src/API/EngineManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="52" lean-forward="false" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Engine/src/GameManager/GameManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-585">
+          <caret line="174" column="0" lean-forward="true" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/GameTable/HandDataServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/GameTable/GameTableServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Containers/GameStatusData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Containers/GameData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Containers/GameNodeData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="42" lean-forward="false" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Containers/BetOptionData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TexasHoldem/src/Gameloop/SetMoveServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="47" column="14" lean-forward="false" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TexasHoldem/web/pages/table/gameTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-777">
-          <caret line="108" column="35" lean-forward="true" selection-start-line="108" selection-start-column="3" selection-end-line="108" selection-end-column="35" />
+        <state relative-caret-position="528">
+          <caret line="336" column="30" lean-forward="false" selection-start-line="336" selection-start-column="30" selection-end-line="336" selection-end-column="30" />
           <folding>
-            <element signature="e#266#377#0" expanded="false" />
-            <element signature="n#!!block;n#countdown_to_start_hand#0" expanded="false" />
-            <element signature="e#700#1007#0" expanded="false" />
-            <element signature="e#1043#1162#0" expanded="false" />
+            <element signature="e#332#399#0" expanded="false" />
             <element signature="n#!!block;n#ajaxStartGame#0" expanded="false" />
-            <element signature="e#1206#1504#0" expanded="false" />
-            <element signature="e#1264#1343#0" expanded="false" />
-            <element signature="e#1371#1497#0" expanded="false" />
+            <element signature="e#1173#1471#0" expanded="false" />
+            <element signature="e#1231#1310#0" expanded="false" />
+            <element signature="e#1338#1464#0" expanded="false" />
             <element signature="n#!!block;n#ajaxStartHand#0" expanded="false" />
-            <element signature="e#1548#1848#0" expanded="false" />
-            <element signature="e#1606#1687#0" expanded="false" />
-            <element signature="e#1620#1634#0" expanded="false" />
-            <element signature="e#1715#1841#0" expanded="false" />
-            <element signature="n#!!block;n#PollGameTable#0" expanded="false" />
-            <element signature="e#2600#2781#0" expanded="false" />
-            <element signature="e#2715#2771#0" expanded="false" />
-            <element signature="e#3366#4787#0" expanded="false" />
-            <element signature="e#4869#4972#0" expanded="false" />
-            <element signature="e#4883#4902#0" expanded="false" />
-            <element signature="e#5637#5793#0" expanded="false" />
-            <element signature="e#5823#5985#0" expanded="false" />
-            <element signature="e#6737#8256#0" expanded="false" />
+            <element signature="e#1515#1815#0" expanded="false" />
+            <element signature="e#1573#1654#0" expanded="false" />
+            <element signature="e#1587#1601#0" expanded="false" />
+            <element signature="e#1682#1808#0" expanded="false" />
+            <element signature="e#1821#1888#0" expanded="false" />
+            <element signature="e#2715#2896#0" expanded="false" />
+            <element signature="e#2830#2886#0" expanded="false" />
+            <element signature="n#!!block;n#checkGameStatus#0" expanded="false" />
+            <element signature="e#3079#3216#0" expanded="false" />
+            <element signature="e#3119#3210#0" expanded="false" />
+            <element signature="e#3226#3309#0" expanded="false" />
+            <element signature="e#3313#3380#0" expanded="false" />
+            <element signature="n#!!block;n#ajaxBetOptionContent#0" expanded="false" />
+            <element signature="e#3526#5392#0" expanded="false" />
+            <element signature="e#3639#5185#0" expanded="false" />
+            <element signature="e#3653#5074#0" expanded="false" />
+            <element signature="e#5219#5386#0" expanded="false" />
+            <element signature="e#5233#5252#0" expanded="false" />
+            <element signature="e#6051#6207#0" expanded="false" />
+            <element signature="e#6237#6399#0" expanded="false" />
+            <element signature="e#7151#8670#0" expanded="false" />
             <element signature="n#!!block;n#toggle_slider#0" expanded="false" />
             <element signature="n#!!block;n#slider_update_value#0" expanded="false" />
-            <element signature="e#8706#8752#0" expanded="false" />
-            <element signature="n#!!block;n#SetMove#0" expanded="false" />
-            <element signature="e#8797#9009#0" expanded="false" />
-            <element signature="e#8860#8921#0" expanded="false" />
-            <element signature="e#8951#8963#0" expanded="false" />
-            <element signature="e#8991#9003#0" expanded="false" />
+            <element signature="e#9120#9166#0" expanded="false" />
+            <element signature="e#9315#9382#0" expanded="false" />
             <element signature="n#!!block;n#open_raise_and_bet_scroller#0" expanded="false" />
-            <element signature="e#9176#9355#0" expanded="false" />
-            <element signature="e#9392#9570#0" expanded="false" />
+            <element signature="e#9847#10026#0" expanded="false" />
+            <element signature="e#10063#10241#0" expanded="false" />
             <element signature="n#!!block;n#ShowSlider#0" expanded="false" />
-            <element signature="n#!!block;n#update_games_values#0" expanded="false" />
-            <element signature="e#10560#10617#0" expanded="false" />
-            <element signature="e#10664#12458#0" expanded="false" />
-            <element signature="e#11198#11301#0" expanded="false" />
-            <element signature="e#11355#11515#0" expanded="false" />
-            <element signature="e#11571#11673#0" expanded="false" />
-            <element signature="e#11687#11766#0" expanded="false" />
-            <element signature="e#11827#12148#0" expanded="false" />
-            <element signature="e#12161#12452#0" expanded="false" />
+            <element signature="e#11001#11068#0" expanded="false" />
+            <element signature="e#11231#11288#0" expanded="false" />
+            <element signature="e#11869#11972#0" expanded="false" />
+            <element signature="e#12026#12186#0" expanded="false" />
+            <element signature="e#12242#12344#0" expanded="false" />
+            <element signature="e#12358#12437#0" expanded="false" />
+            <element signature="e#12498#12819#0" expanded="false" />
+            <element signature="e#12832#13123#0" expanded="false" />
             <element signature="n#!!block;n#get_board_location#0" expanded="false" />
-            <element signature="e#12730#13880#0" expanded="false" />
-            <element signature="e#12752#13645#0" expanded="false" />
-            <element signature="e#12777#12900#0" expanded="false" />
-            <element signature="e#12928#13048#0" expanded="false" />
-            <element signature="e#13078#13196#0" expanded="false" />
-            <element signature="e#13224#13343#0" expanded="false" />
-            <element signature="e#13369#13489#0" expanded="false" />
-            <element signature="e#13516#13635#0" expanded="false" />
-            <element signature="e#13671#13874#0" expanded="false" />
-            <element signature="e#13692#13766#0" expanded="false" />
-            <element signature="e#13790#13864#0" expanded="false" />
-            <element signature="n#!!block;n#firstSetup#0" expanded="false" />
-            <element signature="e#14185#14828#0" expanded="false" />
-            <element signature="e#14860#15424#0" expanded="false" />
-            <element signature="e#15456#15944#0" expanded="false" />
-            <element signature="e#15976#16386#0" expanded="false" />
+            <element signature="e#13426#14576#0" expanded="false" />
+            <element signature="e#13448#14341#0" expanded="false" />
+            <element signature="e#13473#13596#0" expanded="false" />
+            <element signature="e#13624#13744#0" expanded="false" />
+            <element signature="e#13774#13892#0" expanded="false" />
+            <element signature="e#13920#14039#0" expanded="false" />
+            <element signature="e#14065#14185#0" expanded="false" />
+            <element signature="e#14212#14331#0" expanded="false" />
+            <element signature="e#14367#14570#0" expanded="false" />
+            <element signature="e#14388#14462#0" expanded="false" />
+            <element signature="e#14486#14560#0" expanded="false" />
+            <element signature="e#14580#14647#0" expanded="false" />
+            <element signature="e#14881#15524#0" expanded="false" />
+            <element signature="e#15556#16120#0" expanded="false" />
+            <element signature="e#16152#16640#0" expanded="false" />
+            <element signature="e#16672#17082#0" expanded="false" />
             <element signature="n#!!block;n#createUrlForImage#0" expanded="false" />
             <element signature="n#!!block;n#logPrint#0" expanded="false" />
           </folding>

@@ -84,6 +84,7 @@ public interface Engine {
     public void SetWinner();
     public List<String> GetWinner();
     public void CheckBidStatus();
+    public int GetCurrentBidCycleNum();
 
     public boolean IsHumanPlayerFolded();
     public boolean IsCurrentBidCycleFinished();

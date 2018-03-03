@@ -3,9 +3,9 @@ package Gameloop;
 import API.Engine;
 import API.EngineManager;
 import Containers.BetOptionData;
-import Exceptions.ChipLessThanPotException;
-import Exceptions.PlayerFoldedException;
+import Exceptions.*;
 import GameManager.GameManager;
+import Move.Move;
 import Move.MoveType;
 import Utils.ServletUtils;
 import com.google.gson.Gson;
@@ -26,30 +26,51 @@ public class SetMoveServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // processRequest(request,response);
+        processRequest(request,response);
     }
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        response.setContentType("application/json");
-        String game_id= ServletUtils.getSessionParam(request,"gameID");
-
-        if(game_id==null)
+        String username= ServletUtils.getSessionUser(request);
+        if(username==null)
         {
-            ServletUtils.SendErrorMessage("Error getting game id from session",response);
+            ServletUtils.SendErrorMessage("User don't registered", response);
         }
-        else
-        {
-            Engine game=getManager().GetGame(game_id);
-            if(game!=null) {
+        else {
+            response.setContentType("application/json");
+            String game_id = ServletUtils.getSessionParam(request, "gameID");
 
-            }
-            else {
-                ServletUtils.SendErrorMessage("Cannot find game",response);
+            if (game_id == null) {
+                ServletUtils.SendErrorMessage("Error getting game id from session", response);
+            } else {
+                Engine game = getManager().GetGame(game_id);
+                if (game != null) {
+                    try {
+                        getManager().SetNewMove(game,username,request.getParameter("move"),request.getParameter("value"));
+                        try (PrintWriter out = response.getWriter()) {
+                            out.println("New Move Approved");
+                            out.flush();
+                        }
+                    } catch (StakeNotInRangeException e) {
+                        ServletUtils.SendErrorMessage("Stake is not in range", response);
+                    } catch (NoSufficientMoneyException e) {
+                        ServletUtils.SendErrorMessage("Player not sufficient money", response);
+                    } catch (PlayerAlreadyBetException e) {
+                        ServletUtils.SendErrorMessage("Player already placed bet", response);
+                    } catch (ChipLessThanPotException e) {
+                        ServletUtils.SendErrorMessage("Player chips less than pot", response);
+                    } catch (MoveNotAllowdedException e) {
+                        ServletUtils.SendErrorMessage("Not valid move", response);
+                    } catch (PlayerFoldedException e) {
+                        ServletUtils.SendErrorMessage("Player already folded", response);
+                    }
+                }
+                else {
+                    ServletUtils.SendErrorMessage("Cannot find game", response);
+                }
             }
         }
-
     }
 
     private EngineManager getManager()

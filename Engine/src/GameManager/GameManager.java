@@ -4,11 +4,13 @@ import API.Engine;
 import API.EngineManager;
 import Exceptions.*;
 import Game.Game;
+import Move.*;
 import Player.APlayer;
 import Player.PlayerType;
 
 import javax.xml.bind.JAXBException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -163,5 +165,92 @@ public class GameManager implements EngineManager {
             }
         }
         return null;
+    }
+
+    @Override
+    public void CheckCurrentPlayerStatus(Engine game) {
+        if(game.IsCurrentPlayerFolded())
+            game.MoveToNextPlayer();
+    }
+
+    @Override
+    public boolean IsYourTurn(Engine game,String username) {
+        if (game.IsCurrentHandStarted()) {
+            String current_player_name = game.GetPlayerName(game.GetCurrentPlayerID());
+
+            if (current_player_name.equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void MenageCycle(Engine game) throws NoSufficientMoneyException {
+        if(game.IsCurrentHandStarted()) {
+
+            game.CheckBidStatus();
+            //bid cycle check
+            if (game.IsCurrentBidCycleFinished()) {
+
+                switch(game.GetCurrentBidCycleNum()){
+
+                    case 1:
+                        game.Flop();
+                        break;
+                    case 2:
+                        game.Turn();
+                        break;
+                    case 3:
+                        game.River();
+                        break;
+                    case 4:
+                        game.SetWinner();
+                        break;
+                }
+
+                if(!game.IsCurrentHandOver()) {
+                    game.StartNewBidCycle();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void SetNewMove(Engine game,String username,String move,String Value) throws NoSufficientMoneyException, MoveNotAllowdedException, PlayerAlreadyBetException, PlayerFoldedException, ChipLessThanPotException, StakeNotInRangeException {
+        // get turn status
+        boolean is_your_turn = false;
+        if (game.IsCurrentHandStarted()) {
+            String current_player_name = game.GetPlayerName(game.GetCurrentPlayerID());
+
+            if (current_player_name.equals(username)) {
+                is_your_turn = true;
+            } else {
+                is_your_turn = false;
+            }
+        }
+        if(is_your_turn)
+        {
+            int value = Integer.parseInt(Value);
+            Move new_move=null;
+            switch(move){
+                case "CALL":
+                    new_move=new Move(MoveType.CALL,value);
+                    break;
+                case "CHECK":
+                    new_move=new Move(MoveType.CHECK,value);
+                    break;
+                case "FOLD":
+                    new_move=new Move(MoveType.FOLD,value);
+                    break;
+                case "RAISE":
+                    new_move=new Move(MoveType.RAISE,value);
+                    break;
+                case "BET":
+                    new_move=new Move(MoveType.BET,value);
+                    break;
+            }
+            game.SetNewMove(new_move);
+        }
     }
 }

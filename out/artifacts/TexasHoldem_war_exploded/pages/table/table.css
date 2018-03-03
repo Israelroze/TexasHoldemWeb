@@ -10,8 +10,15 @@
 
 
 .center {
-    grid-area: center;
-
+    position: absolute;
+    top: 33%;
+    bottom: 100px;
+    left: 100px;
+    right: 100px;
+    width: 809px;
+    /* border: 100px; */
+    /* height: 33%; */
+    margin: auto;
 }
 
 .upper{
@@ -38,13 +45,16 @@
     background-image: url('images/table.png');
     background-repeat: no-repeat;
     background-size: auto;
+    display: block;
     height: 411px;
     width: 809px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -205px;
-    margin-left: -405px;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-top: 196px;
 }
 .pos {
     width:240px;
@@ -70,11 +80,13 @@
 
 html,body
 {
-    min-width: 700px;
+    min-width: 950px;
+    min-height: 700px;
     width: 100%;
+    height: 100%;
     background-image: url('images/table_rick_and_morty_background.png');
     background-repeat: no-repeat;
-    background-size: 100% 100% ;
+    background-size: 100% 100%;
 }
 
 
@@ -185,7 +197,7 @@ html,body
 
 #pot {
     position: absolute;
-    left: 40% ;
+    left: 47%;
     top: 60%;
     font-size: 16px;
     font-weight: bolder;
