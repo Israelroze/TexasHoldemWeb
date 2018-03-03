@@ -3,6 +3,7 @@ package Gameloop;
 import API.Engine;
 import API.EngineManager;
 import Exceptions.HandAlreadyStartedException;
+import Exceptions.NoSufficientMoneyException;
 import GameManager.GameManager;
 import Utils.ServletUtils;
 
@@ -43,11 +44,14 @@ public class StartNewHandServlet extends HttpServlet {
             if(game!=null) {
                 try {
                     game.StartNewHand();
+                    game.StartNewBidCycle();
                 } catch (HandAlreadyStartedException e) {
                     try (PrintWriter out = response.getWriter()) {
                         out.println("Hand already Started");
                         out.flush();
                     }
+                } catch (NoSufficientMoneyException e) {
+                    ServletUtils.SendErrorMessage("One of the players have no sufficient money.",response);
                 }
                 try (PrintWriter out = response.getWriter()) {
                     out.println("Hand Started");

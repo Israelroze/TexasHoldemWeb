@@ -1,28 +1,37 @@
-
 var tableVersion = 0;
 var isfisrtSetup = false;
 var GAME_TABLE_URL = buildUrlWithContextPath("gametable");
 var num_of_players = 0 ;
 var game_data =undefined;
 var print_log = true;
-
 var refreshRate = 3000; //mili seconds
 var timeout=1000;
 
-function logPrint(message) {
-    if (print_log )
-        console.log(message);
-}
-
-
 $(document).ready(function(){
-
     ajaxTableContent();
     firstSetup(num_of_players);
     PollGameTable();
     countdown_to_start_hand();
-
 });
+
+///////////////////////////////////////////////////////////////////
+////////////// Trigger Hand and Game
+///////////////////////////////////////////////////////////////////
+
+function countdown_to_start_hand() {
+    var fiveSeconds = new Date().getTime() + 5000;
+    $('#messages').countdown(fiveSeconds, function(event){
+        var $this = $(this);
+        $this.html(event.strftime('<p id="clk_title">New Hand Will Start In: <span id="clk">%H:%M:%S</span></p>'));
+        $("#clk").css({'color': 'red'});
+        $("#clk_title").css({'color': 'red','font-family': 'Arial, Helvetica, sans-serif', 'font-size': '17px'});
+    }).on('finish.countdown', function() {
+        $("#clk").remove();
+        $("#clk_title").remove();
+        ajaxStartGame();
+        ajaxStartHand();
+    });
+}
 
 function ajaxStartGame(){
 
@@ -41,24 +50,7 @@ function ajaxStartGame(){
     });
 }
 
-function countdown_to_start_hand()
-{
-    var fiveSeconds = new Date().getTime() + 5000;
-    $('#messages').countdown(fiveSeconds, function(event){
-        var $this = $(this);
-        $this.html(event.strftime('<p id="clk_title">New Hand Will Start In: <span id="clk">%H:%M:%S</span></p>'));
-        $("#clk").css({'color': 'red'});
-        $("#clk_title").css({'color': 'red','font-family': 'Arial, Helvetica, sans-serif', 'font-size': '17px'});
-    }).on('finish.countdown', function() {
-            $("#clk").remove();
-            $("#clk_title").remove();
-            ajaxStartGame();
-            ajaxStartHand();
-    });
-}
-
-function ajaxStartHand()
-{
+function ajaxStartHand() {
     $.ajax({
         url:"/starthand",
 
@@ -94,86 +86,8 @@ function ajaxTableContent() {
         dataType: 'json',
         async : false,
         success: function (data) {
-
-            /*
-             data is of the next form:
-
-                {
-   "dataVerion":10,
-   "userData":[
-      {
-         "name":"Avishay",
-         "bid":100,
-         "num_of_wins":2,
-         "money":2003,
-         "type":"Computer",
-         "cards":[
-            "6D",
-            "5D"
-         ]
-      },
-      {
-         "name":"p123",
-         "bid":100,
-         "num_of_wins":2,
-         "money":2003,
-         "type":"Computer",
-         "cards":[
-            "6D",
-            "5D"
-         ]
-      },
-      {
-         "name":"p345",
-         "bid":100,
-         "num_of_wins":2,
-         "money":2023403,
-         "type":"Computer",
-         "cards":[
-            "6D",
-            "5D"
-         ]
-      },
-      {
-         "name":"jho",
-         "bid":100,
-         "num_of_wins":2,
-         "money":223003,
-         "type":"Human",
-         "cards":[
-            "6D",
-            "5D"
-         ]
-      },
-      {
-         "name":"sdf",
-         "bid":100,
-         "num_of_wins":2,
-         "money":2003,
-         "type":"Computer",
-         "cards":[
-            "6D",
-            "5D"
-         ]
-      },
-      {
-         "name":"sdf",
-         "bid":1234200,
-         "num_of_wins":23,
-         "money":234003,
-         "type":"Computer",
-         "cards":[
-            "6D",
-            "5D"
-         ]
-      }
-   ],
-   "num_of_games":10,
-   "current_game_number":4,
-   "number_of_players":6
-}
-             */
             logPrint("OK ajaxTableContent ");
+            checkGameStatus(data);
             update_games_values(data);
         },
         error: function (error) {
@@ -187,15 +101,24 @@ function ajaxTableContent() {
 
 }
 
-function ajaxBetOptionContent()
+//to open bet option for the right player and close for others
+function checkGameStatus(data)
 {
+    let is_your_turn=data.game_status.is_your_turn;
+    if(is_your_turn) ajaxBetOptionContent();
+    else $("#bottom_menu").empty();
+}
 
+///////////////////////////////////////////////////////////////////
+////////////// Bet option menu
+///////////////////////////////////////////////////////////////////
+
+function ajaxBetOptionContent() {
     $.ajax({
-        url: "/betoption",
+        url: "/getallowded",
         dataType: 'json',
         async : false,
         success: function (data) {
-
             /*
              data is of the next form:
 
@@ -283,10 +206,8 @@ function ajaxBetOptionContent()
 
         }
     });
-
-
-
 }
+
 function update_bet_option(data) {
 
     logPrint("##  In Update bet option");
@@ -361,7 +282,6 @@ function update_bet_option(data) {
    */
 }
 
-
 function toggle_slider() {
 
     $("#bet_raise_range").animate({width: 'toggle'}, 600);
@@ -370,6 +290,34 @@ function toggle_slider() {
     $("#demo_p").animate({width: 'toggle'}, 600);
 
 }
+
+function slider_update_value() {
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function () {
+        output.innerHTML = this.value;
+    }
+}
+
+function SetMove(move,value){
+    $.ajax({
+        method:"POST",
+        url:"/setmove",
+        data: {
+            move : move,
+            value: value
+        },
+        success: function(r){
+
+        },
+        error: function(e){
+
+        }
+    })
+}
+
 function  open_raise_and_bet_scroller() {
 
 
@@ -390,18 +338,8 @@ function  open_raise_and_bet_scroller() {
     });
 
 }
-function slider_update_value() {
-    var slider = document.getElementById("myRange");
-    var output = document.getElementById("demo");
-    output.innerHTML = slider.value;
 
-    slider.oninput = function () {
-        output.innerHTML = this.value;
-    }
-}
-
-function ShowSlider(move)
-{
+function ShowSlider(move) {
     let min = data.minVal;
     let max = data.maxVal;
     let avg = Math.floor((max+min)/2);
@@ -416,25 +354,9 @@ function ShowSlider(move)
     slider_update_value();
 }
 
-function SetMove(move,value){
-    $.ajax({
-        method:"POST",
-        url:"/setmove",
-        data: {
-            move : move,
-            value: value
-        },
-        success: function(r){
-
-        },
-        error: function(e){
-
-        }
-    })
-}
-
-
-
+///////////////////////////////////////////////////////////////////
+////////////// Board Data
+///////////////////////////////////////////////////////////////////
 
 function update_games_values(data) {
     if( num_of_players === 0) {
@@ -478,18 +400,7 @@ function update_games_values(data) {
     $("#board").append(...data.table_data.communityCards.map(x => $('<div class="card boardcard"></div>').css("background-image", createUrlForImage(x))));
 
     $("#pot").text("Pot: " + data.table_data.pot.toString() + "$");
-
-
-
-
-
 }
-
-///////////////////////////////////////////////////////////////////
-////////////// Other
-///////////////////////////////////////////////////////////////////
-
-
 
 function get_board_location() {
 
@@ -543,6 +454,10 @@ function get_board_location() {
         }
     }
 }
+
+///////////////////////////////////////////////////////////////////
+////////////// Other
+///////////////////////////////////////////////////////////////////
 
 function firstSetup(numOfPlayer){
 
@@ -598,4 +513,9 @@ function firstSetup(numOfPlayer){
 
 function createUrlForImage(image_name) {
     return "url(images/" +image_name + ".png";
+}
+
+function logPrint(message) {
+    if (print_log )
+        console.log(message);
 }
