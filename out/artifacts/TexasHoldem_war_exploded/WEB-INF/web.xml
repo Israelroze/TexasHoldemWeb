@@ -11,10 +11,22 @@
             <servlet-name>UserLogin</servlet-name>
             <servlet-class>Login.UserLoginServlet</servlet-class>
         </servlet>
-            <servlet>
-                <servlet-name>JoinGame</servlet-name>
-                <servlet-class>GamesList.JoinGameServlet</servlet-class>
-            </servlet>
+        <servlet>
+            <servlet-name>JoinGame</servlet-name>
+            <servlet-class>GamesList.JoinGameServlet</servlet-class>
+        </servlet>
+        <servlet>
+            <servlet-name>StartHand</servlet-name>
+            <servlet-class>Gameloop.StartNewHandServlet</servlet-class>
+        </servlet>
+        <servlet>
+            <servlet-name>StartGame</servlet-name>
+            <servlet-class>Gameloop.StartGameServlet</servlet-class>
+        </servlet>
+        <servlet>
+            <servlet-name>AllowdedMoves</servlet-name>
+            <servlet-class>Gameloop.AllowdedMovesServlet</servlet-class>
+        </servlet>
         <servlet>
             <servlet-name>UserList</servlet-name>
             <servlet-class>UserManager.UserListServlet</servlet-class>
@@ -29,7 +41,7 @@
         </servlet>
         <servlet>
             <servlet-name>GameReady</servlet-name>
-            <servlet-class>GamesList.StartGameServlet</servlet-class>
+            <servlet-class>GamesList.GameReadyServlet</servlet-class>
         </servlet>
         <servlet-mapping>
             <servlet-name>FileUpload</servlet-name>
@@ -58,5 +70,17 @@
         <servlet-mapping>
             <servlet-name>GameReady</servlet-name>
             <url-pattern>/gameready</url-pattern>
+        </servlet-mapping>
+        <servlet-mapping>
+            <servlet-name>StartHand</servlet-name>
+            <url-pattern>/starthand</url-pattern>
+        </servlet-mapping>
+        <servlet-mapping>
+            <servlet-name>AllowdedMoves</servlet-name>
+            <url-pattern>/getallowded</url-pattern>
+        </servlet-mapping>
+        <servlet-mapping>
+            <servlet-name>StartGame</servlet-name>
+            <url-pattern>/startgame</url-pattern>
         </servlet-mapping>
 </web-app>

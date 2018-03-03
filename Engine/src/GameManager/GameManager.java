@@ -156,7 +156,7 @@ public class GameManager implements EngineManager {
             {
                 if(entry.getValue().IfEnoughPlayers())
                 {
-                    if(!entry.getValue().IsGameStarted()) {
+                    if(!entry.getValue().IsGameStarted() ) {
                       return entry.getValue().GetGameID();
                     }
                 }

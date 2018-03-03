@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StartGameServlet extends HttpServlet{
+public class GameReadyServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,6 +32,12 @@ public class StartGameServlet extends HttpServlet{
             String game_id=getManager().IsPlayerInReadyGame(username);
             if(game_id!=null){
                 ServletUtils.setSessionParam(request,"gameID",game_id);
+
+                //if(!getManager().GetGame(game_id).IsGameStarted())
+                //{
+                  //  getManager().GetGame(game_id).StartGame();
+                //}
+
                 ServletUtils.SendRedirectURL("/pages/table/table.html",response);
             }
             else

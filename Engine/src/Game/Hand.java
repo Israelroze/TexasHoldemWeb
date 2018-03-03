@@ -69,6 +69,9 @@ public class Hand {
 
         //deal cards
         this.DealCards();
+
+        //this.current_player=this.players.GetPlayer(this.players.GetFirstPlayerID());
+        this.current_player=this.players.GetDealer();
     }
 
     //Private Methods

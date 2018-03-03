@@ -26,17 +26,19 @@ public class Game implements Engine {
     private GameDescriptor configuration;
     private CurrentHandState state;
     private APlayers players;
-    private boolean is_game_started=false;
-    private boolean is_game_over=false;
     private int max_of_buys;
     private int num_of_hands=0;
+    private int num_of_rounds=0;
     private int global_num_of_buys = 0;
     private Hand current_hand=null;
-    private boolean Is_replay=false;
-    private boolean is_first_hand=false;
     private APlayer first_dealer;
-    private int num_of_rounds=0;
     private String uploader=null;
+    private boolean is_game_started=false;
+    private boolean is_game_over=false;
+    private boolean is_first_hand=false;
+    private boolean Is_replay=false;
+    private boolean is_hand_started=false;
+    private boolean is_hand_over=false;
 
     //Private Methods
     private void LoadPlayers() throws PlayerDataMissingException {this.players=new APlayers(configuration.getPlayers());}
@@ -437,7 +439,15 @@ public class Game implements Engine {
     }
 
     @Override
-    public void StartNewHand(){
+    public void StartNewHand() throws HandAlreadyStartedException {
+
+        if(this.is_hand_started)
+        {
+            throw new HandAlreadyStartedException();
+        }
+
+        this.is_hand_started=true;
+
         //init new hand
         this.current_hand=new Hand(this.players,this.configuration.getStructure());
 
@@ -480,7 +490,8 @@ public class Game implements Engine {
 
     @Override
     public boolean IsCurrentHandOver(){
-        return this.current_hand.GetIsHandOver();
+        if(this.current_hand!=null) return this.current_hand.GetIsHandOver();
+        return false;
     }
 
     @Override
@@ -513,7 +524,9 @@ public class Game implements Engine {
 
     @Override
     public int GetCurrentPlayerID(){
-       return this.current_hand.GetCurrentPlayer().getId();
+        if(this.current_hand!=null)
+            return this.current_hand.GetCurrentPlayer().getId();
+        return 0;
     }
 
     @Override
@@ -533,6 +546,21 @@ public class Game implements Engine {
     @Override
     public boolean IsCurrentHandFinished(){
         return this.current_hand.IsHandOver();
+    }
+
+    @Override
+    public boolean IsCurrentHandStarted() {
+        return this.is_hand_started;
+    }
+
+    @Override
+    public boolean IsCurrentBidStarted() {
+        return true;
+    }
+
+    @Override
+    public boolean IsCurrentBidFinished() {
+        return this.current_hand.IsBetsCycleFinished();
     }
 
     @Override
@@ -580,7 +608,9 @@ public class Game implements Engine {
 
     @Override
     public boolean IsCurrentBidCycleFinished(){
-        return this.GetCurrentHand().IsBetsCycleFinished();
+        if(this.current_hand!=null)
+            return this.current_hand.IsBetsCycleFinished();
+        return false;
     }
 
     @Override
@@ -960,4 +990,5 @@ public class Game implements Engine {
     public int GetBuy(){
         return this.configuration.getStructure().getBuy();
     }
+
 }

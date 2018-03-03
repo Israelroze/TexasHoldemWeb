@@ -53,30 +53,29 @@ public interface Engine {
     ////////////////////////////////////////////////
     ///// Hand
     ////////////////////////////////////////////////
-    public void StartNewHand();
-    public boolean IsCurrentHandFinished();
+    public void StartNewHand() throws HandAlreadyStartedException;
     public void Flop();
     public void River();
     public void Turn();
     public int GetPot();
     public List<Card> GetCommunityCards();
     public boolean IsCurrentHandOver();
-    public void CheckCurrentHandStatus();
     public void PlayerPerformQuitFromGame(int id);
-    public boolean IsPlayerExist(int id);
+
+    public void CheckCurrentHandStatus();
     public void CheckNoActiveHumans();
+    public boolean IsPlayerExist(int id);
     public boolean IsOnlyOnePlayerLeft();
+    public boolean IsCurrentHandFinished();
+    public boolean IsCurrentHandStarted();
+    public boolean IsCurrentBidStarted();
+    public boolean IsCurrentBidFinished();
 
 
     ////////////////////////////////////////////////
     ///// Bid Cycle
     ////////////////////////////////////////////////
     public void StartNewBidCycle() throws NoSufficientMoneyException;
-    public boolean IsHumanPlayerFolded();
-    public boolean IsCurrentBidCycleFinished();
-    public boolean IsCurrentPlayerHuman();
-    public boolean IsCurrentPlayerComputer();
-    public boolean IsCurrentPlayerFolded();
     public List<MoveType> GetAllowdedMoves() throws PlayerFoldedException, ChipLessThanPotException;
     public void MoveToNextPlayer();
     public int[] GetAllowdedStakeRange();
@@ -85,6 +84,12 @@ public interface Engine {
     public void SetWinner();
     public List<String> GetWinner();
     public void CheckBidStatus();
+
+    public boolean IsHumanPlayerFolded();
+    public boolean IsCurrentBidCycleFinished();
+    public boolean IsCurrentPlayerHuman();
+    public boolean IsCurrentPlayerComputer();
+    public boolean IsCurrentPlayerFolded();
 
     ////////////////////////////////////////////////
     ///// Player

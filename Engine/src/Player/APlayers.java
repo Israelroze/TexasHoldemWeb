@@ -10,9 +10,9 @@ import java.util.*;
 
 public class APlayers {
     private List<APlayer> aplayers;
-    private APlayer dealer;
-    private APlayer big;
-    private APlayer small;
+    private APlayer dealer=null;
+    private APlayer big=null;
+    private APlayer small=null;
     private Map<Integer,Integer> ids;
     private boolean is_only_one_player=false;
 

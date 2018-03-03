@@ -4,6 +4,7 @@ import API.Engine;
 import API.EngineManager;
 import Card.Card;
 import Containers.GameData;
+import Containers.GameStatusData;
 import Containers.HandData;
 import Containers.UserData;
 import GameManager.GameManager;
@@ -37,29 +38,33 @@ public class GameTableServlet extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        response.setContentType("application/json");
-        String game_id=ServletUtils.getSessionParam(request,"gameID");
-
-        if(game_id==null)
+        String username= ServletUtils.getSessionUser(request);
+        if(username==null)
         {
-            ServletUtils.SendErrorMessage("Error getting game id from session",response);
+            ServletUtils.SendErrorMessage("User don't registered", response);
         }
-        else
-        {
-            Engine game=getManager().GetGame(game_id);
+        else {
 
-            try (PrintWriter out = response.getWriter()) {
-                String res=BuildTableData(game);
-                System.out.println(res); //DEBUG
-                out.println(res);
-                out.flush();
+            response.setContentType("application/json");
+            String game_id = ServletUtils.getSessionParam(request, "gameID");
+
+            if (game_id == null) {
+                ServletUtils.SendErrorMessage("Error getting game id from session", response);
+            } else {
+                Engine game = getManager().GetGame(game_id);
+
+                try (PrintWriter out = response.getWriter()) {
+                    String res = BuildTableData(game,username);
+                    System.out.println(res); //DEBUG
+                    out.println(res);
+                    out.flush();
+                }
             }
         }
 
     }
 
-    private String BuildTableData(Engine game)
+    private String BuildTableData(Engine game,String username)
     {
         Gson json=new Gson();
 
@@ -67,11 +72,21 @@ public class GameTableServlet extends HttpServlet {
 
         for(int i=0;i<game.GetTotalNumOfPlayers();i++)
         {
+            String p_name=game.GetPlayerName(i);
+
             List<String> p_cards= new LinkedList<>();
 
-            for(Card card:game.GetPlayersCards(i) )
+            if(p_name.equals(username))//the player from the session
             {
-                p_cards.add(card.toString());
+                for(Card card:game.GetPlayersCards(i) )
+                {
+                    p_cards.add(card.toString());
+                }
+            }
+            else
+            {
+                p_cards.add("back");
+                p_cards.add("back");
             }
 
             users.add(new UserData(game.GetPlayerName(i),game.GetPlayerNumOfWins(i),game.GetPlayerPot(i),getManager().GetUserType(game.GetPlayerName(i)),p_cards));
@@ -85,10 +100,24 @@ public class GameTableServlet extends HttpServlet {
 
         HandData table_data=new HandData(game.GetPot(),comm_cards);
 
-        GameData game_data=new GameData(0,users,table_data,game.GetNumberOfHands(),game.GetCurrentHandNumber(),game.GetTotalNumOfPlayers());
+        // get turn status
+        boolean is_your_turn=false;
+        if(game.IsCurrentHandStarted())
+        {
+            String current_player_name=game.GetPlayerName(game.GetCurrentPlayerID());
+
+            if(current_player_name.equals(username)) {
+                is_your_turn=true;
+            }
+            else{
+                is_your_turn=false;
+            }
+        }
+
+        GameStatusData game_status=new GameStatusData(game.IsGameStarted(),game.IsGameOver(),game.IsCurrentHandOver(),game.IsCurrentHandStarted(),game.IsCurrentBidCycleFinished(),is_your_turn);
+        GameData game_data=new GameData(0,users,table_data,game_status,game.GetNumberOfHands(),game.GetCurrentHandNumber(),game.GetTotalNumOfPlayers());
 
         return json.toJson(game_data);
-
     }
 
 
