@@ -145,6 +145,7 @@ public class APlayers {
         {
             //this.RandomDealer();
             this.dealer=this.aplayers.get(0);
+            this.dealer.SetPlayerState(PlayerState.DEALER);
         }
         else {
             this.dealer.SetPlayerState(PlayerState.NONE);

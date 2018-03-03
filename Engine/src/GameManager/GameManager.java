@@ -169,8 +169,36 @@ public class GameManager implements EngineManager {
 
     @Override
     public void CheckCurrentPlayerStatus(Engine game) {
-        if(game.IsCurrentPlayerFolded())
-            game.MoveToNextPlayer();
+        if(!game.IsCurrentBidCycleFinished() && game.IsCurrentHandStarted()) {
+            if (game.IsCurrentPlayerFolded())
+                game.MoveToNextPlayer();
+            else {
+                if (game.IsCurrentPlayerComputer()) {
+                    try {
+                        Move move = game.GetAutoMove();
+                        game.SetNewMove(move);
+                    } catch (PlayerFoldedException e) {
+                    } catch (ChipLessThanPotException e) {
+                    } catch (NoSufficientMoneyException e) {
+                    } catch (MoveNotAllowdedException e) {
+                    } catch (PlayerAlreadyBetException e) {
+                    } catch (StakeNotInRangeException e) {
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void CheckCurrentHandStatus(Engine game) {
+        if(game.IsCurrentHandStarted() && !game.IsCurrentHandOver()) {
+            //checks ans preformes techincal winner
+            game.CheckCurrentHandStatus();
+
+            //check if only computer players left
+            game.CheckNoActiveHumans();
+
+        }
     }
 
     @Override
@@ -187,13 +215,12 @@ public class GameManager implements EngineManager {
 
     @Override
     public void MenageCycle(Engine game) throws NoSufficientMoneyException {
-        if(game.IsCurrentHandStarted()) {
-
+        if(game.IsCurrentHandStarted() &&!game.IsCurrentHandOver()) {
             game.CheckBidStatus();
             //bid cycle check
             if (game.IsCurrentBidCycleFinished()) {
 
-                switch(game.GetCurrentBidCycleNum()){
+                switch (game.GetCurrentBidCycleNum()) {
 
                     case 1:
                         game.Flop();
@@ -209,7 +236,7 @@ public class GameManager implements EngineManager {
                         break;
                 }
 
-                if(!game.IsCurrentHandOver()) {
+                if (!game.IsCurrentHandOver()) {
                     game.StartNewBidCycle();
                 }
             }
@@ -220,7 +247,7 @@ public class GameManager implements EngineManager {
     public void SetNewMove(Engine game,String username,String move,String Value) throws NoSufficientMoneyException, MoveNotAllowdedException, PlayerAlreadyBetException, PlayerFoldedException, ChipLessThanPotException, StakeNotInRangeException {
         // get turn status
         boolean is_your_turn = false;
-        if (game.IsCurrentHandStarted()) {
+        if (game.IsCurrentHandStarted() && !game.IsCurrentHandOver()) {
             String current_player_name = game.GetPlayerName(game.GetCurrentPlayerID());
 
             if (current_player_name.equals(username)) {

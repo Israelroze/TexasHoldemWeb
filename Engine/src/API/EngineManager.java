@@ -33,6 +33,7 @@ public interface EngineManager {
     /////Main loop
     /////////////////////////////////////////////
     public void CheckCurrentPlayerStatus(Engine game);
+    public void CheckCurrentHandStatus(Engine game);
     public boolean IsYourTurn(Engine game,String username);
     public void MenageCycle(Engine game) throws NoSufficientMoneyException;
     public void SetNewMove(Engine game,String username,String move,String Value) throws NoSufficientMoneyException, MoveNotAllowdedException, PlayerAlreadyBetException, PlayerFoldedException, ChipLessThanPotException, StakeNotInRangeException;

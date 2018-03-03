@@ -17,6 +17,9 @@ $(document).ready(function(){
 ///////////////////////////////////////////////////////////////////
 
 function init_countdown() {
+    $("#on_board_item").hide();
+    $(".positions").hide();
+
     var fiveSeconds = new Date().getTime() + 5000;
     $('#messages').countdown(fiveSeconds, function(event){
         var $this = $(this);
@@ -28,7 +31,28 @@ function init_countdown() {
         $("#clk_title").remove();
         ajaxStartGame();
         ajaxStartHand();
+        $("#on_board_item").show();
+        $(".positions").show();
         PollGameTable();
+    });
+}
+function newHandCountdonw(){
+    $("#on_board_item").hide();
+    $(".positions").hide();
+
+    var fiveSeconds = new Date().getTime() + 5000;
+    $('#messages').countdown(fiveSeconds, function(event){
+        var $this = $(this);
+        $this.html(event.strftime('<p id="clk_title">New Hand Will Start In: <span id="clk">%H:%M:%S</span></p>'));
+        $("#clk").css({'color': 'red'});
+        $("#clk_title").css({'color': 'red','font-family': 'Arial, Helvetica, sans-serif', 'font-size': '17px'});
+    }).on('finish.countdown', function() {
+        $("#clk").remove();
+        $("#clk_title").remove();
+        ajaxStartHand();
+        $("#on_board_item").show();
+        $(".positions").show();
+        //PollGameTable();
     });
 }
 
@@ -94,6 +118,8 @@ function ajaxTableContent() {
             }
             checkGameStatus(data);
             update_games_values(data);
+            if (data.winners.length !== 0)
+                display_winners(data.winners);
         },
         error: function (error) {
             logPrint("Faild to Print data of game table");
@@ -107,11 +133,11 @@ function ajaxTableContent() {
 }
 
 //to open bet option for the right player and close for others
-function checkGameStatus(data)
-{
+function checkGameStatus(data) {
 
     let is_your_turn=data.game_status.is_your_turn;
-    if(is_your_turn) {
+    let is_hand_over=data.game_status.is_hand_over;
+    if(is_your_turn && !is_hand_over) {
         if (!is_Bet_Option_displayed) {
             is_Bet_Option_displayed = true;
             ajaxBetOptionContent();
@@ -384,22 +410,22 @@ function update_games_values(data) {
     }
 
     for (let i = 1 ; i<=num_of_players; i++) {
-//        $("#pos" + i.toString() + " .player_details .player_name").text(data.userData[i - 1].name);
+        $("#pos" + i.toString() + " .player_details .player_name").text(data.userData[i - 1].name);
         $("#pos" + i.toString() + " .player_details .type").text(data.userData[i - 1].type);
         $("#pos" + i.toString() + " .player_details .wins_count").text(data.userData[i - 1].num_of_wins);
         $("#pos" + i.toString() + " .player_details .chips").text(data.userData[i - 1].money+ '$');
         // $("#pos" + i.toString() + " .bet").text(data.userData[i - 1].bid);
 
 
-        if (data.userData[i - 1].role == "dealer") {
+        if (data.userData[i - 1].role === "dealer") {
             $("#role" + i.toString()).css("background-image", "url('images/dealer.png')");
 
         }
-        else if (data.userData[i - 1].role == "big") {
+        else if (data.userData[i - 1].role === "big") {
             $("#role" + i.toString()).css("background-image", "url('images/big.png')");
             //  logPrint("I am " + i + " and i am the big");
         }
-        else if (data.userData[i - 1].role == "small") {
+        else if (data.userData[i - 1].role === "small") {
             $("#role" + i.toString()).css("background-image", "url('images/small.png')");
 
         }
@@ -538,4 +564,32 @@ function createUrlForImage(image_name) {
 function logPrint(message) {
     if (print_log )
         console.log(message);
+}
+
+
+
+function display_winners(winners) {
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the <span> element that closes the modal
+    var close_button = document.getElementsByClassName("close")[0];
+
+    modal.style.display = "block";
+    // When the user clicks on <span> (x), close the modal
+    close_button.onclick = function() {
+        modal.style.display = "none";
+
+    }
+    $("#winner_list").empty();
+    $("#winner_list").text("And The winner(s) is: ")
+    $("#winner_list").append($("<ul></ul>").append(...winners.map(x => $('<li></li>').text(x))));
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        newHandCountdonw();
+    }
 }

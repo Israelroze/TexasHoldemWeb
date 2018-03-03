@@ -470,8 +470,6 @@ public class Hand {
         //devide the pot between the winners
         this.PassPot();
 
-
-
         this.is_hand_over=true;
     }
 

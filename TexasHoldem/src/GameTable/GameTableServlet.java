@@ -55,6 +55,7 @@ public class GameTableServlet extends HttpServlet {
                 Engine game = getManager().GetGame(game_id);
 
                 try {
+                    getManager().CheckCurrentHandStatus(game);
                     getManager().MenageCycle(game);
                     getManager().CheckCurrentPlayerStatus(game);
                 } catch (NoSufficientMoneyException e) {
@@ -96,7 +97,13 @@ public class GameTableServlet extends HttpServlet {
                 p_cards.add("back");
             }
 
-            users.add(new UserData(game.GetPlayerName(i),game.GetPlayerNumOfWins(i),game.GetPlayerPot(i),getManager().GetUserType(game.GetPlayerName(i)),p_cards));
+            String role;
+            if (game.GetPlayerIsDealer(i)) role = "dealer";
+            else if(game.GetPlayerIsBig(i)) role = "big";
+            else if(game.GetPlayerIsSmall(i)) role = "small";
+            else role ="no_role";
+
+            users.add(new UserData(game.GetPlayerName(i),game.GetPlayerNumOfWins(i),game.GetPlayerPot(i),getManager().GetUserType(game.GetPlayerName(i)),p_cards ,role));
         }
 
         List<String> comm_cards=new LinkedList<>();
