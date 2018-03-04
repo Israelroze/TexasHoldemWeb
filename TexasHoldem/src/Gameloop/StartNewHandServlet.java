@@ -44,24 +44,23 @@ public class StartNewHandServlet extends HttpServlet {
                 try {
                     game.StartNewHand();
                     game.StartNewBidCycle();
+                    try (PrintWriter out = response.getWriter()) {
+                        out.println("Hand Started");
+                        out.flush();
+                    }
                 } catch (HandAlreadyStartedException e) {
                     try (PrintWriter out = response.getWriter()) {
                         out.println("Hand already Started");
-
+                        out.flush();
                     }
                 } catch (NoSufficientMoneyException e) {
                     ServletUtils.SendErrorMessage("One of the players have no sufficient money.",response);
-                }
-                try (PrintWriter out = response.getWriter()) {
-                    out.println("Hand Started");
-                    out.flush();
                 }
             }
             else {
                 ServletUtils.SendErrorMessage("Cannot find game",response);
             }
         }
-
     }
 
     private EngineManager getManager()

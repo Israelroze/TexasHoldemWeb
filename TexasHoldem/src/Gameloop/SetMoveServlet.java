@@ -43,16 +43,29 @@ public class SetMoveServlet extends HttpServlet {
 
             if (game_id == null) {
                 ServletUtils.SendErrorMessage("Error getting game id from session", response);
-            } else {
+            }
+            else {
                 Engine game = getManager().GetGame(game_id);
+
                 if (game != null) {
                     try {
-                        getManager().SetNewMove(game,username,request.getParameter("move"),request.getParameter("value"));
-                        try (PrintWriter out = response.getWriter()) {
-                            out.println("New Move Approved");
-                            out.flush();
+                        String move=request.getParameter("move");
+                        String value=request.getParameter("value");
+
+                        if(move!=null && value!=null)
+                        {
+                            getManager().SetNewMove(game,username,request.getParameter("move"),request.getParameter("value"));
+                            try (PrintWriter out = response.getWriter()) {
+                                out.println("New Move Approved");
+                                out.flush();
+                            }
                         }
-                    } catch (StakeNotInRangeException e) {
+                        else
+                        {
+                            ServletUtils.SendErrorMessage("Error getting params from request.", response);
+                        }
+                    }
+                    catch (StakeNotInRangeException e) {
                         ServletUtils.SendErrorMessage("Stake is not in range", response);
                     } catch (NoSufficientMoneyException e) {
                         ServletUtils.SendErrorMessage("Player not sufficient money", response);

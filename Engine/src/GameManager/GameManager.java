@@ -168,24 +168,108 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public void CheckCurrentPlayerStatus(Engine game) {
-        if(!game.IsCurrentBidCycleFinished() && game.IsCurrentHandStarted()) {
-            if (game.IsCurrentPlayerFolded())
-                game.MoveToNextPlayer();
-            else {
-                if (game.IsCurrentPlayerComputer()) {
-                    try {
-                        Move move = game.GetAutoMove();
-                        game.SetNewMove(move);
-                    } catch (PlayerFoldedException e) {
-                    } catch (ChipLessThanPotException e) {
-                    } catch (NoSufficientMoneyException e) {
-                    } catch (MoveNotAllowdedException e) {
-                    } catch (PlayerAlreadyBetException e) {
-                    } catch (StakeNotInRangeException e) {
+    public void CheckGameStatus(Engine game) throws GameOverException, FatalGameErrorException {
+        //if game started
+        if(game.IsGameStarted())
+        {
+            //if game is not over
+            if(!game.IsGameOver())
+            {
+                //if there is started Hand
+                if(game.IsCurrentHandStarted() && !game.IsCurrentHandFinished())
+                {
+                    //check if only one active player, if yes set technical winner
+                    game.CheckCurrentHandStatus();
+
+                    //check if only computer players
+                    game.CheckNoActiveHumans();
+
+                    //check once again for hand status
+                    if(game.IsCurrentHandStarted() && !game.IsCurrentHandFinished())
+                    {
+                        //check for current bid status, manage loop
+                        try {
+                            this.MenageCycle(game);
+                        } catch (NoSufficientMoneyException e) {
+                            //set game over flag to true
+                            game.SetGameOver(true);
+                            //game is over
+                            throw new GameOverException();
+                        }
+
+                        //if every thing is ok, check if current player is computer, if yes, auto move his turn
+                        if (game.IsCurrentPlayerFolded())
+                            game.MoveToNextPlayer();
+                        else {
+                            if (game.IsCurrentPlayerComputer()) {
+                                try {
+                                    Move move = game.GetAutoMove();
+                                    game.SetNewMove(move);
+                                } catch (PlayerFoldedException e) {
+                                    // no way, if deals with it before
+                                } catch (ChipLessThanPotException e) {
+                                   throw new FatalGameErrorException("Computer player chips less that pot.");
+                                } catch (NoSufficientMoneyException e) {
+                                    //set game over flag to true
+                                    game.SetGameOver(true);
+                                    //game is over
+                                    throw new GameOverException();
+                                } catch (MoveNotAllowdedException e) {
+                                    throw new FatalGameErrorException("Computer player move not allowded.");
+                                } catch (PlayerAlreadyBetException e) {
+                                    //throw new FatalGameErrorException("Computer player allready bet.");
+                                } catch (StakeNotInRangeException e) {
+                                    throw new FatalGameErrorException("Computer player stake not in range");
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //hand is over, before starting new, check if sufficient money among all players
+                        if(game.IsAnyPlayerOutOfMoney())
+                        {
+                            //set game over flag to true
+                            game.SetGameOver(true);
+                            //game is over
+                            throw new GameOverException();
+                        }
+                    }
+                }
+                else
+                {
+                    //hand is over, before starting new, check if sufficient money among all players
+                    if(game.IsAnyPlayerOutOfMoney())
+                    {
+                        //set game over flag to true
+                        game.SetGameOver(true);
+                        //game is over
+                        throw new GameOverException();
                     }
                 }
             }
+            else
+            {
+                //game is over
+                throw new GameOverException();
+            }
+        }
+
+
+
+
+
+    }
+
+    @Override
+    public void InitGame(Engine game) {
+
+    }
+
+    @Override
+    public void CheckCurrentPlayerStatus(Engine game) {
+        if(!game.IsCurrentBidCycleFinished() && game.IsCurrentHandStarted()) {
+
         }
     }
 
@@ -206,7 +290,7 @@ public class GameManager implements EngineManager {
         if (game.IsCurrentHandStarted()) {
             String current_player_name = game.GetPlayerName(game.GetCurrentPlayerID());
 
-            if (current_player_name.equals(username)) {
+            if (current_player_name.equals(username) && !game.IsCurrentPlayerComputer()) {
                 return true;
             }
         }

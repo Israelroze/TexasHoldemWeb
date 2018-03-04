@@ -24,13 +24,12 @@ public class EndGameServlet extends HttpServlet {
             ServletUtils.SendErrorMessage("User don't registered", response);
         }
         else {
-
-            response.setContentType("application/json");
             String game_id = ServletUtils.getSessionParam(request, "gameID");
 
             if (game_id == null) {
                 ServletUtils.SendErrorMessage("Error getting game id from session", response);
-            } else {
+            }
+            else {
                 Engine game = getManager().GetGame(game_id);
                 game.SetGameOver(true);
                 ServletUtils.SendRedirectURL("/pages/lobby/lobby.html",response);

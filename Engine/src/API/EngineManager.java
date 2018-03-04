@@ -32,6 +32,8 @@ public interface EngineManager {
     /////////////////////////////////////////////
     /////Main loop
     /////////////////////////////////////////////
+    public void CheckGameStatus(Engine game) throws GameOverException, FatalGameErrorException;
+    public void InitGame(Engine game);
     public void CheckCurrentPlayerStatus(Engine game);
     public void CheckCurrentHandStatus(Engine game);
     public boolean IsYourTurn(Engine game,String username);

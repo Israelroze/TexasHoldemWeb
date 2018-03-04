@@ -25,16 +25,20 @@ public class StartGameServlet extends HttpServlet {
         else {
             String game_id=getManager().IsPlayerInReadyGame(username);
             if(game_id!=null){
-
                 ServletUtils.setSessionParam(request,"gameID",game_id);
                 if(!getManager().GetGame(game_id).IsGameStarted())
                 {
-                  getManager().GetGame(game_id).StartGame();
+                    getManager().GetGame(game_id).StartGame();
+                    try (PrintWriter out = response.getWriter()) {
+                        out.println("ok, game started");
+                        out.flush();
+                    }
                 }
-                try (PrintWriter out = response.getWriter()) {
-                    out.println("ok, game started");
-                    out.flush();
+                else
+                {
+                    ServletUtils.SendErrorMessage("Game already started",response);
                 }
+
             }
             else
             {

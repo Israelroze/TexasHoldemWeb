@@ -45,54 +45,57 @@ public class AllowdedMovesServlet extends HttpServlet {
         {
             Engine game=getManager().GetGame(game_id);
             if(game!=null) {
-                try {
-                    boolean fold=false;
-                    boolean check=false;
-                    boolean call=false;
-                    boolean bet=false;
-                    boolean raise=false;
+                if(game.IsCurrentPlayerComputer()) {
+                    ServletUtils.SendErrorMessage("Current Player computer",response);
+                }
+                else {
+                    try {
+                        boolean fold = false;
+                        boolean check = false;
+                        boolean call = false;
+                        boolean bet = false;
+                        boolean raise = false;
 
-                    for(MoveType move:game.GetAllowdedMoves()) {
-                        switch(move) {
-                            case CHECK:
-                                check=true;
-                                break;
-                            case RAISE:
-                                raise=true;
-                                break;
-                            case CALL:
-                                call=true;
-                                break;
-                            case BET:
-                                bet=true;
-                                break;
-                            case FOLD:
-                                fold=true;
-                                break;
+                        for (MoveType move : game.GetAllowdedMoves()) {
+                            switch (move) {
+                                case CHECK:
+                                    check = true;
+                                    break;
+                                case RAISE:
+                                    raise = true;
+                                    break;
+                                case CALL:
+                                    call = true;
+                                    break;
+                                case BET:
+                                    bet = true;
+                                    break;
+                                case FOLD:
+                                    fold = true;
+                                    break;
+                            }
                         }
+
+                        int[] range = game.GetAllowdedStakeRange();
+                        BetOptionData options = new BetOptionData(bet, raise, call, fold, check, range[0], range[1]);
+
+                        Gson json = new Gson();
+                        try (PrintWriter out = response.getWriter()) {
+                            out.println(json.toJson(options));
+                            out.flush();
+                        }
+
+                    } catch (PlayerFoldedException e) {
+                        ServletUtils.SendErrorMessage("Current player folded", response);
+                    } catch (ChipLessThanPotException e) {
+                        ServletUtils.SendErrorMessage("Current player chips less than pot", response);
                     }
-
-                    int[] range=game.GetAllowdedStakeRange();
-                    BetOptionData options=new BetOptionData(bet,raise,call,fold,check,range[0],range[1]);
-
-
-                    Gson json=new Gson();
-                    try (PrintWriter out = response.getWriter()) {
-                        out.println(json.toJson(options));
-                        out.flush();
-                    }
-
-                } catch (PlayerFoldedException e) {
-                    ServletUtils.SendErrorMessage("Current player folded",response);
-                } catch (ChipLessThanPotException e) {
-                    ServletUtils.SendErrorMessage("Current player chips less than pot",response);
                 }
             }
             else {
                 ServletUtils.SendErrorMessage("Cannot find game",response);
             }
         }
-
     }
 
     private EngineManager getManager()

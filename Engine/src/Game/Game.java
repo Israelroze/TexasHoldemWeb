@@ -703,9 +703,15 @@ public class Game implements Engine {
         else
         {
             if(possible_moves.size()>0){
-                i = rnd.nextInt(possible_moves.size() - 1);
-                if(ENABLE_LOG) System.out.println("Player Type:"+this.current_hand.GetCurrentPlayer().GetType() +" ID:"+this.current_hand.GetCurrentPlayer().getId()+"random:"+i);
-                type =possible_moves.get(i);
+                int new_possible=possible_moves.size() - 1;
+                if(new_possible>=1) {
+                    i = rnd.nextInt(new_possible);
+                    if(ENABLE_LOG) System.out.println("Player Type:"+this.current_hand.GetCurrentPlayer().GetType() +" ID:"+this.current_hand.GetCurrentPlayer().getId()+"random:"+i);
+                    type =possible_moves.get(i);
+                }
+                else{
+                    type=possible_moves.get(0);
+                }
             }
         }
         if(type!=null)
@@ -720,7 +726,16 @@ public class Game implements Engine {
                     }
                     else
                     {
-                        i = rnd.nextInt((range[1] - range[0]) + 1) + range[0];
+                        if(range[1]>0 && range[0]>0 && range[0]<range[1]) {
+                            if(ENABLE_LOG) System.out.println("IN GET AUTO MOVE: genrating random stake from "+range[0]+" to "+range[1]);
+                            int new_stake=(range[1] - range[0]) + 1;
+                            if(ENABLE_LOG) System.out.println("IN GET AUTO MOVE: stake for random:"+new_stake);
+                            if(new_stake>0) {
+                                i = rnd.nextInt((range[1] - range[0]) + 1) + range[0];
+                            }
+                            else i=range[0];
+                        }else i=range[0];
+                        if(ENABLE_LOG) System.out.println("IN GET AUTO MOVE: final stake:"+i);
                         if(ENABLE_LOG) System.out.println("Player Type:"+this.current_hand.GetCurrentPlayer().GetType() +" ID:"+this.current_hand.GetCurrentPlayer().getId()+"random:"+i);
                         return new Move(type,i);
                     }

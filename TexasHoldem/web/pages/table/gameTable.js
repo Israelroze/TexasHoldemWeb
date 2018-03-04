@@ -1,14 +1,18 @@
 var tableVersion = 0;
-var isfisrtSetup = false;
 var GAME_TABLE_URL = buildUrlWithContextPath("gametable");
 var num_of_players = 0 ;
-var is_Bet_Option_displayed = false;
 var game_data =undefined;
-var print_log = true;
 var refreshRate = 3000; //mili seconds
 var timeout=1000;
+
+//id of poll interval action
 var PollGameInterval;
+
+//flags
 var if_no_fatal_errors=false;
+var print_log = true;
+var isfisrtSetup = false;
+var is_Bet_Option_displayed = false;
 
 $(init_countdown);
 
@@ -56,13 +60,20 @@ function newHandCountdonw(message){
     }).on('finish.countdown', function() {
         $("#clk").remove();
         $("#clk_title").remove();
-        ajaxStartHand();
-        $("#on_board_item").show();
-        $(".positions").show();
-        PollGameTable();
+
+        if(message.includes("Game Is Over"))
+        {
+            ajaxQuitGame();
+        }
+        else
+        {
+            ajaxStartHand();
+            PollGameTable();
+            $("#on_board_item").show();
+            $(".positions").show();
+        }
     });
 }
-
 
 ///////////////////////////////////////////////////////////////////
 ////////////// Server Queries
@@ -73,14 +84,11 @@ function ajaxStartGame(){
         url:"/startgame",
 
         success: function(r) {
-            logPrint("from ajaxStartGame success");
-            //$("#errormessage").text("");
+            logPrint("from ajaxStartGame success"+r);
         },
         error: function(e){
             logPrint("from ajaxStartGame"+e.responseText);
-            //$("#errormessage").text(e.responseText).css({'color': 'red'});
         }
-
     });
 }
 
@@ -89,17 +97,13 @@ function ajaxStartHand() {
         url:"/starthand",
 
         success: function(r) {
-            //logPrint(r);
-            //$("#errormessage").text("");
-            logPrint("from ajaxStartHand success");
+            logPrint("from ajaxStartHand success"+r);
         },
         error: function(e){
             logPrint("from ajaxStartHand"+e.responseText);
             if_no_fatal_errors=true;
-            if(e.responseText.includes("no sufficient money")) ajaxQuitGame();
-            //$("#errormessage").text(e.responseText).css({'color': 'red'});
+            if(e.responseText.includes("no sufficient money")) newHandCountdonw("Game Is Over, Return to Lobby In:");
         }
-
     });
 }
 
@@ -120,7 +124,6 @@ function ajaxQuitGame() {
                 console.log("redirecting to "+e.responseText);
                 window.location.href=e.responseText;
             }
-            //$("#errormessage").text(e.responseText).css({'color': 'red'});
         }
     });
 }
@@ -131,84 +134,6 @@ function ajaxBetOptionContent() {
         dataType: 'json',
         async : false,
         success: function (data) {
-            /*
-             data is of the next form:
-
-                {
-   "dataVerion":10,
-   "userData":[
-      {
-         "name":"Avishay",
-         "bid":100,
-         "num_of_wins":2,
-         "money":2003,
-         "type":"Computer",
-         "cards":[
-            "6D",
-            "5D"
-         ]
-      },
-      {
-         "name":"p123",
-         "bid":100,
-         "num_of_wins":2,
-         "money":2003,
-         "type":"Computer",
-         "cards":[
-            "6D",
-            "5D"
-         ]
-      },
-      {
-         "name":"p345",
-         "bid":100,
-         "num_of_wins":2,
-         "money":2023403,
-         "type":"Computer",
-         "cards":[
-            "6D",
-            "5D"
-         ]
-      },
-      {
-         "name":"jho",
-         "bid":100,
-         "num_of_wins":2,
-         "money":223003,
-         "type":"Human",
-         "cards":[
-            "6D",
-            "5D"
-         ]
-      },
-      {
-         "name":"sdf",
-         "bid":100,
-         "num_of_wins":2,
-         "money":2003,
-         "type":"Computer",
-         "cards":[
-            "6D",
-            "5D"
-         ]
-      },
-      {
-         "name":"sdf",
-         "bid":1234200,
-         "num_of_wins":23,
-         "money":234003,
-         "type":"Computer",
-         "cards":[
-            "6D",
-            "5D"
-         ]
-      }
-   ],
-   "num_of_games":10,
-   "current_game_number":4,
-   "number_of_players":6
-}
-             */
             update_bet_option(data);
             logPrint("inside ajaxGetMoves Function: got info");
         },
@@ -225,7 +150,7 @@ function ajaxTableContent() {
         dataType: 'json',
         async : false,
         success: function (data) {
-            logPrint("OK ajaxTableContent ");
+            logPrint("OK ajaxTableContent, got JSON ");
             if(!isfisrtSetup)
             {
                 firstSetup(data.number_of_players);
@@ -240,16 +165,13 @@ function ajaxTableContent() {
             }
         },
         error: function (error) {
-            logPrint("Faild to Print data of game table"+ error.responseText);
-            //logPrint(error.responseText);
-            /*
-            triggerAjaxTableContent();
-            */
+            logPrint("Get game data ended with the following error "+ error.responseText);
+            logPrint("ending game....");
+            clearInterval(PollGameInterval);
+            newHandCountdonw("Game Is Over, Return to Lobby In:");
         }
     });
-
 }
-
 
 ///////////////////////////////////////////////////////////////////
 ////////////// Server POlL's
@@ -455,6 +377,7 @@ function display_winners(winners) {
 
     function close_modal() {
         modal.style.display = "none";
+        //ajaxTableContent();
         newHandCountdonw("A New Hand Will Start In:");
     }
     setTimeout(close_modal, 5000);
@@ -563,24 +486,20 @@ function get_board_location() {
 }
 
 function checkGameStatus(data) {
-    let is_game_over=data.game_status.is_game_over;
     let is_your_turn=data.game_status.is_your_turn;
     let is_hand_over=data.game_status.is_hand_over;
-    if(is_game_over) {
-        ajaxQuitGame();
+
+    if (is_your_turn && !is_hand_over) {
+        if (!is_Bet_Option_displayed) {
+            is_Bet_Option_displayed = true;
+            ajaxBetOptionContent();
+        }
     }
     else {
-        if (is_your_turn && !is_hand_over) {
-            if (!is_Bet_Option_displayed) {
-                is_Bet_Option_displayed = true;
-                ajaxBetOptionContent();
-            }
-        }
-        else {
-            is_Bet_Option_displayed = false;
-            $("#bottom_menu").empty();
-        }
+        is_Bet_Option_displayed = false;
+        $("#bottom_menu").empty();
     }
+
 }
 ///////////////////////////////////////////////////////////////////
 ////////////// Other

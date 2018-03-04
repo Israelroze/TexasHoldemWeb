@@ -7,6 +7,8 @@ import Containers.GameData;
 import Containers.GameStatusData;
 import Containers.HandData;
 import Containers.UserData;
+import Exceptions.FatalGameErrorException;
+import Exceptions.GameOverException;
 import Exceptions.NoSufficientMoneyException;
 import GameManager.GameManager;
 import UserManager.UserManager;
@@ -35,7 +37,7 @@ public class GameTableServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       // processRequest(request,response);
+       //processRequest(request,response);
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,6 +56,7 @@ public class GameTableServlet extends HttpServlet {
             } else {
                 Engine game = getManager().GetGame(game_id);
 
+                /*
                 try {
                     getManager().CheckCurrentHandStatus(game);
                     getManager().MenageCycle(game);
@@ -61,19 +64,25 @@ public class GameTableServlet extends HttpServlet {
                 } catch (NoSufficientMoneyException e) {
                     ServletUtils.SendErrorMessage("No sufficient money to start new bid cycle.", response);
                 }
+                */
 
-                try (PrintWriter out = response.getWriter()) {
-                    String res = BuildTableData(game,username);
-                    //System.out.println(res); //DEBUG
-                    out.println(res);
-                    out.flush();
+                try {
+                    getManager().CheckGameStatus(game);
+                    try (PrintWriter out = response.getWriter()) {
+                        String res = BuildTableData(game,username);
+                        out.println(res);
+                        out.flush();
+                    }
+                } catch (GameOverException e) {
+                    ServletUtils.SendErrorMessage("Game is over or not started yet.", response);
+                } catch (FatalGameErrorException e) {
+                    ServletUtils.SendErrorMessage("Fatal Error:"+e.getMessage(), response);
                 }
             }
         }
     }
 
-    private String BuildTableData(Engine game,String username)
-    {
+    private String BuildTableData(Engine game,String username) {
         Gson json=new Gson();
 
         List<UserData> users=new LinkedList<>();
@@ -122,42 +131,11 @@ public class GameTableServlet extends HttpServlet {
         return json.toJson(game_data);
     }
 
-
-    /*
-    public GameData TestGameData()
-    {
-
-        List<String> commCard  = new LinkedList<>();
-        commCard.add("6D");
-        commCard.add("5D");
-
-        UserData p1 = new UserData("Avishay",100,2,2003,"Computer", commCard,"big");
-        UserData p2 = new UserData("p123",100,2,2003,"Computer",commCard,"small");
-        UserData p3 = new UserData("p345",100,2,2023403,"Computer",commCard,"dealer");
-        UserData p4 = new UserData("jho",100,2,223003,"Human",commCard,"dealer");
-        UserData p5 = new UserData("sdf",100,2,2003,"Computer",commCard,"small");
-        UserData p6 = new UserData("sdf",1234200,23,234003,"Computer",commCard,"big");
-        List<UserData> UserTest  = new LinkedList<>();
-        UserTest.add(p1);
-        UserTest.add(p2);
-        UserTest.add(p3);
-        UserTest.add(p4);
-        UserTest.add(p5);
-        UserTest.add(p6);
-
-
-        HandData handTest= new HandData(1023, commCard);
-        GameData gameTest = new GameData(10,UserTest,10,4,5);
-
-        return gameTest;
-    }
-    */
     private void logServerMessage(String message){
         System.out.println(message);
     }
 
-    private EngineManager getManager()
-    {
+    private EngineManager getManager() {
         ServletContext context=getServletContext();
         Object objManager=context.getAttribute("EngineManager");
 
