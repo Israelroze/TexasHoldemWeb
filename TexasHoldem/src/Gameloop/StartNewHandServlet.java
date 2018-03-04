@@ -17,7 +17,6 @@ import java.io.PrintWriter;
 
 public class StartNewHandServlet extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request,response);
@@ -48,7 +47,7 @@ public class StartNewHandServlet extends HttpServlet {
                 } catch (HandAlreadyStartedException e) {
                     try (PrintWriter out = response.getWriter()) {
                         out.println("Hand already Started");
-                        out.flush();
+
                     }
                 } catch (NoSufficientMoneyException e) {
                     ServletUtils.SendErrorMessage("One of the players have no sufficient money.",response);

@@ -549,7 +549,13 @@ public class Game implements Engine {
 
     @Override
     public boolean IsCurrentHandFinished(){
-        return this.current_hand.IsHandOver();
+        boolean is_finished=this.current_hand.IsHandOver();
+        if(is_finished)
+        {
+            this.is_hand_started=false;
+            return true;
+        }
+        return false;
     }
 
     @Override

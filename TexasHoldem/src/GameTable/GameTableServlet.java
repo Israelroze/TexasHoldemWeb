@@ -64,7 +64,7 @@ public class GameTableServlet extends HttpServlet {
 
                 try (PrintWriter out = response.getWriter()) {
                     String res = BuildTableData(game,username);
-                    System.out.println(res); //DEBUG
+                    //System.out.println(res); //DEBUG
                     out.println(res);
                     out.flush();
                 }

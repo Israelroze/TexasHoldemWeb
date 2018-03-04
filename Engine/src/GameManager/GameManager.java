@@ -191,7 +191,7 @@ public class GameManager implements EngineManager {
 
     @Override
     public void CheckCurrentHandStatus(Engine game) {
-        if(game.IsCurrentHandStarted() && !game.IsCurrentHandOver()) {
+        if(game.IsCurrentHandStarted() && !game.IsCurrentHandFinished()) {
             //checks ans preformes techincal winner
             game.CheckCurrentHandStatus();
 
@@ -215,7 +215,7 @@ public class GameManager implements EngineManager {
 
     @Override
     public void MenageCycle(Engine game) throws NoSufficientMoneyException {
-        if(game.IsCurrentHandStarted() &&!game.IsCurrentHandOver()) {
+        if(game.IsCurrentHandStarted() &&!game.IsCurrentHandFinished()) {
             game.CheckBidStatus();
             //bid cycle check
             if (game.IsCurrentBidCycleFinished()) {

@@ -61,6 +61,8 @@ public class Hand {
         this.events=new LinkedList<>();
         this.community=null;
 
+        is_hand_over=false;
+
         //init player flags
         this.players.InitPlayersNewHand();
 

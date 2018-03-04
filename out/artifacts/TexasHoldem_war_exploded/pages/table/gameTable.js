@@ -7,10 +7,16 @@ var game_data =undefined;
 var print_log = true;
 var refreshRate = 3000; //mili seconds
 var timeout=1000;
+var PollGameInterval;
+var if_no_fatal_errors=false;
 
+$(init_countdown);
+
+/*
 $(document).ready(function(){
     init_countdown();
 });
+*/
 
 ///////////////////////////////////////////////////////////////////
 ////////////// Trigger Hand and Game
@@ -33,9 +39,10 @@ function init_countdown() {
         ajaxStartHand();
         $("#on_board_item").show();
         $(".positions").show();
-        PollGameTable();
+        if(!if_no_fatal_errors)PollGameTable();
     });
 }
+
 function newHandCountdonw(){
     $("#on_board_item").hide();
     $(".positions").hide();
@@ -52,21 +59,25 @@ function newHandCountdonw(){
         ajaxStartHand();
         $("#on_board_item").show();
         $(".positions").show();
-        //PollGameTable();
+        PollGameTable();
     });
 }
 
+
+///////////////////////////////////////////////////////////////////
+////////////// Server Queries
+///////////////////////////////////////////////////////////////////
 function ajaxStartGame(){
 
     $.ajax({
         url:"/startgame",
 
         success: function(r) {
-            logPrint(r);
+            logPrint("from ajaxStartGame success");
             //$("#errormessage").text("");
         },
         error: function(e){
-            logPrint(e.responseText);
+            logPrint("from ajaxStartGame"+e.responseText);
             //$("#errormessage").text(e.responseText).css({'color': 'red'});
         }
 
@@ -80,78 +91,39 @@ function ajaxStartHand() {
         success: function(r) {
             //logPrint(r);
             //$("#errormessage").text("");
+            logPrint("from ajaxStartHand success");
         },
         error: function(e){
-            logPrint(e.responseText);
+            logPrint("from ajaxStartHand"+e.responseText);
+            if_no_fatal_errors=true;
+            if(e.responseText.includes("no sufficient money")) ajaxQuitGame();
             //$("#errormessage").text(e.responseText).css({'color': 'red'});
         }
 
     });
 }
 
-///////////////////////////////////////////////////////////////////
-////////////// POLL Game Data
-///////////////////////////////////////////////////////////////////
-
-function PollGameTable() {
-    //prevent IE from caching ajax calls
-    $.ajaxSetup({cache: false});
-
-    //The users list is refreshed automatically every second
-    setInterval(ajaxTableContent, refreshRate);
-    setTimeout(ajaxTableContent, refreshRate);
-}
-
-function ajaxTableContent() {
+function ajaxQuitGame() {
+    clearInterval(PollGameInterval);
 
     $.ajax({
-        url: "/gametable",
-        dataType: 'json',
-        async : false,
-        success: function (data) {
-            logPrint("OK ajaxTableContent ");
-            if(!isfisrtSetup)
-            {
-                firstSetup(data.number_of_players);
+        url:"/quitgame",
 
-                isfisrtSetup = true;
-            }
-            checkGameStatus(data);
-            update_games_values(data);
-            if (data.winners.length !== 0)
-                display_winners(data.winners);
+        success: function(r) {
+            console.log(r);
+            console.log("redirecting to "+r);
+            window.location.href=r;
         },
-        error: function (error) {
-            logPrint("Faild to Print data of game table");
-            logPrint(error.responseText);
-            /*
-            triggerAjaxTableContent();
-            */
+        error: function(e){
+            logPrint("from ajaxQuitGame"+e.responseText);
+            if(e.responseText.includes("/pages/")){
+                console.log("redirecting to "+e.responseText);
+                window.location.href=e.responseText;
+            }
+            //$("#errormessage").text(e.responseText).css({'color': 'red'});
         }
     });
-
 }
-
-//to open bet option for the right player and close for others
-function checkGameStatus(data) {
-
-    let is_your_turn=data.game_status.is_your_turn;
-    let is_hand_over=data.game_status.is_hand_over;
-    if(is_your_turn && !is_hand_over) {
-        if (!is_Bet_Option_displayed) {
-            is_Bet_Option_displayed = true;
-            ajaxBetOptionContent();
-        }
-    }
-    else {
-        is_Bet_Option_displayed = false;
-        $("#bottom_menu").empty();
-    }
-}
-
-///////////////////////////////////////////////////////////////////
-////////////// Bet option menu
-///////////////////////////////////////////////////////////////////
 
 function ajaxBetOptionContent() {
     $.ajax({
@@ -241,12 +213,63 @@ function ajaxBetOptionContent() {
             logPrint("inside ajaxGetMoves Function: got info");
         },
         error: function (error) {
-            // logPrint(error);
-            // logPrint("Faild to Print data bet Option");
-            logPrint("inside ajaxGetMoves Function: got error");
+            logPrint("inside ajaxGetMoves Function: got error:"+error.responseText);
         }
     });
 }
+
+function ajaxTableContent() {
+
+    $.ajax({
+        url: "/gametable",
+        dataType: 'json',
+        async : false,
+        success: function (data) {
+            logPrint("OK ajaxTableContent ");
+            if(!isfisrtSetup)
+            {
+                firstSetup(data.number_of_players);
+
+                isfisrtSetup = true;
+            }
+            checkGameStatus(data);
+            update_games_values(data);
+            if (data.winners.length !== 0) {
+                clearInterval(PollGameInterval);
+                display_winners(data.winners);
+            }
+        },
+        error: function (error) {
+            logPrint("Faild to Print data of game table"+ error.responseText);
+            //logPrint(error.responseText);
+            /*
+            triggerAjaxTableContent();
+            */
+        }
+    });
+
+}
+
+
+///////////////////////////////////////////////////////////////////
+////////////// Server POlL's
+///////////////////////////////////////////////////////////////////
+
+function PollGameTable() {
+    //prevent IE from caching ajax calls
+    $.ajaxSetup({cache: false});
+
+    //The users list is refreshed automatically every second
+    PollGameInterval =  setInterval(ajaxTableContent, refreshRate);
+    //setTimeout(ajaxTableContent, refreshRate);
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////
+////////////// Bet option menu
+///////////////////////////////////////////////////////////////////
 
 function update_bet_option(data) {
 
@@ -363,45 +386,79 @@ function SetMove(move,value){
     $("#bottom_menu").empty();
 }
 
-function  open_raise_and_bet_scroller() {
+///////////////////////////////////////////////////////////////////
+////////////// Update data
+///////////////////////////////////////////////////////////////////
 
+function firstSetup(numOfPlayer){
 
-    $("#bet_raise_range ").hide();
-    $("#accept").hide();
-    $("#demo_p").hide();
+    if(isfisrtSetup== true) return;
+    var  css_data =get_board_location();
 
-    $("#bet").click(function () {
-        $("#bet_raise_range").animate({width: 'toggle'}, 600);
-        $("#accept").animate({width: 'toggle'}, 600);
-        $("#demo_p").animate({width: 'toggle'}, 600);
+    if (numOfPlayer == 6)
+    {
+        $("#pos1").css(css_data.positions.top_right).children(".bet").css(css_data.bet_positions.top);
+        $("#pos2").css(css_data.positions.bottom_right).children(".bet").css(css_data.bet_positions.bottom);
+        $("#pos3").css(css_data.positions.bottom_middle).children(".bet").css(css_data.bet_positions.bottom);
+        $("#pos4").css(css_data.positions.bottom_left).children(".bet").css(css_data.bet_positions.bottom);
+        $("#pos5").css(css_data.positions.top_left).children(".bet").css(css_data.bet_positions.top);
+        $("#pos6").css(css_data.positions.top_middle).children(".bet").css(css_data.bet_positions.top);
+    }
 
-    });
-    $("#raise").click(function () {
-        $("#bet_raise_range").animate({width: 'toggle'}, 600);
-        $("#accept").animate({width: 'toggle'}, 600);
-        $("#demo_p").animate({width: 'toggle'}, 600);
-    });
+    if (numOfPlayer == 5)
+    {
 
+        $("#pos1").css(css_data.positions.top_right).children(".bet").css(css_data.bet_positions.top);
+        $("#pos2").css(css_data.positions.bottom_right).children(".bet").css(css_data.bet_positions.bottom);
+        $("#pos3").css(css_data.positions.bottom_left).children(".bet").css(css_data.bet_positions.bottom);
+        $("#pos4").css(css_data.positions.top_left).children(".bet").css(css_data.bet_positions.top);
+        $("#pos5").css(css_data.positions.top_middle).children(".bet").css(css_data.bet_positions.top);
+        $("#pos6").remove();
+
+    }
+
+    if (numOfPlayer == 4)
+    {
+
+        $("#pos1").css(css_data.positions.top_right).children(".bet").css(css_data.bet_positions.top);
+        $("#pos2").css(css_data.positions.bottom_right).children(".bet").css(css_data.bet_positions.bottom);
+        $("#pos3").css(css_data.positions.bottom_left).children(".bet").css(css_data.bet_positions.bottom);
+        $("#pos4").css(css_data.positions.top_left).children(".bet").css(css_data.bet_positions.top);
+        $("#pos5").remove();
+        $("#pos6").remove();
+    }
+
+    if (numOfPlayer == 3)
+    {
+
+        $("#pos1").css(css_data.positions.top_right).children(".bet").css(css_data.bet_positions.top);
+        $("#pos2").css(css_data.positions.bottom_middle).children(".bet").css(css_data.bet_positions.bottom);
+        $("#pos3").css(css_data.positions.top_left).children(".bet").css(css_data.bet_positions.top);
+        $("#pos4").remove();
+        $("#pos5").remove();
+        $("#pos6").remove();
+    }
+
+    isfisrtSetup= false;
 }
 
-function ShowSlider(move) {
-    let min = data.minVal;
-    let max = data.maxVal;
-    let avg = Math.floor((max+min)/2);
+function display_winners(winners) {
+    // Get the modal
+    var modal = document.getElementById('myModal');
 
-    $("#bottom_menu").append($('<div id="bet_raise_range" class="slidecontainer vbox main-center "></div>').hide().append(
-        $('<input id="myRange" type="range">').attr('max', max.toString()).attr('min',min.toString()).val(avg.toString()))
-        .animate({width: 'toggle'}, 600));
-    $("#bottom_menu").append($('<p id "demo_p"></p>').text("value").append($('<span id = "demo"></span>')).animate({width: 'toggle'}, 600));
+    modal.style.display = "block";
+    // When the user clicks on <span> (x), close the modal
 
-    $("#bottom_menu").append($('<button></button>').hide().text("Accept").bind('click',function(){ SetMove(move,$("#myRange").value)}).animate({width: 'toggle'}, 600));
+    $("#winner_list").empty();
+    $("#winner_list").text("And The winner(s) is: ");
+    $("#winner_list").append($("<ul></ul>").append(...winners.map(x => $('<li></li>').text(x))));
 
-    slider_update_value();
+    function close_modal() {
+        modal.style.display = "none";
+        newHandCountdonw();
+    }
+    setTimeout(close_modal, 5000);
 }
-
-///////////////////////////////////////////////////////////////////
-////////////// Board Data
-///////////////////////////////////////////////////////////////////
 
 function update_games_values(data) {
     if( num_of_players === 0) {
@@ -446,6 +503,10 @@ function update_games_values(data) {
     $("#board").append(...data.table_data.communityCards.map(x => $('<div class="card boardcard"></div>').css("background-image", createUrlForImage(x))));
 
     $("#pot").text("Pot: " + data.table_data.pot.toString() + "$");
+}
+
+function createUrlForImage(image_name) {
+    return "url(images/" +image_name + ".png";
 }
 
 function get_board_location() {
@@ -501,95 +562,67 @@ function get_board_location() {
     }
 }
 
+function checkGameStatus(data) {
+    let is_game_over=data.game_status.is_game_over;
+    let is_your_turn=data.game_status.is_your_turn;
+    let is_hand_over=data.game_status.is_hand_over;
+    if(is_game_over) {
+        ajaxQuitGame();
+    }
+    else {
+        if (is_your_turn && !is_hand_over) {
+            if (!is_Bet_Option_displayed) {
+                is_Bet_Option_displayed = true;
+                ajaxBetOptionContent();
+            }
+        }
+        else {
+            is_Bet_Option_displayed = false;
+            $("#bottom_menu").empty();
+        }
+    }
+}
 ///////////////////////////////////////////////////////////////////
 ////////////// Other
 ///////////////////////////////////////////////////////////////////
-
-function firstSetup(numOfPlayer){
-
-    if(isfisrtSetup== true) return;
-    var  css_data =get_board_location();
-
-    if (numOfPlayer == 6)
-    {
-        $("#pos1").css(css_data.positions.top_right).children(".bet").css(css_data.bet_positions.top);
-        $("#pos2").css(css_data.positions.bottom_right).children(".bet").css(css_data.bet_positions.bottom);
-        $("#pos3").css(css_data.positions.bottom_middle).children(".bet").css(css_data.bet_positions.bottom);
-        $("#pos4").css(css_data.positions.bottom_left).children(".bet").css(css_data.bet_positions.bottom);
-        $("#pos5").css(css_data.positions.top_left).children(".bet").css(css_data.bet_positions.top);
-        $("#pos6").css(css_data.positions.top_middle).children(".bet").css(css_data.bet_positions.top);
-    }
-
-    if (numOfPlayer == 5)
-    {
-
-        $("#pos1").css(css_data.positions.top_right).children(".bet").css(css_data.bet_positions.top);
-        $("#pos2").css(css_data.positions.bottom_right).children(".bet").css(css_data.bet_positions.bottom);
-        $("#pos3").css(css_data.positions.bottom_left).children(".bet").css(css_data.bet_positions.bottom);
-        $("#pos4").css(css_data.positions.top_left).children(".bet").css(css_data.bet_positions.top);
-        $("#pos5").css(css_data.positions.top_middle).children(".bet").css(css_data.bet_positions.top);
-        $("#pos6").remove();
-
-    }
-
-    if (numOfPlayer == 4)
-    {
-
-        $("#pos1").css(css_data.positions.top_right).children(".bet").css(css_data.bet_positions.top);
-        $("#pos2").css(css_data.positions.bottom_right).children(".bet").css(css_data.bet_positions.bottom);
-        $("#pos3").css(css_data.positions.bottom_left).children(".bet").css(css_data.bet_positions.bottom);
-        $("#pos4").css(css_data.positions.top_left).children(".bet").css(css_data.bet_positions.top);
-        $("#pos5").remove();
-        $("#pos6").remove();
-    }
-
-    if (numOfPlayer == 3)
-    {
-
-        $("#pos1").css(css_data.positions.top_right).children(".bet").css(css_data.bet_positions.top);
-        $("#pos2").css(css_data.positions.bottom_middle).children(".bet").css(css_data.bet_positions.bottom);
-        $("#pos3").css(css_data.positions.top_left).children(".bet").css(css_data.bet_positions.top);
-        $("#pos4").remove();
-        $("#pos5").remove();
-        $("#pos6").remove();
-    }
-
-    isfisrtSetup= false;
-}
-
-function createUrlForImage(image_name) {
-    return "url(images/" +image_name + ".png";
-}
 
 function logPrint(message) {
     if (print_log )
         console.log(message);
 }
 
+function ShowSlider(move) {
+    let min = data.minVal;
+    let max = data.maxVal;
+    let avg = Math.floor((max+min)/2);
+
+    $("#bottom_menu").append($('<div id="bet_raise_range" class="slidecontainer vbox main-center "></div>').hide().append(
+        $('<input id="myRange" type="range">').attr('max', max.toString()).attr('min',min.toString()).val(avg.toString()))
+        .animate({width: 'toggle'}, 600));
+    $("#bottom_menu").append($('<p id "demo_p"></p>').text("value").append($('<span id = "demo"></span>')).animate({width: 'toggle'}, 600));
+
+    $("#bottom_menu").append($('<button></button>').hide().text("Accept").bind('click',function(){ SetMove(move,$("#myRange").value)}).animate({width: 'toggle'}, 600));
+
+    slider_update_value();
+}
+
+function  open_raise_and_bet_scroller() {
 
 
-function display_winners(winners) {
-    // Get the modal
-    var modal = document.getElementById('myModal');
+    $("#bet_raise_range ").hide();
+    $("#accept").hide();
+    $("#demo_p").hide();
 
-    // Get the <span> element that closes the modal
-    var close_button = document.getElementsByClassName("close")[0];
+    $("#bet").click(function () {
+        $("#bet_raise_range").animate({width: 'toggle'}, 600);
+        $("#accept").animate({width: 'toggle'}, 600);
+        $("#demo_p").animate({width: 'toggle'}, 600);
 
-    modal.style.display = "block";
-    // When the user clicks on <span> (x), close the modal
-    close_button.onclick = function() {
-        modal.style.display = "none";
+    });
+    $("#raise").click(function () {
+        $("#bet_raise_range").animate({width: 'toggle'}, 600);
+        $("#accept").animate({width: 'toggle'}, 600);
+        $("#demo_p").animate({width: 'toggle'}, 600);
+    });
 
-    }
-    $("#winner_list").empty();
-    $("#winner_list").text("And The winner(s) is: ")
-    $("#winner_list").append($("<ul></ul>").append(...winners.map(x => $('<li></li>').text(x))));
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-        newHandCountdonw();
-    }
 }
