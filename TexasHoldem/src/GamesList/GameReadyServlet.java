@@ -38,7 +38,7 @@ public class GameReadyServlet extends HttpServlet{
                   //  getManager().GetGame(game_id).StartGame();
                 //}
 
-                ServletUtils.SendRedirectURL("/pages/table/table.html",response);
+               // ServletUtils.SendRedirectURL("/pages/table/table.html",response);
             }
             else
             {

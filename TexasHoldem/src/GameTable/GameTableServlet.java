@@ -56,16 +56,6 @@ public class GameTableServlet extends HttpServlet {
             } else {
                 Engine game = getManager().GetGame(game_id);
 
-                /*
-                try {
-                    getManager().CheckCurrentHandStatus(game);
-                    getManager().MenageCycle(game);
-                    getManager().CheckCurrentPlayerStatus(game);
-                } catch (NoSufficientMoneyException e) {
-                    ServletUtils.SendErrorMessage("No sufficient money to start new bid cycle.", response);
-                }
-                */
-
                 try {
                     getManager().CheckGameStatus(game);
                     try (PrintWriter out = response.getWriter()) {

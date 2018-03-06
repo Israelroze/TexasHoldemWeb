@@ -37,10 +37,12 @@ public class JoinGameServlet extends HttpServlet {
             {
                 try {
                     getManager().AddPlayerToGame((String)objGameID,username);
-                    try (PrintWriter out = response.getWriter()) {
-                        out.println("ok");
-                        out.flush();
-                    }
+
+                    ServletUtils.SendRedirectURL("/pages/table/table.html",response);
+                  //  try (PrintWriter out = response.getWriter()) {
+                    //    out.println("ok");
+                    //    out.flush();
+                    //}
 
                 } catch (UserNameNotProvidedException e) {
                     ServletUtils.SendErrorMessage("User not provided.", response);

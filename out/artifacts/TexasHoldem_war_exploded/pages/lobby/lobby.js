@@ -46,8 +46,9 @@ function PollGamelist(){
     //The users list is refreshed automatically every second
     setInterval(ajaxGameList, refreshRate);
     setTimeout(ajaxGameList, timeout);
-    setInterval(ajaxReadyGame, refreshRate);
-    setTimeout(ajaxReadyGame, timeout);
+
+    //setInterval(ajaxReadyGame, refreshRate);
+    //setTimeout(ajaxReadyGame, timeout);
 
 }
 
@@ -80,7 +81,6 @@ function createGameBox(game) {
             $('<td></td>').append($('<button class="joinbutton"></button>').text("Join").bind('click',function(){ joinGame(game.game_name)}))
         )
     );
-
 }
 
 function joinGame(id) {
@@ -93,7 +93,10 @@ function joinGame(id) {
                 "GameId" : id
         },
         success: function(r) {
+
             $("#errormessage").text("");
+            console.log("redirecting to "+r);
+            window.location.href=r;
         },
         error: function(e){
             $("#errormessage").text(e.responseText).css({'color': 'red'});

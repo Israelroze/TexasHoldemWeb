@@ -194,7 +194,7 @@ public class GameManager implements EngineManager {
                             //set game over flag to true
                             game.SetGameOver(true);
                             //game is over
-                            throw new GameOverException();
+                            //throw new GameOverException();
                         }
 
                         //if every thing is ok, check if current player is computer, if yes, auto move his turn
@@ -213,7 +213,7 @@ public class GameManager implements EngineManager {
                                     //set game over flag to true
                                     game.SetGameOver(true);
                                     //game is over
-                                    throw new GameOverException();
+                                    //throw new GameOverException();
                                 } catch (MoveNotAllowdedException e) {
                                     throw new FatalGameErrorException("Computer player move not allowded.");
                                 } catch (PlayerAlreadyBetException e) {
@@ -232,7 +232,7 @@ public class GameManager implements EngineManager {
                             //set game over flag to true
                             game.SetGameOver(true);
                             //game is over
-                            throw new GameOverException();
+                            //throw new GameOverException();
                         }
                     }
                 }
@@ -244,15 +244,15 @@ public class GameManager implements EngineManager {
                         //set game over flag to true
                         game.SetGameOver(true);
                         //game is over
-                        throw new GameOverException();
+                        //throw new GameOverException();
                     }
                 }
             }
-            else
-            {
+            //else
+            //{
                 //game is over
-                throw new GameOverException();
-            }
+              //  throw new GameOverException();
+            //}
         }
 
 

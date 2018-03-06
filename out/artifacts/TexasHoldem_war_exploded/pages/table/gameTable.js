@@ -14,7 +14,8 @@ var print_log = true;
 var isfisrtSetup = false;
 var is_Bet_Option_displayed = false;
 
-$(init_countdown);
+//$(init_countdown);
+$(PollIsGameReady);
 
 /*
 $(document).ready(function(){
@@ -186,6 +187,14 @@ function PollGameTable() {
     //setTimeout(ajaxTableContent, refreshRate);
 }
 
+function PollIsGameReady(){
+    //prevent IE from caching ajax calls
+    $.ajaxSetup({cache: false});
+
+    //The users list is refreshed automatically every second
+    PollGameInterval =  setInterval(ajaxReadyGame, refreshRate);
+    //setTimeout(ajaxTableContent, refreshRate);
+}
 
 
 
@@ -544,4 +553,20 @@ function  open_raise_and_bet_scroller() {
         $("#demo_p").animate({width: 'toggle'}, 600);
     });
 
+}
+
+
+function ajaxReadyGame(){
+    $.ajax({
+        url:"/gameready",
+        success: function(r) {
+            console.log(r);
+            if(!r.includes("false")){
+                init_countdown();
+            }
+        },
+        error: function(e) {
+            $("#errormessage").text(e.responseText).css({'color': 'red'});
+        }
+    });
 }
