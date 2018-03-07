@@ -151,6 +151,7 @@ public class APlayers {
         dealer.SetPlayerState(PlayerState.DEALER);
     }
 
+    
     private void SetSmall()
     {
         this.small=this.GetNextPlayer(this.dealer);
