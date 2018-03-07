@@ -1,26 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <title></title>
-    <script src="common/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript" src="pages/login/login.js"></script>
-    <link rel="stylesheet" href="pages/login/login.css">
+    <meta http-equiv="refresh" content="0; url=pages/login/login.html">
+    <script type="text/javascript">
+        window.location.href = "pages/login/login.html"
+    </script>
+    <title>Page Redirection</title>
 </head>
-<body background="common/images/LoginBackGround.jpg">
-    <div class="login-page">
-        <div class="form">
-            <form id="userform" action="/login"  method="POST" class="register-form">
-                <input type="text" name="username" id="username" placeholder="name">
-                <div class="checkboxcomp">
-                    <label for="isComputer">Computer Player</label>
-                    <input type="checkbox" name="iscomputer" id="isComputer">
-                </div>
-                <input type="submit" id="loginUser" class="form button">
-            </form>
-            <label id="errormessage"></label>
-        </div>
-    </div>
+<body>
+<!-- Note: don't tell people to `click` the link, just tell them that it is a link. -->
+If you are not redirected automatically, follow this <a href='pages/login/login.html'>link to login</a>.
 </body>
 </html>
-

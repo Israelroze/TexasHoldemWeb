@@ -1,10 +1,17 @@
+
+
+var LOGIN_URL = buildUrlWithContextPath("login");
+
+
+
 $(function(){
     $("#userform").submit(function(event) {
         event.preventDefault();
         $.ajax({
-            method:this.method,
+            //method:this.method,
+            method: "POST",
             data: $("#userform").serialize(),
-            url:this.action,
+            url:LOGIN_URL ,
             timeout: 4000,
             success: function(r){
                 console.log(r);

@@ -82,6 +82,7 @@ public class APlayers {
             if(player.GetName()==name)
             {
                 this.aplayers.remove(player);
+                /*
                 int num_of_humans=0;
                 for(APlayer hp:this.aplayers) { if(hp.GetType()==PlayerType.HUMAN) num_of_humans++; }
                 if(num_of_humans==1)
@@ -89,14 +90,18 @@ public class APlayers {
                     if(this.aplayers.size()==num_of_humans) this.is_only_one_player=true;
                 }
                 else if(num_of_humans<1) this.is_only_one_player=true;
-
+                */
                 return;
             }
         }
     }
 
     public boolean IsOnlyOnePlayerLeft(){
-        return this.is_only_one_player;
+        if(this.aplayers.size()==1){
+            return true;
+        }
+        return false;
+        //return this.is_only_one_player;
     }
 
     public boolean IsPlayerExist(int id){

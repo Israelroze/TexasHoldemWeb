@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 /*
 public class Tester {
    public static void main(String[] args) throws PlayerDataMissingException {
-       String conf_file="C:\\Users\\irozenblit\\Documents\\Private\\Java\\TexasHoldem\\Engine\\Resource\\master.xml";
+       String conf_file="C:\\Users\\irozenblit\\Documents\\Private\\Java\\TexasHoldem\\EngineUtils\\Resource\\master.xml";
        Game game=new Game();
 
        boolean isLoadOK=true;

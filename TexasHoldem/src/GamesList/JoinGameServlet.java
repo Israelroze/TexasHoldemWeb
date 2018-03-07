@@ -38,7 +38,13 @@ public class JoinGameServlet extends HttpServlet {
                 try {
                     getManager().AddPlayerToGame((String)objGameID,username);
 
-                    ServletUtils.SendRedirectURL("/pages/table/table.html",response);
+                    if(getManager().GetGame((String)objGameID).GetTotalNumOfPlayers()==getManager().GetGame((String)objGameID).GetRegisteredNumOfPlayers())
+                    {
+                        getManager().GetGame((String)objGameID).StartGame();
+                    }
+
+                    ServletUtils.setSessionParam(request,"gameID",(String)objGameID);
+                    ServletUtils.SendRedirectURL("../table/table.html",response);
                   //  try (PrintWriter out = response.getWriter()) {
                     //    out.println("ok");
                     //    out.flush();

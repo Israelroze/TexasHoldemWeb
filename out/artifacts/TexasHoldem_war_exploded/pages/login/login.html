@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../common/jquery-2.0.3.min.js"></script>
+    <script src="../../common/context-path-helper.js"></script>
+    <script type="text/javascript" src="../../pages/login/login.js"></script>
+    <link rel="stylesheet" href="../../pages/login/login.css">
+</head>
+<body background="../../common/images/LoginBackGround.jpg">
+<div class="login-page">
+    <div class="form">
+        <form id="userform" action="/login"  method="POST" class="register-form">
+            <input type="text" name="username" id="username" placeholder="name">
+            <div class="checkboxcomp">
+                <label for="isComputer">Computer Player</label>
+                <input type="checkbox" name="iscomputer" id="isComputer">
+            </div>
+            <input type="submit" id="loginUser" class="form button">
+        </form>
+        <label id="errormessage"></label>
+    </div>
+</div>
+</body>
+</html>
+

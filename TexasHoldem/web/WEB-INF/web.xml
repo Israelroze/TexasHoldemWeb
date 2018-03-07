@@ -55,6 +55,10 @@
         <servlet-name>InitReady</servlet-name>
         <servlet-class>Gameloop.InitReadyStateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LeaveGame</servlet-name>
+        <servlet-class>Gameloop.LeaveGameServlet</servlet-class>
+    </servlet>
         <servlet>
             <servlet-name>SetMove</servlet-name>
             <servlet-class>Gameloop.SetMoveServlet</servlet-class>
@@ -122,5 +126,9 @@
     <servlet-mapping>
         <servlet-name>InitReady</servlet-name>
         <url-pattern>/initready</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LeaveGame</servlet-name>
+        <url-pattern>/leavegame</url-pattern>
     </servlet-mapping>
 </web-app>

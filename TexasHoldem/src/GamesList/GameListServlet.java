@@ -41,7 +41,7 @@ public class GameListServlet extends HttpServlet {
                 response.setContentType("application/json");
                 try (PrintWriter out = response.getWriter()) {
                     String json = gson.toJson(gamelist);
-                    System.out.println(json); //DEBUG
+                    if(ServletUtils.IsDebug()){System.out.println(json);}
                     out.println(json);
                     out.flush();
                 }

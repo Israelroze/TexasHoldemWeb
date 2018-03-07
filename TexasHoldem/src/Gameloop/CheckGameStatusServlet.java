@@ -24,6 +24,7 @@ public class CheckGameStatusServlet extends HttpServlet {
         }
         else {
             String game_id=getManager().IsPlayerInReadyGame(username);
+            //String game_id = ServletUtils.getSessionParam(request, "gameID");
             if(game_id!=null) {
                 ServletUtils.setSessionParam(request, "gameID", game_id);
 

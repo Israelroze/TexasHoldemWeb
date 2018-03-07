@@ -32,7 +32,8 @@ public class EndGameServlet extends HttpServlet {
             else {
                 Engine game = getManager().GetGame(game_id);
                 game.SetGameOver(true);
-                ServletUtils.SendRedirectURL("/pages/lobby/lobby.html",response);
+                getManager().InitGame(game);
+                ServletUtils.SendRedirectURL("../lobby/lobby.html",response);
             }
         }
     }

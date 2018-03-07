@@ -39,6 +39,8 @@ public class Game implements Engine {
     private boolean Is_replay=false;
     private boolean is_hand_started=false;
     private boolean is_hand_over=false;
+    private boolean is_first_entarnce=false;
+
     private int ready_players=0;
 
     //Private Methods
@@ -282,6 +284,17 @@ public class Game implements Engine {
             player.BuyMoney(this.configuration.getStructure().getBuy());
         }
         //TBD - insert function pass result
+    }
+
+    @Override
+    public void InitGame() {
+        this.players=new APlayers();
+        this.num_of_hands=0;
+        this.ready_players=0;
+        this.is_game_over=false;
+        this.is_game_started=false;
+        this.is_hand_over=false;
+        this.is_hand_started=false;
     }
 
     @Override
@@ -945,9 +958,14 @@ public class Game implements Engine {
 
     @Override
     public boolean IfEnoughPlayers() {
-        if(this.players.GetSize()==this.GetTotalNumOfPlayers())
+        if(this.num_of_hands>1)//init already done
         {
             return true;
+        }
+        else {
+            if (this.players.GetSize() == this.GetTotalNumOfPlayers()) {
+                return true;
+            }
         }
         return false;
     }
@@ -973,7 +991,16 @@ public class Game implements Engine {
 
     @Override
     public boolean IsPlayersReady() {
-        if(this.GetTotalNumberOfPlayers()==this.ready_players) return true;
+
+        if(ENABLE_LOG) System.out.println("FROM GAME CHECK PLAYERS READY: comparing registred:"+this.players.GetSize()+" to ready:"+this.ready_players);
+        if(this.players.GetSize()<=this.ready_players) return true;
+        /*if(this.num_of_hands>1)
+        {
+        }
+        else
+        {
+            if(this.GetTotalNumberOfPlayers()==this.ready_players) return true;
+        }*/
         return false;
     }
 
@@ -1076,6 +1103,29 @@ public class Game implements Engine {
     @Override
     public void CheckAnyPlayerOutOfMoney() {
         if(this.IsAnyPlayerOutOfMoney()) this.is_game_over=true;
+    }
+
+    @Override
+    public boolean CheckFirstGameEntarnce() {
+        if(this.GetRegisteredNumOfPlayers()==this.GetTotalNumOfPlayers())
+        {
+            this.is_first_entarnce=true;
+        }
+        return this.is_first_entarnce;
+    }
+
+    @Override
+    public boolean IsAllHumansLeft() {
+        boolean is_found=false;
+        for(APlayer player:this.players.GetPlayers())
+        {
+            if(player.GetType()==PlayerType.HUMAN)
+            {
+                is_found=true;
+            }
+        }
+        if(is_found)return false;
+        return true;
     }
 
 }

@@ -23,7 +23,8 @@ public class ReadyPlayerServlet extends HttpServlet {
             ServletUtils.SendErrorMessage("User don't registered", response);
         }
         else {
-            String game_id=getManager().IsPlayerInReadyGame(username);
+            //String game_id=getManager().IsPlayerInReadyGame(username);
+            String game_id = ServletUtils.getSessionParam(request, "gameID");
             if(game_id!=null){
                 getManager().GetGame(game_id).AddReadyPlayer();
             }

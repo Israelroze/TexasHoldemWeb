@@ -47,7 +47,7 @@ public class UserLoginServlet extends HttpServlet {
                 {
                     //ok, add user and login
                     ServletUtils.setSessionUser(request, username);
-                    ServletUtils.SendRedirectURL("./pages/lobby/lobby.html",response);
+                    ServletUtils.SendRedirectURL("../lobby/lobby.html",response);
                 }
             }
             else
@@ -59,7 +59,7 @@ public class UserLoginServlet extends HttpServlet {
         else
         {
             //session already created, check if username already login
-            ServletUtils.SendRedirectURL("./pages/lobby/lobby.html",response);
+            ServletUtils.SendRedirectURL("../lobby/lobby.html",response);
         }
     }
 

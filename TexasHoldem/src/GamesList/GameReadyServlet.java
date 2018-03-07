@@ -8,6 +8,7 @@ import GameManager.GameManager;
 import Utils.ServletUtils;
 import com.google.gson.Gson;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,23 +30,41 @@ public class GameReadyServlet extends HttpServlet{
             ServletUtils.SendErrorMessage("User don't registered", response);
         }
         else {
-            String game_id=getManager().IsPlayerInReadyGame(username);
+            //String game_id=getManager().IsPlayerInReadyGame(username);
+            String game_id = ServletUtils.getSessionParam(request, "gameID");
             if(game_id!=null){
-                ServletUtils.setSessionParam(request,"gameID",game_id);
+                //ServletUtils.setSessionParam(request,"gameID",game_id);
 
-                if(getManager().GetGame(game_id).IsPlayersReady()){
-                    try (PrintWriter out = response.getWriter()) {
-                        out.println("true");
-                        out.flush();
+                if(getManager().GetGame(game_id).CheckFirstGameEntarnce())
+                {
+                    if(getManager().GetGame(game_id).IsOnlyOnePlayerLeft() || getManager().GetGame(game_id).IsAllHumansLeft())
+                    {
+                        RequestDispatcher rd=request.getRequestDispatcher("quitgame");
+                        rd.forward(request, response);
+                    }
+
+                    if(getManager().GetGame(game_id).IsPlayersReady()){
+                        try (PrintWriter out = response.getWriter()) {
+                            out.println("true");
+                            out.flush();
+                        }
+                    }
+                    else
+                    {
+                        try (PrintWriter out = response.getWriter()) {
+                            out.println("false");
+                            out.flush();
+                        }
                     }
                 }
                 else
                 {
                     try (PrintWriter out = response.getWriter()) {
-                        out.println("false");
+                        out.println("Not enough players yet");
                         out.flush();
                     }
                 }
+
                 //if(!getManager().GetGame(game_id).IsGameStarted())
                 //{
                   //  getManager().GetGame(game_id).StartGame();

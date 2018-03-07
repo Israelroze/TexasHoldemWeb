@@ -2,6 +2,12 @@ var chatVersion = 0;
 var refreshRate = 2000; //mili seconds
 var timeout=1000;
 
+var JoinGame_URL=buildUrlWithContextPath("joingame");
+var GaseList_URL=buildUrlWithContextPath("gamelist");
+var UserList_URL=buildUrlWithContextPath("userlist");
+var FileUpload_URL=buildUrlWithContextPath("fileupload");
+var GameReady_URL=buildUrlWithContextPath("gameready");
+
 $(LoadGameFile);
 $(PollUserlist);
 $(PollGamelist);
@@ -18,7 +24,7 @@ function PollUserlist() {
 
 function ajaxUserList() {
     $.ajax({
-        url:"/userlist",
+        url:UserList_URL,
         success: function(users) {
             refreshUserlist(users);
         }
@@ -54,7 +60,7 @@ function PollGamelist(){
 
 function ajaxGameList() {
     $.ajax({
-        url:"/gamelist",
+        url:GaseList_URL,
         success: function(games) {
             refreshGamelist(games);
         }
@@ -88,7 +94,7 @@ function joinGame(id) {
 
     $.ajax({
         method: "POST",
-        url:"/joingame",
+        url:JoinGame_URL,
         data: {
                 "GameId" : id
         },
@@ -115,7 +121,7 @@ function LoadGameFile(){
         $.ajax({
             method:this.method,
             data:formdata,
-            url:this.action,
+            url:FileUpload_URL,
             processData: false, // Don't process the files
             contentType: false, // Set content type to false as jQuery will tell the server its a query string request
             timeout: 4000,
@@ -132,7 +138,7 @@ function LoadGameFile(){
 
 function ajaxReadyGame(){
     $.ajax({
-        url:"/gameready",
+        url:GameReady_URL,
         success: function(r) {
             console.log(r);
             if(!r.includes("false")){

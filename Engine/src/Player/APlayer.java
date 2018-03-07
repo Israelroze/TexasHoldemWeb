@@ -1,5 +1,6 @@
 package Player;
 
+import API.Engine;
 import Card.Card;
 
 import Exceptions.NoSufficientMoneyException;
@@ -8,6 +9,7 @@ import Generated.Player;
 
 public class APlayer{
     //info
+
     private PlayerType type;
     private int id;
     private String name;
@@ -34,6 +36,17 @@ public class APlayer{
         this.type=type;
         this.name=name;
         this.id=ID;
+        this.ClearBidStats();
+        this.num_of_buys=0;
+        this.num_of_wins=0;
+        this.money=0;
+        this.win_chance="0%";
+        this.state=PlayerState.NONE;
+    }
+
+    public void InitPlayer(){
+        System.out.println("INIITING Player:"+this.name);
+        this.id=0;
         this.ClearBidStats();
         this.num_of_buys=0;
         this.num_of_wins=0;
@@ -143,6 +156,7 @@ public class APlayer{
     }
 
     public void BuyMoney(int amount) {
+        System.out.println("Adding money to:"+this.name+" the amount of:"+amount);
         AddMoney(amount);
         num_of_buys++;
     }

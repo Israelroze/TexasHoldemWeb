@@ -15,6 +15,21 @@ var print_log = true;
 var isfisrtSetup = false;
 var is_Bet_Option_displayed = false;
 
+
+//URLS
+var Start_Game_URL=buildUrlWithContextPath("startgame");
+var Start_Hand_URL=buildUrlWithContextPath("starthand");
+var Quit_Game_URL=buildUrlWithContextPath("quitgame");
+var Get_Allowded_URL=buildUrlWithContextPath("getallowded");
+var Game_Table_URL=buildUrlWithContextPath("gametable");
+var Game_Ready_URL=buildUrlWithContextPath("gameready");
+var Init_Ready_URL=buildUrlWithContextPath("initready");
+var Player_Ready_URL=buildUrlWithContextPath("playerready");
+var Game_Status_URL=buildUrlWithContextPath("gamestatus");
+var Set_Move_URL=buildUrlWithContextPath("setmove");
+var Leave_Game_URL=buildUrlWithContextPath("leavegame");
+
+
 //$(init_countdown);
 $(UpperMenu);
 $(PollIsGameReady);
@@ -29,8 +44,10 @@ $(document).ready(function(){
 ////////////// Trigger Hand and Game
 ///////////////////////////////////////////////////////////////////
 function UpperMenu(){
+    $("#on_board_item").hide();
+    $(".pos").hide();
     $("#top_menu").append($('<button class="bar_button" id ="Ready"></button>').text("Ready").bind('click',function(){ajaxPlayerReady();}));
-    $("#top_menu").append($('<button class="bar_button" id ="Buy"></button>').text("Buy").bind('click',function(){ajaxBuy();}));
+   //$("#top_menu").append($('<button class="bar_button" id ="Buy"></button>').text("Buy").bind('click',function(){ajaxBuy();}));
     $("#top_menu").append($('<button class="bar_button" id ="LeaveGame"></button>').text("Leave Game").bind('click',function(){ajaxLeaveGame();}));
 }
 function init_countdown() {
@@ -110,7 +127,7 @@ function PollIsGameReady(){
 function ajaxStartGame(){
 
     $.ajax({
-        url:"/startgame",
+        url:Start_Game_URL,
 
         success: function(r) {
             logPrint("from ajaxStartGame success"+r);
@@ -123,7 +140,7 @@ function ajaxStartGame(){
 
 function ajaxStartHand() {
     $.ajax({
-        url:"/starthand",
+        url:Start_Hand_URL,
 
         success: function(r) {
             logPrint("from ajaxStartHand success"+r);
@@ -152,7 +169,7 @@ function ajaxQuitGame() {
     clearInterval(PollGameInterval);
 
     $.ajax({
-        url:"/quitgame",
+        url:Quit_Game_URL,
 
         success: function(r) {
             console.log(r);
@@ -161,7 +178,7 @@ function ajaxQuitGame() {
         },
         error: function(e){
             logPrint("from ajaxQuitGame"+e.responseText);
-            if(e.responseText.includes("/pages/")){
+            if(e.responseText.includes("/lobby/")){
                 console.log("redirecting to "+e.responseText);
                 window.location.href=e.responseText;
             }
@@ -171,7 +188,7 @@ function ajaxQuitGame() {
 
 function ajaxBetOptionContent() {
     $.ajax({
-        url: "/getallowded",
+        url: Get_Allowded_URL,
         dataType: 'json',
         async : false,
         success: function (data) {
@@ -187,24 +204,32 @@ function ajaxBetOptionContent() {
 function ajaxTableContent() {
 
     $.ajax({
-        url: "/gametable",
+        url: Game_Table_URL,
         dataType: 'json',
         async : false,
         success: function (data) {
             logPrint("OK ajaxTableContent, got JSON ");
             logPrint(data);
-            if(!isfisrtSetup)
-            {
-                firstSetup(data.number_of_players);
+            if (data.winners.length !== 0) {
+                console.log("Got Winners, Stopping Poll Game table");
+                clearInterval(PollGameInterval);
+                display_winners(data);
+                return;
+            }
 
-                isfisrtSetup = true;
+            if(data.number_of_players!=num_of_players){
+                num_of_players=data.number_of_players;
+
+                isfisrtSetup = false;
+                if(!isfisrtSetup)
+                {
+                    firstSetup(data.number_of_players);
+                    isfisrtSetup = true;
+                }
+
             }
             checkGameStatus(data);
             update_games_values(data);
-            if (data.winners.length !== 0) {
-                clearInterval(PollGameInterval);
-                display_winners(data);
-            }
         },
         error: function (error) {
             logPrint("Get game data ended with the following error "+ error.responseText);
@@ -217,27 +242,36 @@ function ajaxTableContent() {
 
 function ajaxReadyGame(){
     $.ajax({
-        url:"/gameready",
+        url:Game_Ready_URL,
         success: function(r) {
             console.log(" from ajaxReadyGame:"+r);
             if(r.includes("true")){
                 clearInterval(PollGameReady);
-                ajaxStartGame();
+                //ajaxStartGame();
                 ajaxStartHand();
                 //init_countdown();
+            }
+            else
+            {
+                if(r.includes("/lobby/")){
+                    console.log("redirecting to "+r);
+                    window.location.href=r;
+                }
             }
         },
         error: function(e) {
             $("#errormessage").text(e.responseText).css({'color': 'red'});
+            if(e.responseText.includes("/lobby/")) {
+                console.log("redirecting to " + e.responseText);
+                window.location.href = e.responseText;
+            }
         }
     });
 }
 
-function ajaxBuy(){}
-
 function ajaxPlayerReady(){
     $.ajax({
-        url:"/playerready",
+        url:Player_Ready_URL,
 
         success: function(r) {
             logPrint("from ajaxPlayerReady success"+r);
@@ -250,11 +284,28 @@ function ajaxPlayerReady(){
     });
 }
 
-function ajaxLeaveGame(){}
+function ajaxLeaveGame(){
+    $.ajax({
+        url:Leave_Game_URL,
+
+        success: function(r) {
+            console.log(r);
+            console.log("redirecting to "+r);
+            window.location.href=r;
+        },
+        error: function(e){
+            logPrint("from ajaxQuitGame"+e.responseText);
+            if(e.responseText.includes("/lobby/")){
+                console.log("redirecting to "+e.responseText);
+                window.location.href=e.responseText;
+            }
+        }
+    });
+}
 
 function ajaxInitReadyPlayers(){
     $.ajax({
-        url:"/initready",
+        url:Init_Ready_URL,
 
         success: function(r) {
             logPrint("from ajaxInitReadyPlayers success"+r);
@@ -268,7 +319,7 @@ function ajaxInitReadyPlayers(){
 
 function ajaxGameStatus(){
     $.ajax({
-        url:"/gamestatus",
+        url:Game_Status_URL,
 
         success: function(r) {
             logPrint("from ajaxGameStatus success"+r);
@@ -394,7 +445,7 @@ function SetMove(move,value){
     logPrint("inside SetMove Function");
     $.ajax({
         method:"POST",
-        url:"/setmove",
+        url:Set_Move_URL,
         data: {
             "move"  : move,
             "value" : value
@@ -431,6 +482,9 @@ function firstSetup(numOfPlayer){
 
     if(isfisrtSetup== true) return;
     var  css_data =get_board_location();
+
+    $("#on_board_item").show();
+    $(".pos").show();
 
     if (numOfPlayer == 6)
     {
@@ -471,6 +525,18 @@ function firstSetup(numOfPlayer){
         $("#pos1").css(css_data.positions.top_right).children(".bet").css(css_data.bet_positions.top);
         $("#pos2").css(css_data.positions.bottom_middle).children(".bet").css(css_data.bet_positions.bottom);
         $("#pos3").css(css_data.positions.top_left).children(".bet").css(css_data.bet_positions.top);
+        $("#pos4").remove();
+        $("#pos5").remove();
+        $("#pos6").remove();
+
+    }
+
+    if (numOfPlayer == 2)
+    {
+
+        $("#pos1").css(css_data.positions.top_middle).children(".bet").css(css_data.bet_positions.top);
+        $("#pos2").css(css_data.positions.bottom_middle).children(".bet").css(css_data.bet_positions.bottom);
+        $("#pos3").remove();
         $("#pos4").remove();
         $("#pos5").remove();
         $("#pos6").remove();

@@ -66,4 +66,9 @@ public class ServletUtils {
         out.flush();
     }
 
+    public static boolean IsDebug()
+    {
+        return true;
+    }
+
 }

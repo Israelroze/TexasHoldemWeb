@@ -95,7 +95,7 @@ public class GameManager implements EngineManager {
 
     @Override
     public void LeavePlayerGame(String game_id, String username) {
-
+        this.GetGame(game_id).DeletePlayer(username);
     }
 
     @Override
@@ -285,7 +285,12 @@ public class GameManager implements EngineManager {
 
     @Override
     public void InitGame(Engine game) {
+        game.InitGame();
 
+        for(APlayer player: this.usersHash.values())
+        {
+            player.InitPlayer();
+        }
     }
 
     @Override

@@ -32,6 +32,7 @@ public interface Engine {
     public void LoadFromXML(String filename) throws GameStartedException, UnexpectedObjectException, FileNotFoundException, BigSmallMismatchException, PlayerDataMissingException, HandsCountDevideException, WrongFileNameException, HandsCountSmallerException, JAXBException, FileNotXMLException, MinusZeroValueException, BigBiggerThanBuyException, MaxBigMoreThanHalfBuyException, PlayerdIDmismatchException;
     public String LoadFromXML(InputStream fstream) throws JAXBException, UnexpectedObjectException, MaxBigMoreThanHalfBuyException, BigSmallMismatchException, BigBiggerThanBuyException, HandsCountSmallerException, PlayerdIDmismatchException, HandsCountDevideException, MinusZeroValueException, GameStartedException;
     public void StartGame();
+    public void InitGame();
     public boolean IsGameOver();
     public boolean IsGameStarted();
     public int GetCurrentHandNumber();
@@ -52,6 +53,9 @@ public interface Engine {
     public void CheckNoHumanRegistered();
     public void CheckNumOfHands();
     public void CheckAnyPlayerOutOfMoney();
+    public boolean CheckFirstGameEntarnce();
+    public boolean IsAllHumansLeft();
+
 
     ////////////////////////////////////////////////
     ///// Hand
