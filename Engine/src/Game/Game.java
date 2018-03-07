@@ -748,7 +748,15 @@ public class Game implements Engine {
                     }
                     else
                     {
-                        i = rnd.nextInt((range[1] - range[0]) + 1) + range[0];
+                        if(range[1]>0 && range[0]>0 && range[0]<range[1]) {
+                            if(ENABLE_LOG) System.out.println("IN GET AUTO MOVE: genrating random stake from "+range[0]+" to "+range[1]);
+                            int new_stake=(range[1] - range[0]) + 1;
+                            if(ENABLE_LOG) System.out.println("IN GET AUTO MOVE: stake for random:"+new_stake);
+                            if(new_stake>0) {
+                                i = rnd.nextInt((range[1] - range[0]) + 1) + range[0];
+                            }
+                            else i=range[0];
+                        }else i=range[0];
                         if(ENABLE_LOG) System.out.println("Player Type:"+this.current_hand.GetCurrentPlayer().GetType() +" ID:"+this.current_hand.GetCurrentPlayer().getId()+"random:"+i);
                         return new Move(type,i);
                     }
@@ -819,7 +827,7 @@ public class Game implements Engine {
         List<APlayer> players = this.players.GetPlayers();
         for (APlayer player: players)
         {
-            if( player.GetMoney() <= 0)
+            if( player.GetMoney() <= 0 || player.GetMoney()<this.configuration.getStructure().getBlindes().getBig())
                 return true;
         }
         return false;
@@ -1024,6 +1032,11 @@ public class Game implements Engine {
     }
 
     @Override
+    public void DeletePlayer(String name) {
+        this.players.DeletPlayerByName(name);
+    }
+
+    @Override
     public String GetGameID() {
         return this.configuration.getDynamicPlayers().getGameTitle();
     }
@@ -1041,6 +1054,28 @@ public class Game implements Engine {
     @Override
     public int GetBuy(){
         return this.configuration.getStructure().getBuy();
+    }
+
+    @Override
+    public void CheckNoHumanRegistered() {
+        boolean is_exist=false;
+        for(APlayer player:this.players.GetPlayers())
+        {
+            if(player.GetType()==PlayerType.HUMAN)
+                is_exist=true;
+        }
+
+        if(!is_exist) this.is_game_over=true;
+    }
+
+    @Override
+    public void CheckNumOfHands() {
+        if(this.num_of_hands>=this.configuration.getStructure().getHandsCount())this.is_game_over=true;
+    }
+
+    @Override
+    public void CheckAnyPlayerOutOfMoney() {
+        if(this.IsAnyPlayerOutOfMoney()) this.is_game_over=true;
     }
 
 }

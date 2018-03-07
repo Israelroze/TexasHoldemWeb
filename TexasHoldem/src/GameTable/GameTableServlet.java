@@ -109,7 +109,7 @@ public class GameTableServlet extends HttpServlet {
             else if(game.GetPlayerIsSmall(i)) role = "small";
             else role ="no_role";
 
-            users.add(new UserData(game.GetPlayerName(i),game.GetPlayerNumOfWins(i),game.GetPlayerPot(i),getManager().GetUserType(game.GetPlayerName(i)),p_cards ,role));
+            users.add(new UserData(game.GetPlayerName(i),game.GetPlayerNumOfWins(i),game.GetPlayerPot(i),getManager().GetUserType(game.GetPlayerName(i)),p_cards ,role,getManager().IsYourTurn(game,game.GetPlayerName(i))));
         }
 
         List<String> comm_cards=new LinkedList<>();

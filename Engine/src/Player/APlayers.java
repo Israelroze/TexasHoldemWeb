@@ -76,6 +76,25 @@ public class APlayers {
         }
     }
 
+    public void DeletPlayerByName(String name){
+        for(APlayer player: this.aplayers)
+        {
+            if(player.GetName()==name)
+            {
+                this.aplayers.remove(player);
+                int num_of_humans=0;
+                for(APlayer hp:this.aplayers) { if(hp.GetType()==PlayerType.HUMAN) num_of_humans++; }
+                if(num_of_humans==1)
+                {
+                    if(this.aplayers.size()==num_of_humans) this.is_only_one_player=true;
+                }
+                else if(num_of_humans<1) this.is_only_one_player=true;
+
+                return;
+            }
+        }
+    }
+
     public boolean IsOnlyOnePlayerLeft(){
         return this.is_only_one_player;
     }

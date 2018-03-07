@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class CheckGameStatusServlet extends HttpServlet {
-
+public class InitReadyStateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username= ServletUtils.getSessionUser(request);
@@ -24,23 +23,19 @@ public class CheckGameStatusServlet extends HttpServlet {
         }
         else {
             String game_id=getManager().IsPlayerInReadyGame(username);
-            if(game_id!=null) {
-                ServletUtils.setSessionParam(request, "gameID", game_id);
+            if(game_id!=null){
+                ServletUtils.setSessionParam(request,"gameID",game_id);
 
-                getManager().GetGame(game_id).CheckAnyPlayerOutOfMoney();
-                getManager().GetGame(game_id).CheckNoHumanRegistered();
-                getManager().GetGame(game_id).CheckNumOfHands();
-
-                if (getManager().GetGame(game_id).IsGameOver()) {
-                    try (PrintWriter out = response.getWriter()) {
-                        out.println("Game Over");
-                        out.flush();
-                    }
-                } else {
-                    try (PrintWriter out = response.getWriter()) {
-                        out.println("Game Running");
-                        out.flush();
-                    }
+                getManager().GetGame(game_id).InitReadyPlayers();
+                try (PrintWriter out = response.getWriter()) {
+                    out.println("ok");
+                    out.flush();
+                }
+            }
+            else{
+                try (PrintWriter out = response.getWriter()) {
+                    out.println("Game not ready yet.");
+                    out.flush();
                 }
             }
         }

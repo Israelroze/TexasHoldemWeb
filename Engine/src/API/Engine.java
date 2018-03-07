@@ -49,6 +49,9 @@ public interface Engine {
     public void RegisterUploader(String username);
     public String GetUploaderName();
     public int GetBuy();
+    public void CheckNoHumanRegistered();
+    public void CheckNumOfHands();
+    public void CheckAnyPlayerOutOfMoney();
 
     ////////////////////////////////////////////////
     ///// Hand
@@ -96,6 +99,7 @@ public interface Engine {
     ///// Player
     ////////////////////////////////////////////////
     public void AddPlayer(String Name,String Type) throws PlayerAlreadyBetException, PlayerdIDmismatchException;
+    public void DeletePlayer(String name);
     public List<Card> GetPlayersCards(int id);
     public void PlayerPerformBuy(int id);
     public int GetFirstPlayerID();

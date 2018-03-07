@@ -780,7 +780,11 @@ public class Hand {
             }
         }
 
-        if(active_humans==0) this.is_hand_over=true;
+        /*
+        if(active_humans==0){
+            this.SetWinner();
+            this.is_hand_over=true;
+        }*/
 
     }
 

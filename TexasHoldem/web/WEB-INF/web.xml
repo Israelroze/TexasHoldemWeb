@@ -44,8 +44,16 @@
             <servlet-class>GamesList.GameReadyServlet</servlet-class>
         </servlet>
     <servlet>
+        <servlet-name>GameStatus</servlet-name>
+        <servlet-class>Gameloop.CheckGameStatusServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>PlayerReady</servlet-name>
         <servlet-class>Gameloop.ReadyPlayerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InitReady</servlet-name>
+        <servlet-class>Gameloop.InitReadyStateServlet</servlet-class>
     </servlet>
         <servlet>
             <servlet-name>SetMove</servlet-name>
@@ -107,4 +115,12 @@
             <servlet-name>PlayerReady</servlet-name>
             <url-pattern>/playerready</url-pattern>
         </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GameStatus</servlet-name>
+        <url-pattern>/gamestatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InitReady</servlet-name>
+        <url-pattern>/initready</url-pattern>
+    </servlet-mapping>
 </web-app>

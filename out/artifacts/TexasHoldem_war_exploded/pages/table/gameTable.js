@@ -138,6 +138,10 @@ function ajaxStartHand() {
                 PollGameTable();
                 isfisrtSetup=false;
             }
+            else
+            {
+                displayEndGame();
+            }
             // if_no_fatal_errors=true;
             //if(e.responseText.includes("no sufficient money")) newHandCountdonw("Game Is Over, Return to Lobby In:");
         }
@@ -247,6 +251,43 @@ function ajaxPlayerReady(){
 }
 
 function ajaxLeaveGame(){}
+
+function ajaxInitReadyPlayers(){
+    $.ajax({
+        url:"/initready",
+
+        success: function(r) {
+            logPrint("from ajaxInitReadyPlayers success"+r);
+
+        },
+        error: function(e){
+            logPrint("from ajaxInitReadyPlayers"+e.responseText);
+        }
+    });
+}
+
+function ajaxGameStatus(){
+    $.ajax({
+        url:"/gamestatus",
+
+        success: function(r) {
+            logPrint("from ajaxGameStatus success"+r);
+            if(r.includes("Over"))
+            {
+                displayEndGame();
+            }
+            else {
+                //clearTable();
+                ajaxInitReadyPlayers();
+                PollIsGameReady();
+                UpperMenu();
+            }
+        },
+        error: function(e){
+            logPrint("from ajaxGameStatus"+e.responseText);
+        }
+    });
+}
 
 ///////////////////////////////////////////////////////////////////
 ////////////// Upper menu
@@ -453,17 +494,7 @@ function display_winners(data) {
 
     function close_modal() {
         modal.style.display = "none";
-        if(data.game_status.is_game_over){
-            displayEndGame();
-        }
-        else
-        {
-            //clearTable();
-            PollIsGameReady();
-            UpperMenu();
-        }
-        //ajaxTableContent();
-        //newHandCountdonw("A New Hand Will Start In:");
+        ajaxGameStatus();
     }
     //setTimeout(close_modal, 5000);
 }
@@ -477,7 +508,6 @@ function displayEndGame(){
 
     $("#winner_list").empty();
     $("#winner_list").text("The Game Is Ended, Thank You For Playing");
-    $("#winner_list").append($("<ul></ul>").append(...data.winners.map(x => $('<li></li>').text(x))));
     $("#winner_list").append($('<button class="popup_button"></button>').text("ok").bind('click',function(){close_modal()}));
 
     function close_modal() {
