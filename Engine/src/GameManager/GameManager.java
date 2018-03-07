@@ -20,11 +20,13 @@ import java.util.Map;
 public class GameManager implements EngineManager {
 
     private Map<String,Engine> gameHash;
+    private Map<String,Integer> gameReadyList;
     private Map<String, APlayer> usersHash;
 
     public GameManager(){
         this.usersHash=new HashMap<>();
         this.gameHash=new HashMap<>();
+        this.gameReadyList=new HashMap<>();
     }
 
     @Override
@@ -89,6 +91,11 @@ public class GameManager implements EngineManager {
         {
             throw new UserNameNotProvidedException();
         }
+    }
+
+    @Override
+    public void LeavePlayerGame(String game_id, String username) {
+
     }
 
     @Override
@@ -158,9 +165,9 @@ public class GameManager implements EngineManager {
             {
                 if(entry.getValue().IfEnoughPlayers())
                 {
-                    if(!entry.getValue().IsGameStarted() ) {
+                   // if(!entry.getValue().IsGameStarted() ) {
                       return entry.getValue().GetGameID();
-                    }
+                   //  }
                 }
             }
         }
@@ -168,7 +175,22 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public void CheckGameStatus(Engine game) throws GameOverException, FatalGameErrorException {
+    public void AddReadyPlayer(String username, String GameID) {
+
+    }
+
+    @Override
+    public boolean IsAllPlayersReady(String GameID) {
+        return false;
+    }
+
+    @Override
+    public void InitPlayersReady(String GameID) {
+
+    }
+
+    @Override
+    public void CheckGameStatus(Engine game){
         //if game started
         if(game.IsGameStarted())
         {
@@ -208,18 +230,18 @@ public class GameManager implements EngineManager {
                                 } catch (PlayerFoldedException e) {
                                     // no way, if deals with it before
                                 } catch (ChipLessThanPotException e) {
-                                   throw new FatalGameErrorException("Computer player chips less that pot.");
+                                   //throw new FatalGameErrorException("Computer player chips less that pot.");
                                 } catch (NoSufficientMoneyException e) {
                                     //set game over flag to true
                                     game.SetGameOver(true);
                                     //game is over
                                     //throw new GameOverException();
                                 } catch (MoveNotAllowdedException e) {
-                                    throw new FatalGameErrorException("Computer player move not allowded.");
+                                   //throw new FatalGameErrorException("Computer player move not allowded.");
                                 } catch (PlayerAlreadyBetException e) {
                                     //throw new FatalGameErrorException("Computer player allready bet.");
                                 } catch (StakeNotInRangeException e) {
-                                    throw new FatalGameErrorException("Computer player stake not in range");
+                                   // throw new FatalGameErrorException("Computer player stake not in range");
                                 }
                             }
                         }

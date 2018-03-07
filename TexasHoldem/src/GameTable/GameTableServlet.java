@@ -55,7 +55,14 @@ public class GameTableServlet extends HttpServlet {
                 ServletUtils.SendErrorMessage("Error getting game id from session", response);
             } else {
                 Engine game = getManager().GetGame(game_id);
+                getManager().CheckGameStatus(game);
+                try (PrintWriter out = response.getWriter()) {
+                    String res = BuildTableData(game,username);
+                    out.println(res);
+                    out.flush();
+                }
 
+                /*
                 try {
                     getManager().CheckGameStatus(game);
                     try (PrintWriter out = response.getWriter()) {
@@ -67,7 +74,7 @@ public class GameTableServlet extends HttpServlet {
                     ServletUtils.SendErrorMessage("Game is over or not started yet.", response);
                 } catch (FatalGameErrorException e) {
                     ServletUtils.SendErrorMessage("Fatal Error:"+e.getMessage(), response);
-                }
+                }*/
             }
         }
     }

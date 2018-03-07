@@ -16,6 +16,7 @@ public interface EngineManager {
     public void DeleteGame(String id);
     public List<Engine> GetGamesList();
     public void AddPlayerToGame(String game_id,String username) throws UserNameNotProvidedException, GameIDNotProvidedException, PlayerAlreadyInGameException;
+    public void LeavePlayerGame(String game_id,String username);
 
     /////////////////////////////////////////////
     /////users
@@ -30,10 +31,13 @@ public interface EngineManager {
     public String IsPlayerInReadyGame(String username);
 
     /////////////////////////////////////////////
-    /////Main loop
+    ///// Main loop
     /////////////////////////////////////////////
-    public void CheckGameStatus(Engine game) throws GameOverException, FatalGameErrorException;
+    public void AddReadyPlayer(String username,String GameID);
+    public boolean IsAllPlayersReady(String GameID);
+    public void InitPlayersReady(String GameID);
     public void InitGame(Engine game);
+    public void CheckGameStatus(Engine game);
     public void CheckCurrentPlayerStatus(Engine game);
     public void CheckCurrentHandStatus(Engine game);
     public boolean IsYourTurn(Engine game,String username);

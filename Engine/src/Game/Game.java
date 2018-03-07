@@ -39,6 +39,7 @@ public class Game implements Engine {
     private boolean Is_replay=false;
     private boolean is_hand_started=false;
     private boolean is_hand_over=false;
+    private int ready_players=0;
 
     //Private Methods
     private void LoadPlayers() throws PlayerDataMissingException {this.players=new APlayers(configuration.getPlayers());}
@@ -949,6 +950,22 @@ public class Game implements Engine {
         {
             if(ep.GetName().equals(player.GetName())) return true;
         }
+        return false;
+    }
+
+    @Override
+    public void AddReadyPlayer() {
+        this.ready_players++;
+    }
+
+    @Override
+    public void InitReadyPlayers() {
+        this.ready_players=0;
+    }
+
+    @Override
+    public boolean IsPlayersReady() {
+        if(this.GetTotalNumberOfPlayers()==this.ready_players) return true;
         return false;
     }
 

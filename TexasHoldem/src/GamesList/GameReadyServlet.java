@@ -33,6 +33,19 @@ public class GameReadyServlet extends HttpServlet{
             if(game_id!=null){
                 ServletUtils.setSessionParam(request,"gameID",game_id);
 
+                if(getManager().GetGame(game_id).IsPlayersReady()){
+                    try (PrintWriter out = response.getWriter()) {
+                        out.println("true");
+                        out.flush();
+                    }
+                }
+                else
+                {
+                    try (PrintWriter out = response.getWriter()) {
+                        out.println("false");
+                        out.flush();
+                    }
+                }
                 //if(!getManager().GetGame(game_id).IsGameStarted())
                 //{
                   //  getManager().GetGame(game_id).StartGame();
@@ -40,10 +53,9 @@ public class GameReadyServlet extends HttpServlet{
 
                // ServletUtils.SendRedirectURL("/pages/table/table.html",response);
             }
-            else
-            {
+            else{
                 try (PrintWriter out = response.getWriter()) {
-                    out.println("false");
+                    out.println("Game not ready yet.");
                     out.flush();
                 }
             }

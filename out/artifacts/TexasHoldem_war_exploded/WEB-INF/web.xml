@@ -43,6 +43,10 @@
             <servlet-name>GameReady</servlet-name>
             <servlet-class>GamesList.GameReadyServlet</servlet-class>
         </servlet>
+    <servlet>
+        <servlet-name>PlayerReady</servlet-name>
+        <servlet-class>Gameloop.ReadyPlayerServlet</servlet-class>
+    </servlet>
         <servlet>
             <servlet-name>SetMove</servlet-name>
             <servlet-class>Gameloop.SetMoveServlet</servlet-class>
@@ -98,5 +102,9 @@
         <servlet-mapping>
             <servlet-name>SetMove</servlet-name>
             <url-pattern>/setmove</url-pattern>
+        </servlet-mapping>
+        <servlet-mapping>
+            <servlet-name>PlayerReady</servlet-name>
+            <url-pattern>/playerready</url-pattern>
         </servlet-mapping>
 </web-app>

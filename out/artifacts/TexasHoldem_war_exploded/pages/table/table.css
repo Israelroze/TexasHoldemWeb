@@ -19,6 +19,8 @@
     /* border: 100px; */
     /* height: 33%; */
     margin: auto;
+    max-width: 100%;
+
 }
 
 .upper{
@@ -39,8 +41,8 @@
     border: 1px solid rgba(29, 49, 91, .3);
 }
 
-
 .table_class {
+    max-width: 100%;
     position : relative;
     background-image: url('images/table.png');
     background-repeat: no-repeat;
@@ -155,7 +157,6 @@ html,body
     top:0;
     background: rgba(16, 34, 21, 0.3);
 
-
 }
 
 .role {
@@ -207,15 +208,7 @@ html,body
 }
 
 
-
-
-
-
-
-
 /* nemu bars*/
-
-
 #top_menu{
     top: 0;
 }
@@ -259,6 +252,21 @@ html,body
 .navbar  .bar_button:hover {
     background: #ddd;
     color: black;
+
+}
+
+
+.popup_button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ddd;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    border:none;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 17px;
 }
 
 #on_board_item {
@@ -458,4 +466,9 @@ html,body
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.ui-icon
+{
+    background-image: url("../../common/jquery-ui-1.12.1.custom/images/ui-icons_neongreen.png");
 }

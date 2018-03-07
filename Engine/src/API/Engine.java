@@ -129,4 +129,11 @@ public interface Engine {
     public boolean IfEnoughPlayers();
     public boolean IfPlayerExist(APlayer player);
 
+
+    ////////////////////////////////////////////////
+    /////
+    ////////////////////////////////////////////////
+    public void AddReadyPlayer();
+    public void InitReadyPlayers();
+    public boolean IsPlayersReady();
 }
