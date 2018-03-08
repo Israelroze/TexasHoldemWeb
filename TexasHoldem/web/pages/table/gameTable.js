@@ -603,6 +603,8 @@ function update_games_values(data) {
 
     }
 
+    $("#mySidebar").empty();
+    $("#mySidebar").append($('<p></p>').text("The player are:"));
     for (let i = 1 ; i<=num_of_players; i++) {
         $("#pos" + i.toString() + " .player_details .player_name").text(data.userData[i - 1].name);
         $("#pos" + i.toString() + " .player_details .type").text(data.userData[i - 1].type);
@@ -635,6 +637,10 @@ function update_games_values(data) {
             $("#pos" + i.toString() + " .player_details .cardplace .holecard1").css({"filter":"blur(4px)", "-webkit-filter": "blur(4px)"});
             $("#pos" + i.toString() + " .player_details .cardplace .holecard2").css({"filter":"blur(4px)", "-webkit-filter": "blur(4px)"});
         }
+        let turn = "not_my_turn";
+        if (data.userData[i-1].is_turn === true)
+            turn = "my_turn";
+        $("#mySidebar").append($("<p class =" + turn + "></p>").text((i)+". " + data.userData[i - 1].name));
     }
     $("#board").empty();
     $("#board").append(...data.table_data.communityCards.map(x => $('<div class="card boardcard"></div>').css("background-image", createUrlForImage(x))));
@@ -740,6 +746,7 @@ function ShowSlider(move) {
     slider_update_value();
 }
 
+
 function  open_raise_and_bet_scroller() {
 
 
@@ -759,4 +766,18 @@ function  open_raise_and_bet_scroller() {
         $("#demo_p").animate({width: 'toggle'}, 600);
     });
 
+}
+
+
+
+function w3_toggle() {
+    let side_bar =document.getElementById("mySidebar");
+    if (side_bar.style.display === "block")
+    {
+        side_bar.style.display = "none";
+    }
+    else if (side_bar.style.display === "none")
+    {
+        side_bar.style.display = "block";
+    }
 }
