@@ -84,7 +84,7 @@ public class GameTableServlet extends HttpServlet {
 
         List<UserData> users=new LinkedList<>();
 
-        for(int i=0;i<game.GetTotalNumOfPlayers();i++)
+        for(int i=0;i<game.GetRegisteredNumOfPlayers();i++)
         {
             String p_name=game.GetPlayerName(i);
 

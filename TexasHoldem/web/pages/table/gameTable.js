@@ -102,7 +102,6 @@ function newHandCountdonw(message){
 ///////////////////////////////////////////////////////////////////
 ////////////// Server POlL's
 ///////////////////////////////////////////////////////////////////
-
 function PollGameTable() {
     //prevent IE from caching ajax calls
     $.ajaxSetup({cache: false});
@@ -131,6 +130,7 @@ function ajaxStartGame(){
 
         success: function(r) {
             logPrint("from ajaxStartGame success"+r);
+            isfisrtSetup=false;
         },
         error: function(e){
             logPrint("from ajaxStartGame"+e.responseText);
@@ -145,8 +145,9 @@ function ajaxStartHand() {
         success: function(r) {
             logPrint("from ajaxStartHand success"+r);
             $("#top_menu button").remove();
-            PollGameTable();
             isfisrtSetup=false;
+
+            PollGameTable();
         },
         error: function(e){
             logPrint("from ajaxStartHand"+e.responseText);
@@ -210,26 +211,35 @@ function ajaxTableContent() {
         success: function (data) {
             logPrint("OK ajaxTableContent, got JSON ");
             logPrint(data);
-            if (data.winners.length !== 0) {
-                console.log("Got Winners, Stopping Poll Game table");
-                clearInterval(PollGameInterval);
-                display_winners(data);
-                return;
-            }
 
-            if(data.number_of_players!=num_of_players){
-                num_of_players=data.number_of_players;
-
-                isfisrtSetup = false;
-                if(!isfisrtSetup)
-                {
-                    firstSetup(data.number_of_players);
-                    isfisrtSetup = true;
+            if(data.game_status.is_hand_over){
+                if (data.winners.length !== 0) {
+                    console.log("Got Winners, Stopping Poll Game table");
+                    clearInterval(PollGameInterval);
+                    display_winners(data);
+                    return;
                 }
-
             }
-            checkGameStatus(data);
-            update_games_values(data);
+            else{
+                if(data.game_status.is_hand_started){
+                    checkGameStatus(data);
+                    console.log("number of players: " + data.userData.length + " num of players: " +num_of_players);
+                    if(data.userData.length!=num_of_players) {
+                        console.log("number of players diffrent, someone left 0_O");
+                        num_of_players = data.data.userData.length;
+                        isfisrtSetup = false;
+                    }
+
+                    if(!isfisrtSetup)
+                    {
+                        firstSetup(data.userData.length);
+                        isfisrtSetup = true;
+
+                    }
+
+                    update_games_values(data);
+                }
+            }
         },
         error: function (error) {
             logPrint("Get game data ended with the following error "+ error.responseText);
@@ -494,13 +504,15 @@ function clearTable(){
 
 function firstSetup(numOfPlayer){
 
-    if(isfisrtSetup== true) return;
+    console.log("First setup, drawing table content");
+
+    if(isfisrtSetup === true) return;
     var  css_data =get_board_location();
 
     $("#on_board_item").show();
     $(".pos").show();
 
-    if (numOfPlayer == 6)
+    if (numOfPlayer === 6)
     {
         $("#pos1").css(css_data.positions.top_right).children(".bet").css(css_data.bet_positions.top);
         $("#pos2").css(css_data.positions.bottom_right).children(".bet").css(css_data.bet_positions.bottom);
@@ -510,7 +522,7 @@ function firstSetup(numOfPlayer){
         $("#pos6").css(css_data.positions.top_middle).children(".bet").css(css_data.bet_positions.top);
     }
 
-    if (numOfPlayer == 5)
+    if (numOfPlayer === 5)
     {
 
         $("#pos1").css(css_data.positions.top_right).children(".bet").css(css_data.bet_positions.top);
@@ -522,7 +534,7 @@ function firstSetup(numOfPlayer){
 
     }
 
-    if (numOfPlayer == 4)
+    if (numOfPlayer === 4)
     {
 
         $("#pos1").css(css_data.positions.top_right).children(".bet").css(css_data.bet_positions.top);
@@ -533,7 +545,7 @@ function firstSetup(numOfPlayer){
         $("#pos6").remove();
     }
 
-    if (numOfPlayer == 3)
+    if (numOfPlayer === 3)
     {
 
         $("#pos1").css(css_data.positions.top_right).children(".bet").css(css_data.bet_positions.top);
@@ -545,7 +557,7 @@ function firstSetup(numOfPlayer){
 
     }
 
-    if (numOfPlayer == 2)
+    if (numOfPlayer === 2)
     {
 
         $("#pos1").css(css_data.positions.top_middle).children(".bet").css(css_data.bet_positions.top);
@@ -557,7 +569,7 @@ function firstSetup(numOfPlayer){
 
     }
 
-    isfisrtSetup= false;
+    isfisrtSetup = true;
 }
 
 function display_winners(data) {
@@ -599,13 +611,13 @@ function displayEndGame(){
 
 function update_games_values(data) {
     if( num_of_players === 0) {
-        num_of_players = data.number_of_players;
+        num_of_players = data.userData.length;
 
     }
 
     $("#mySidebar").empty();
     $("#mySidebar").append($('<p></p>').text("The player are:"));
-    for (let i = 1 ; i<=num_of_players; i++) {
+    for (let i = 1 ; i<=data.userData.length; i++) {
         $("#pos" + i.toString() + " .player_details .player_name").text(data.userData[i - 1].name);
         $("#pos" + i.toString() + " .player_details .type").text(data.userData[i - 1].type);
         $("#pos" + i.toString() + " .player_details .wins_count").text(data.userData[i - 1].num_of_wins);
