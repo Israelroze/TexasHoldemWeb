@@ -28,7 +28,7 @@ var Player_Ready_URL=buildUrlWithContextPath("playerready");
 var Game_Status_URL=buildUrlWithContextPath("gamestatus");
 var Set_Move_URL=buildUrlWithContextPath("setmove");
 var Leave_Game_URL=buildUrlWithContextPath("leavegame");
-
+var Set_Buy_URL=buildUrlWithContextPath("setbuy");
 
 //$(init_countdown);
 $(UpperMenu);
@@ -47,7 +47,7 @@ function UpperMenu(){
     $("#on_board_item").hide();
     $(".pos").hide();
     $("#top_menu").append($('<button class="bar_button" id ="Ready"></button>').text("Ready").bind('click',function(){ajaxPlayerReady();}));
-   //$("#top_menu").append($('<button class="bar_button" id ="Buy"></button>').text("Buy").bind('click',function(){ajaxBuy();}));
+    $("#top_menu").append($('<button class="bar_button" id ="Buy"></button>').text("Buy").bind('click',function(){ajaxBuy();}));
     $("#top_menu").append($('<button class="bar_button" id ="LeaveGame"></button>').text("Leave Game").bind('click',function(){ajaxLeaveGame();}));
 }
 function init_countdown() {
@@ -336,6 +336,20 @@ function ajaxGameStatus(){
         },
         error: function(e){
             logPrint("from ajaxGameStatus"+e.responseText);
+        }
+    });
+}
+
+function ajaxBuy(){
+    $.ajax({
+        url:Set_Buy_URL,
+
+        success: function(r) {
+            logPrint("from ajaxBuy success"+r);
+
+        },
+        error: function(e){
+            logPrint("from ajaxBuy"+e.responseText);
         }
     });
 }

@@ -76,12 +76,24 @@ public class APlayers {
         }
     }
 
+
+    private void UpdateIdsAfterDelete(){
+        int index=0;
+
+        for(APlayer player:this.aplayers)
+        {
+            player.setID(index);
+            index++;
+        }
+
+    }
     public void DeletPlayerByName(String name){
         for(APlayer player: this.aplayers)
         {
-            if(player.GetName()==name)
+            if(player.GetName().equals(name))
             {
                 this.aplayers.remove(player);
+                UpdateIdsAfterDelete();
                 /*
                 int num_of_humans=0;
                 for(APlayer hp:this.aplayers) { if(hp.GetType()==PlayerType.HUMAN) num_of_humans++; }

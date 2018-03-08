@@ -119,6 +119,7 @@ public interface Engine {
     public int GetPlayerNumOfBuy(int id);
     public String GetPlayerName(int id);
     public void Buy();
+    public void SetPlayerBuyByName(String username);
 
     ////////////////////////////////////////////////
     ///// Replay

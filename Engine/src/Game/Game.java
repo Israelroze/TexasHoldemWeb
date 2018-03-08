@@ -821,6 +821,16 @@ public class Game implements Engine {
     }
 
     @Override
+    public void SetPlayerBuyByName(String username) {
+        for(APlayer player:this.players.GetPlayers())
+        {
+            if(player.GetName().equals(username)){
+                player.BuyMoney(this.configuration.getStructure().getBuy());
+            }
+        }
+    }
+
+    @Override
     public boolean IsHumanPlayerFolded() {
         for(APlayer player:this.players.GetPlayers())
         {
