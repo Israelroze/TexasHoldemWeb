@@ -7,12 +7,19 @@ var GaseList_URL=buildUrlWithContextPath("gamelist");
 var UserList_URL=buildUrlWithContextPath("userlist");
 var FileUpload_URL=buildUrlWithContextPath("fileupload");
 var GameReady_URL=buildUrlWithContextPath("gameready");
+var Logout_URL=buildUrlWithContextPath("logout");
 
 $(LoadGameFile);
 $(PollUserlist);
 $(PollGamelist);
+$(Logout);
 
 /////////USER LIST FUNCTIONS
+function Logout(){
+    $("#logout").bind('click',function(){ajaxLogout()});
+}
+
+
 function PollUserlist() {
     //prevent IE from caching ajax calls
     $.ajaxSetup({cache: false});
@@ -20,6 +27,28 @@ function PollUserlist() {
     //The users list is refreshed automatically every second
     setInterval(ajaxUserList, refreshRate);
     setTimeout(ajaxUserList, refreshRate);
+}
+
+function ajaxLogout(){
+    event.preventDefault();
+
+    $.ajax({
+        url:Logout_URL,
+        success: function(r) {
+            //$("#errormessage").text("");
+            console.log("redirecting to "+r);
+            window.location.href=r;
+        },
+        error: function(e){
+            if(e.responseText.includes("/login/"))
+            {
+                console.log("redirecting to "+e.responseText);
+                window.location.href=e.responseText;
+            }
+            console.log("fromAjaxLogout error:"+e.responseText);
+            //$("#errormessage").text(e.responseText).css({'color': 'red'});
+        }
+    });
 }
 
 function ajaxUserList() {
@@ -62,6 +91,7 @@ function ajaxGameList() {
     $.ajax({
         url:GaseList_URL,
         success: function(games) {
+            console.log(games);
             refreshGamelist(games);
         }
     });
@@ -84,9 +114,23 @@ function createGameBox(game) {
             $('<td></td>').text("Uploader:" + game.uploader),
             $('<td></td>').text("Big/Small:" + game.big + '/'+game.small),
             $('<td></td>').text("       "),
-            $('<td></td>').append($('<button class="joinbutton"></button>').text("Join").bind('click',function(){ joinGame(game.game_name)}))
+            //$('<td></td>').append($('<button class="joinbutton"></button>').text("Join").bind('click',function(){ joinGame(game.game_name)}))
+            $('<td></td>').append(DealGameStarted(game))
         )
     );
+
+}
+
+function DealGameStarted(game)
+{
+    console.log("Dealing game started");
+    if(game.is_game_started) {
+        console.log("put P");
+        return $('<p></p>').text("Game Currently Running").css({'color': 'green'});
+    }
+    else{
+        return $('<button class="joinbutton"></button>').text("Join").bind('click',function(){ joinGame(game.game_name)});
+    }
 }
 
 function joinGame(id) {

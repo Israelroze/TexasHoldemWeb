@@ -59,6 +59,14 @@
         <servlet-name>LeaveGame</servlet-name>
         <servlet-class>Gameloop.LeaveGameServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetSideBar</servlet-name>
+        <servlet-class>GamesList.SideBarDataServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SendChat</servlet-name>
+        <servlet-class>GamesList.SendChatMessageServlet</servlet-class>
+    </servlet>
         <servlet>
             <servlet-name>SetMove</servlet-name>
             <servlet-class>Gameloop.SetMoveServlet</servlet-class>
@@ -70,6 +78,10 @@
         <servlet>
             <servlet-name>SetBuy</servlet-name>
             <servlet-class>Gameloop.SetBuyServlet</servlet-class>
+        </servlet>
+        <servlet>
+            <servlet-name>Logout</servlet-name>
+            <servlet-class>GamesList.UserLogoutServlet</servlet-class>
         </servlet>
         <servlet-mapping>
             <servlet-name>FileUpload</servlet-name>
@@ -138,5 +150,17 @@
     <servlet-mapping>
         <servlet-name>SetBuy</servlet-name>
         <url-pattern>/setbuy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetSideBar</servlet-name>
+        <url-pattern>/getsidebar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendChat</servlet-name>
+        <url-pattern>/sendchat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 </web-app>

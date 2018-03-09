@@ -22,15 +22,25 @@ public class GameManager implements EngineManager {
     private Map<String,Engine> gameHash;
     private Map<String,Integer> gameReadyList;
     private Map<String, APlayer> usersHash;
+    private Map<String,List<String>> chatHash;
 
     public GameManager(){
         this.usersHash=new HashMap<>();
         this.gameHash=new HashMap<>();
         this.gameReadyList=new HashMap<>();
+        this.chatHash=new HashMap<>();
+    }
+
+    private synchronized List<String> GetChatHash(String game_id){
+        for (Map.Entry<String,List<String>> entry : this.chatHash.entrySet()) {
+            String key = entry.getKey();
+            if(key.equals(game_id)) return entry.getValue();
+        }
+        return null;
     }
 
     @Override
-    public void AddGame(InputStream fstream,String uploader) throws MinusZeroValueException, UnexpectedObjectException, BigSmallMismatchException, HandsCountDevideException, GameStartedException, BigBiggerThanBuyException, MaxBigMoreThanHalfBuyException, HandsCountSmallerException, JAXBException, PlayerdIDmismatchException, GameTitleAllreadyExistException {
+    public synchronized void AddGame(InputStream fstream,String uploader) throws MinusZeroValueException, UnexpectedObjectException, BigSmallMismatchException, HandsCountDevideException, GameStartedException, BigBiggerThanBuyException, MaxBigMoreThanHalfBuyException, HandsCountSmallerException, JAXBException, PlayerdIDmismatchException, GameTitleAllreadyExistException {
         Engine new_game=new Game();
         new_game.LoadFromXML(fstream);
 
@@ -43,26 +53,27 @@ public class GameManager implements EngineManager {
         else
         {
             this.gameHash.put(id,new_game);
+            this.chatHash.put(id,new LinkedList<>());
         }
     }
 
     @Override
-    public Engine GetGame(String id) {
+    public synchronized Engine GetGame(String id) {
         return this.gameHash.get(id);
     }
 
     @Override
-    public boolean IsGameExist(String id) {
+    public synchronized boolean IsGameExist(String id) {
         return this.gameHash.containsKey(id);
     }
 
     @Override
-    public void DeleteGame(String id) {
+    public synchronized void DeleteGame(String id) {
         this.gameHash.remove(id);
     }
 
     @Override
-    public List<Engine> GetGamesList() {
+    public synchronized List<Engine> GetGamesList() {
         List<Engine> res = new LinkedList<>();
 
         for (Map.Entry<String, Engine> entry : this.gameHash.entrySet()) {
@@ -74,7 +85,7 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public void AddPlayerToGame(String game_id, String username) throws UserNameNotProvidedException, GameIDNotProvidedException, PlayerAlreadyInGameException {
+    public synchronized void AddPlayerToGame(String game_id, String username) throws UserNameNotProvidedException, GameIDNotProvidedException, PlayerAlreadyInGameException {
         try {
             APlayer player = this.usersHash.get(username);
 
@@ -94,12 +105,12 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public void LeavePlayerGame(String game_id, String username) {
+    public synchronized void LeavePlayerGame(String game_id, String username) {
         this.GetGame(game_id).DeletePlayer(username);
     }
 
     @Override
-    public List<String> GetUserList() {
+    public synchronized List<String> GetUserList() {
         List<String> res=new LinkedList<>();
 
         for (Map.Entry<String, APlayer> entry : this.usersHash.entrySet()) {
@@ -111,12 +122,12 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public boolean IsUserListEmpty() {
+    public synchronized boolean IsUserListEmpty() {
         return this.usersHash.isEmpty();
     }
 
     @Override
-    public void AddNewUser(String username, String Type) throws PlayerAlreadyExistException {
+    public synchronized void AddNewUser(String username, String Type) throws PlayerAlreadyExistException {
         if(this.usersHash.containsKey(username)){
             throw new PlayerAlreadyExistException();
         }
@@ -130,7 +141,12 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public String GetUserType(String username) {
+    public synchronized void LogoutUser(String username) {
+        this.usersHash.remove(username);
+    }
+
+    @Override
+    public synchronized String GetUserType(String username) {
         PlayerType type=this.usersHash.get(username).GetType();
 
         if(type==PlayerType.HUMAN)
@@ -141,22 +157,7 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public int GetUserMoney(String username) {
-        return this.usersHash.get(username).GetMoney();
-    }
-
-    @Override
-    public int GetUserNumOfBuys(String username) {
-        return this.usersHash.get(username).GetNumOfBuys();
-    }
-
-    @Override
-    public int GetUserNumOfWins(String username) {
-        return this.usersHash.get(username).GetNumOfWins();
-    }
-
-    @Override
-    public String IsPlayerInReadyGame(String username) {
+    public synchronized String IsPlayerInReadyGame(String username) {
 
         APlayer player=this.usersHash.get(username);
 
@@ -175,22 +176,39 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public void AddReadyPlayer(String username, String GameID) {
+    public synchronized void SetChatMessage(String gase_id, String username, String message) {
+        this.GetChatHash(gase_id).add(username+": "+message);
+    }
+
+    @Override
+    public synchronized List<String> getChatData(String game_id) {
+       return this.GetChatHash(game_id);
+    }
+
+    @Override
+    public synchronized void InitChatData(String game_id) {
+
+        this.GetChatHash(game_id).clear();
 
     }
 
     @Override
-    public boolean IsAllPlayersReady(String GameID) {
+    public synchronized void AddReadyPlayer(String username, String GameID) {
+
+    }
+
+    @Override
+    public synchronized boolean IsAllPlayersReady(String GameID) {
         return false;
     }
 
     @Override
-    public void InitPlayersReady(String GameID) {
+    public synchronized void InitPlayersReady(String GameID) {
 
     }
 
     @Override
-    public void CheckGameStatus(Engine game){
+    public synchronized void CheckGameStatus(Engine game){
         //if game started
         if(game.IsGameStarted())
         {
@@ -284,7 +302,7 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public void InitGame(Engine game) {
+    public synchronized void InitGame(Engine game) {
         game.InitGame();
 
         for(APlayer player: this.usersHash.values())
@@ -294,14 +312,14 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public void CheckCurrentPlayerStatus(Engine game) {
+    public synchronized void CheckCurrentPlayerStatus(Engine game) {
         if(!game.IsCurrentBidCycleFinished() && game.IsCurrentHandStarted()) {
 
         }
     }
 
     @Override
-    public void CheckCurrentHandStatus(Engine game) {
+    public synchronized void CheckCurrentHandStatus(Engine game) {
         if(game.IsCurrentHandStarted() && !game.IsCurrentHandFinished()) {
             //checks ans preformes techincal winner
             game.CheckCurrentHandStatus();
@@ -313,7 +331,7 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public boolean IsYourTurn(Engine game,String username) {
+    public synchronized boolean IsYourTurn(Engine game,String username) {
         if (game.IsCurrentHandStarted()) {
             String current_player_name = game.GetPlayerName(game.GetCurrentPlayerID());
 
@@ -325,7 +343,7 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public void MenageCycle(Engine game) throws NoSufficientMoneyException {
+    public synchronized void MenageCycle(Engine game) throws NoSufficientMoneyException {
         if(game.IsCurrentHandStarted() &&!game.IsCurrentHandFinished()) {
             game.CheckBidStatus();
             //bid cycle check
@@ -355,7 +373,7 @@ public class GameManager implements EngineManager {
     }
 
     @Override
-    public void SetNewMove(Engine game,String username,String move,String Value) throws NoSufficientMoneyException, MoveNotAllowdedException, PlayerAlreadyBetException, PlayerFoldedException, ChipLessThanPotException, StakeNotInRangeException {
+    public synchronized void SetNewMove(Engine game,String username,String move,String Value) throws NoSufficientMoneyException, MoveNotAllowdedException, PlayerAlreadyBetException, PlayerFoldedException, ChipLessThanPotException, StakeNotInRangeException {
         // get turn status
         boolean is_your_turn = false;
         if (game.IsCurrentHandStarted() && !game.IsCurrentHandOver()) {

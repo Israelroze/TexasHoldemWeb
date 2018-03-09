@@ -24,11 +24,16 @@ public interface EngineManager {
     public List<String> GetUserList();
     public boolean IsUserListEmpty();
     public void AddNewUser(String username,String Type) throws PlayerAlreadyExistException;
+    public void LogoutUser(String username);
     public String GetUserType(String username);
-    public int GetUserMoney(String username);
-    public int GetUserNumOfBuys(String username);
-    public int GetUserNumOfWins(String username);
     public String IsPlayerInReadyGame(String username);
+
+    /////////////////////////////////////////////
+    /////chats
+    /////////////////////////////////////////////
+    public void SetChatMessage(String gase_id,String username,String message);
+    public List<String> getChatData(String game_id);
+    public void InitChatData(String game_id);
 
     /////////////////////////////////////////////
     ///// Main loop

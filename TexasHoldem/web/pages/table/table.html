@@ -21,7 +21,7 @@
 
         <div id="table" class="table_class" data-uid="">
             <div id="on_board_item" class = "vbox flex hbox main-center cross-center wrap">
-                <div id="board" class = "flex hbox main-center cross-center wrap" >
+                <div id="board" class = "hbox main-center cross-center" >
                 </div>
                 <div id="pot">
                     <div id="current-pot"></div>
@@ -123,24 +123,41 @@
 
 
 </div>
-<div class= "hbox">
-    <div id="top_menu" class="navbar hbox main-center ">
-        <span id="top_menu_option" class="hbox main-center stretch"></span>
+
+
+
+<div>
+    <div id="top_menu" class="navbar hbox main-center w3-main">
+        <div id="top_menu_option" class="hbox main-center  "></div>
         <p id="messages" class = "hbox"></p>
     </div>
 </div>
 
-<button  id="open_chat" class="w3-button " onclick="w3_toggle()">&#9776;Players/Chat </button>
+<button  id="open_chat" onclick="w3_toggle()">&#9776;Players/Chat </button>
+<!-- Sidebar -->
+<div class="w3-sidebar w3-bar-block w3-border-left" style="width:12vw; background: transparent; display:none; overflow: auto" id="mySidebar">
+    <div id="player_list" class="sidebarbox" style=" width:70%;border:1px solid #ccc;font:10px/16px Georgia, Garamond, Serif;overflow:auto;">
+        <p>Players:</p>
+        <ul id="sidebar_users"></ul>
+    </div>
 
 
+    <div  id="chat" class="sidebarbox" style="min-height: 20vh; width:70%;border:1px solid #ccc;font:10px/16px Georgia, Garamond, Serif;overflow:auto;">
+        <div id="chatlines" style="min-height:50%;">
+            <h4>Bot: Welcome to game chat.</h4>
 
+        </div>
+        <div id="userInput" style="padding-top: 20px; ">
+            <form id="chatform" method="POST" action="sendchat">
+                <input type="text" id="chat_string" class="chat_string" name="chat_string" placeholder="message"/>
+                <input type="submit" value="Send"/>
+            </form>
+        </div>
+    </div>
 </div>
 
 
-<!-- Sidebar -->
-<div class="w3-sidebar w3-bar-block w3-border-left" style="display:none" id="mySidebar">
 
-</div></div>
 
 <div id="myModal" class="modal">
     <!-- Modal content -->
@@ -149,40 +166,6 @@
     </div>
 
 </div>
-<!--
-
-<div id="id01" class="w3-modal" style="display: block;">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
-        <header class="w3-container w3-red w3-display-container">
-            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-display-topright w3-hover-red w3-hover-opacity">×</span>
-            <h2>Modal Header</h2>
-        </header>
-        <div class="w3-container">
-            <p>Hello World!</p>
-            <p>Modals are awesome!</p>
-        </div>
-        <footer class="w3-container w3-red">
-            <p>Modal Footer</p>
-        </footer>
-    </div>
-</div>
-
-
-
--->
-
-
-
-
-<!--
-<div  id="bottom_menu" class="navbar">
-        <button class="bar_button" id ="call">Call</button>
-        <button class="bar_button" id ="raise">Raise</button>
-        <button class="bar_button" id ="fold">Fold</button>
-        <button class="bar_button" id ="bet">Bet</button>
-        <button class="bar_button" id ="check">Check</button>
-</div>
-        -->
 
 </body>
 </html>

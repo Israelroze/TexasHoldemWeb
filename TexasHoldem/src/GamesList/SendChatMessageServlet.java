@@ -1,8 +1,6 @@
-package Gameloop;
+package GamesList;
 
-import API.Engine;
 import API.EngineManager;
-import Exceptions.NoSufficientMoneyException;
 import GameManager.GameManager;
 import Utils.ServletUtils;
 
@@ -12,11 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-public class EndGameServlet extends HttpServlet {
+public class SendChatMessageServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
         String username= ServletUtils.getSessionUser(request);
 
         if(username==null)
@@ -24,17 +27,11 @@ public class EndGameServlet extends HttpServlet {
             ServletUtils.SendErrorMessage("User don't registered", response);
         }
         else {
+            //String game_id=getManager().IsPlayerInReadyGame(username);
+            String message=request.getParameter("chat_string");
             String game_id = ServletUtils.getSessionParam(request, "gameID");
-
-            if (game_id == null) {
-                ServletUtils.SendErrorMessage("Error getting game id from session", response);
-            }
-            else {
-                Engine game = getManager().GetGame(game_id);
-                game.SetGameOver(true);
-                getManager().InitChatData(game.GetGameID());
-                getManager().InitGame(game);
-                ServletUtils.SendRedirectURL("../lobby/lobby.html",response);
+            if(game_id!=null) {
+                getManager().SetChatMessage(game_id,username,message);
             }
         }
     }
@@ -55,6 +52,4 @@ public class EndGameServlet extends HttpServlet {
             return (EngineManager) context.getAttribute("EngineManager");
         }
     }
-
-
 }
